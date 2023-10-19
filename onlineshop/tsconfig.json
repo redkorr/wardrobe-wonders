@@ -18,7 +18,15 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "pages/*": ["./src/pages/*"],
+      "utils/*": ["./src/pages/*"],
+      "components/*": ["./src/pages/*"],
+      "assets/*": ["./src/pages/*"]
+    }
   },
   "include": ["src", "tailwindcss.config.js"],
   "references": [{ "path": "./tsconfig.node.json" }]
