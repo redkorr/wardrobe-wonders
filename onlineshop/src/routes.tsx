@@ -1,4 +1,4 @@
-import { Login, HomePage, Register } from './pages';
+import { Login, HomePage, Register, Products } from './pages';
 
 interface Route {
   path: string;
@@ -11,19 +11,23 @@ export const ROUTES: Array<Route> = [
     element: <HomePage />
   },
   {
-    path: '/checkout/login',
+    path: 'checkout/login',
     element: <Login />
   },
   {
-    path: '/my-accout/login',
+    path: 'my-accout/login',
     element: <Login />
   },
   {
-    path: '/checkout/register',
+    path: 'checkout/register',
     element: <Register />
   },
   {
-    path: '*',
-    element: <div>404</div>
+    path: 'products/:sex/:category?',
+    element: <Products />
   }
+  // {
+  //   path: '*',
+  //   element: <div>404</div>
+  // }
 ];
