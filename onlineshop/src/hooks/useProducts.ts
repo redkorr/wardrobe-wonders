@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { Cloth } from '../../types';
+import { Product } from '../../types';
 
-const useProducts = (): Array<Cloth> | undefined => {
-  const [data, setData] = useState<Array<Cloth> | undefined>(undefined);
+const useProducts = (): Array<Product> | undefined => {
+  const [data, setData] = useState<Array<Product> | undefined>(undefined);
   const env = import.meta.env.NODE_ENV === 'production' ? `${import.meta.env.VITE_API_URL}` : 'http://localhost:5000';
 
   useEffect(() => {
