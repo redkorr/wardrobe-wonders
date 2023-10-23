@@ -4,7 +4,7 @@ export type Description = {
   fabric_other?: string[];
   fabric_inside?: string[];
 };
-export type Cloth = {
+export type Product = {
   item_id?: string;
   product_id?: string;
   sex: string;
@@ -16,4 +16,8 @@ export type Cloth = {
   color: string;
   size: string;
   stock: number;
+};
+
+export type Category = {
+  name: string;
 };
