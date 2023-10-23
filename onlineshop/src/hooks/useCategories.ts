@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
-import { Product } from '../../types';
+import { Category } from '../../types';
 
-const useProducts = (): Array<Product> | undefined => {
-  const [data, setData] = useState<Array<Product> | undefined>(undefined);
+const useCategories = (): Array<Category> | undefined => {
+  const [data, setData] = useState<Array<Category> | undefined>(undefined);
   const env = import.meta.env.NODE_ENV === 'production' ? `${import.meta.env.VITE_API_URL}` : 'http://localhost:5000';
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch(`${env}/api/products`);
+        const response = await fetch(`${env}/api/categories`);
         const json = await response.json();
 
         setData(json);
@@ -23,4 +23,4 @@ const useProducts = (): Array<Product> | undefined => {
   return data;
 };
 
-export default useProducts;
+export default useCategories;
