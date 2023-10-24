@@ -1,6 +1,6 @@
 export { default as Login } from './Login';
 
-export { default as MyAccout } from './MyAccout';
+export { default as MyAccount } from './MyAccount';
 
 export { default as HomePage } from './HomePage';
 
