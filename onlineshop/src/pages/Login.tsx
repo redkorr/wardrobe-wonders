@@ -7,6 +7,7 @@ const Login = () => {
         path="/checkout/login"
         routing="path"
         signUpUrl="/checkout/register"
+        redirectUrl="/"
       />
     </div>
   );
