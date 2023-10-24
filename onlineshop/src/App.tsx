@@ -1,8 +1,7 @@
 import { Routes, Route, useNavigate, BrowserRouter as Router } from 'react-router-dom';
 import { ROUTES } from './routes';
 import './App.css';
-import { ClerkProvider, RedirectToSignIn, SignedIn, SignedOut } from '@clerk/clerk-react';
-import { MyAccout } from './pages';
+import { AuthenticateWithRedirectCallback, ClerkProvider } from '@clerk/clerk-react';
 
 if (!import.meta.env.VITE_APP_CLERK_PUBLISHABLE_KEY) {
   throw new Error('Missing Publishable Key');
@@ -27,17 +26,8 @@ function ClerkProviderWithRoutes() {
             />
           ))}
           <Route
-            path="/protected"
-            element={
-              <>
-                <SignedIn>
-                  <MyAccout />
-                </SignedIn>
-                <SignedOut>
-                  <RedirectToSignIn />
-                </SignedOut>
-              </>
-            }
+            path="checkout/login/sso-callback"
+            element={<AuthenticateWithRedirectCallback />}
           />
         </Routes>
       </ClerkProvider>
