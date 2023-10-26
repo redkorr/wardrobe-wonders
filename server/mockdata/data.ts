@@ -7,8 +7,8 @@ export const data: Array<Product> = [
     name: "Men's cotton patterned t-shirt with elastane blend color green",
     price: 59.9,
     currency: 'PLN',
-    category: new Types.ObjectId('65354d997cf9c16a88936aae'), // cloth
-    type: 't-shirt',
+    category: new Types.ObjectId('653ac6324034fcd15891180c'), // cloth
+    type: new Types.ObjectId('653a64ff0de8e3dc995d7692'),
     images: [
       '/RW23-TSM060-67A_F1.webp',
       '/RW23-TSM060-67A_F3.webp',
@@ -27,8 +27,8 @@ export const data: Array<Product> = [
     name: "Mad Max men's cotton t-shirt black color",
     price: 99.9,
     currency: 'PLN',
-    category: new Types.ObjectId('65354d997cf9c16a88936aae'), // cloth
-    type: 't-shirt',
+    category: new Types.ObjectId('653ac6324034fcd15891180c'), // cloth
+    type: new Types.ObjectId('653a64ff0de8e3dc995d7692'),
     images: [
       '/RW23-TSM962-99X_F1.webp',
       '/RW23-TSM962-99X_F3.webp',
@@ -48,7 +48,7 @@ export const data: Array<Product> = [
     price: 179.9,
     currency: 'PLN',
     category: new Types.ObjectId('65354d997cf9c16a88936aae'), // cloth
-    type: 'Hoodie',
+    type: new Types.ObjectId('653a64ff0de8e3dc995d7691'),
     images: [
       '/RW23-BLMA30-99X_F1.webp',
       '/RW23-BLMA30-99X_F3.webp',
@@ -68,8 +68,8 @@ export const data: Array<Product> = [
     name: "Men's hooded sweatshirt color beige",
     price: 199.9,
     currency: 'PLN',
-    category: new Types.ObjectId('65354d997cf9c16a88936aae'), // cloth
-    type: 'Hoodie',
+    category: new Types.ObjectId('653ac6324034fcd15891180c'), // cloth
+    type: new Types.ObjectId('653a64ff0de8e3dc995d7691'),
     images: [
       '/RW23-BLM802-80M_F1.webp',
       '/RW23-BLM802-80M_F3.webp',
@@ -89,8 +89,8 @@ export const data: Array<Product> = [
     name: "Men's hooded sweatshirt color black",
     price: 179.9,
     currency: 'PLN',
-    category: new Types.ObjectId('65354d997cf9c16a88936aae'), // cloth
-    type: 'Hoodie',
+    category: new Types.ObjectId('653ac6324034fcd15891180c'), // cloth
+    type: new Types.ObjectId('653a64ff0de8e3dc995d7691'),
     images: [
       '/RW23-BLM802-80M_F1.webp',
       '/RW23-BLM802-80M_F1.webp',
@@ -110,8 +110,8 @@ export const data: Array<Product> = [
     name: "Men's slim color jeans",
     price: 159.9,
     currency: 'PLN',
-    category: new Types.ObjectId('65354d997cf9c16a88936aae'), // cloth
-    type: 'pants',
+    category: new Types.ObjectId('653ac6324034fcd15891180c'), // cloth
+    type: new Types.ObjectId('653a64ff0de8e3dc995d7694'),
     images: [
       '/RW23-SJM903-RDJ_F1.webp',
       '/RW23-SJM903-RDJ_F2.webp',
@@ -131,8 +131,8 @@ export const data: Array<Product> = [
     name: "Men's slim jeans navy blue color",
     price: 159.9,
     currency: 'PLN',
-    category: new Types.ObjectId('65354d997cf9c16a88936aae'), // cloth
-    type: 'pants',
+    category: new Types.ObjectId('653ac6324034fcd15891180c'), // cloth
+    type: new Types.ObjectId('653a64ff0de8e3dc995d7694'),
     images: [
       '/RW23-SJM903-59J_F1.webp',
       '/RW23-SJM903-59J_F3.webp',
@@ -152,8 +152,8 @@ export const data: Array<Product> = [
     name: "Men's jeans regular color blue",
     price: 159.9,
     currency: 'PLN',
-    type: 'pants',
-    category: new Types.ObjectId('65354d997cf9c16a88936aae'), // cloth
+    category: new Types.ObjectId('653ac6324034fcd15891180c'),
+    type: new Types.ObjectId('653a64ff0de8e3dc995d7694'),
     images: [
       '/RW23-SJM902-55J_F1.webp',
       '/RW23-SJM902-55J_F3.webp',
@@ -173,8 +173,8 @@ export const data: Array<Product> = [
     name: "Men's wool blend patterned shirt multicolor color",
     price: 179.9,
     currency: 'PLN',
-    category: new Types.ObjectId('65354d997cf9c16a88936aae'), // cloth
-    type: 'shirt',
+    category: new Types.ObjectId('653ac6324034fcd15891180c'), // cloth
+    type: new Types.ObjectId('653a64ff0de8e3dc995d7692'),
     images: [
       '/RW23-KDM901-MLA_F1.webp',
       '/RW23-KDM901-MLA_F2.webp',
@@ -194,8 +194,8 @@ export const data: Array<Product> = [
     name: "Men's shirt with classic collar plain white color",
     price: 159.9,
     currency: 'PLN',
-    category: new Types.ObjectId('65354d997cf9c16a88936aae'), // cloth
-    type: 'shirt',
+    category: new Types.ObjectId('653ac6324034fcd15891180c'), // cloth
+    type: new Types.ObjectId('653a64ff0de8e3dc995d7692'),
     images: [
       '/RW23-KDM090-00X_F1.webp',
       '/RW23-KDM090-00X_F3.webp',
@@ -215,8 +215,8 @@ export const data: Array<Product> = [
     name: "Men's suede shoes brown color",
     price: 299.9,
     currency: 'PLN',
-    category: new Types.ObjectId('65354d997cf9c16a88936aaf'), // shoes,
-    type: 'sneakers',
+    category: new Types.ObjectId('653ac6324034fcd15891180d'), // shoes,
+    type: new Types.ObjectId('653a64ff0de8e3dc995d7695'),
     images: [
       '/RW23-OBM406-89X_F1.webp',
       '/RW23-OBM406-89X_F2.webp',
@@ -237,8 +237,8 @@ export const data: Array<Product> = [
     name: "Men's suede sneakers yellow color",
     price: 329.9,
     currency: 'PLN',
-    category: new Types.ObjectId('65354d997cf9c16a88936aaf'), // shoes,
-    type: 'sneakers',
+    category: new Types.ObjectId('653ac6324034fcd15891180d'), // shoes,
+    type: new Types.ObjectId('653a64ff0de8e3dc995d7695'),
     images: [
       '/RW23-OBM204-17X_F1.webp',
       '/RW23-OBM204-17X_F2.webp',
