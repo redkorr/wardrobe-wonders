@@ -5,7 +5,7 @@
   "exports": "./server.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon --watch '**/*.ts' --exec ts-node --esm server.ts",
+    "dev": "nodemon server.ts",
     "products": "ts-node --esm ./scripts/insertManyProducts.ts",
     "categories": "ts-node --esm ./scripts/insertManyCategories.ts"
   },

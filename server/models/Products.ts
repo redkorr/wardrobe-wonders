@@ -13,7 +13,8 @@ export interface Product {
   product_id?: string;
   sex: string;
   name: string;
-  price: string;
+  price: number;
+  currency: string;
   category: mongoose.Types.ObjectId;
   type: string;
   images: string[] | null;
@@ -45,6 +46,10 @@ const productSchema = new Schema<Product>({
     required: true,
   },
   price: {
+    type: Schema.Types.Number,
+    required: true,
+  },
+  currency: {
     type: Schema.Types.String,
     required: true,
   },
