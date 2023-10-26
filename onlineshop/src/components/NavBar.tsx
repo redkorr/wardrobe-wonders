@@ -25,6 +25,7 @@ const Navbar = () => {
       <div>
         {categories?.map((category) => (
           <NavLink
+            key={category.name}
             style={({ isActive }) => (isActive ? { fontWeight: 700, color: 'white' } : {})}
             className="px-4 text-lg font-semibold"
             to={`${LINKS.products}/${sex}/${category.name}`}
