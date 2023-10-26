@@ -5,7 +5,8 @@ export const data: Array<Product> = [
   {
     sex: 'male',
     name: "Men's cotton patterned t-shirt with elastane blend color green",
-    price: '59.90 zł',
+    price: 59.9,
+    currency: 'PLN',
     category: new Types.ObjectId('65354d997cf9c16a88936aae'), // cloth
     type: 't-shirt',
     images: [
@@ -24,7 +25,8 @@ export const data: Array<Product> = [
   {
     sex: 'male',
     name: "Mad Max men's cotton t-shirt black color",
-    price: '99.90 zł',
+    price: 99.9,
+    currency: 'PLN',
     category: new Types.ObjectId('65354d997cf9c16a88936aae'), // cloth
     type: 't-shirt',
     images: [
@@ -43,7 +45,8 @@ export const data: Array<Product> = [
   {
     sex: 'male',
     name: "Men's hooded sweatshirt color black",
-    price: '179.90 zł',
+    price: 179.9,
+    currency: 'PLN',
     category: new Types.ObjectId('65354d997cf9c16a88936aae'), // cloth
     type: 'Hoodie',
     images: [
@@ -63,7 +66,8 @@ export const data: Array<Product> = [
   {
     sex: 'male',
     name: "Men's hooded sweatshirt color beige",
-    price: '199.90 zł',
+    price: 199.9,
+    currency: 'PLN',
     category: new Types.ObjectId('65354d997cf9c16a88936aae'), // cloth
     type: 'Hoodie',
     images: [
@@ -83,7 +87,8 @@ export const data: Array<Product> = [
   {
     sex: 'male',
     name: "Men's hooded sweatshirt color black",
-    price: '179.90 zł',
+    price: 179.9,
+    currency: 'PLN',
     category: new Types.ObjectId('65354d997cf9c16a88936aae'), // cloth
     type: 'Hoodie',
     images: [
@@ -103,7 +108,8 @@ export const data: Array<Product> = [
   {
     sex: 'male',
     name: "Men's slim color jeans",
-    price: '159.90 zł',
+    price: 159.9,
+    currency: 'PLN',
     category: new Types.ObjectId('65354d997cf9c16a88936aae'), // cloth
     type: 'pants',
     images: [
@@ -123,7 +129,8 @@ export const data: Array<Product> = [
   {
     sex: 'male',
     name: "Men's slim jeans navy blue color",
-    price: '159.90 zł',
+    price: 159.9,
+    currency: 'PLN',
     category: new Types.ObjectId('65354d997cf9c16a88936aae'), // cloth
     type: 'pants',
     images: [
@@ -143,7 +150,8 @@ export const data: Array<Product> = [
   {
     sex: 'male',
     name: "Men's jeans regular color blue",
-    price: '159.90 zł',
+    price: 159.9,
+    currency: 'PLN',
     type: 'pants',
     category: new Types.ObjectId('65354d997cf9c16a88936aae'), // cloth
     images: [
@@ -163,7 +171,8 @@ export const data: Array<Product> = [
   {
     sex: 'male',
     name: "Men's wool blend patterned shirt multicolor color",
-    price: '179.90 zł',
+    price: 179.9,
+    currency: 'PLN',
     category: new Types.ObjectId('65354d997cf9c16a88936aae'), // cloth
     type: 'shirt',
     images: [
@@ -183,7 +192,8 @@ export const data: Array<Product> = [
   {
     sex: 'male',
     name: "Men's shirt with classic collar plain white color",
-    price: '159.90 zł',
+    price: 159.9,
+    currency: 'PLN',
     category: new Types.ObjectId('65354d997cf9c16a88936aae'), // cloth
     type: 'shirt',
     images: [
@@ -203,7 +213,8 @@ export const data: Array<Product> = [
   {
     sex: 'male',
     name: "Men's suede shoes brown color",
-    price: '299.90 zł',
+    price: 299.9,
+    currency: 'PLN',
     category: new Types.ObjectId('65354d997cf9c16a88936aaf'), // shoes,
     type: 'sneakers',
     images: [
@@ -224,7 +235,8 @@ export const data: Array<Product> = [
   {
     sex: 'male',
     name: "Men's suede sneakers yellow color",
-    price: '329.90 zł',
+    price: 329.9,
+    currency: 'PLN',
     category: new Types.ObjectId('65354d997cf9c16a88936aaf'), // shoes,
     type: 'sneakers',
     images: [
