@@ -9,7 +9,9 @@ export type Product = {
   product_id?: string;
   sex: string;
   name: string;
-  price: string;
+  price: number;
+  currency: string;
+  category: Category;
   type: string;
   images: string[];
   description: Description;
