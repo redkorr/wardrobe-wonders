@@ -6,8 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon server.ts",
-    "products": "ts-node --esm ./scripts/insertManyProducts.ts",
-    "categories": "ts-node --esm ./scripts/insertManyCategories.ts"
+    "mock:products": "ts-node --esm ./scripts/insertManyProducts.ts",
+    "mock:categories": "ts-node --esm ./scripts/insertManyCategories.ts",
+    "mock:types": "ts-node --esm ./scripts/insertManyProductTypes.ts"
   },
   "keywords": [],
   "type": "module",
