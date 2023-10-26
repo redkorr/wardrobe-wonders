@@ -16,7 +16,7 @@ export interface Product {
   price: number;
   currency: string;
   category: mongoose.Types.ObjectId;
-  type: string;
+  type: mongoose.Types.ObjectId;
   images: string[] | null;
   description: Description;
   color: string;
@@ -59,7 +59,8 @@ const productSchema = new Schema<Product>({
     required: true,
   },
   type: {
-    type: Schema.Types.String,
+    type: Schema.Types.ObjectId,
+    ref: 'ProductType',
     required: true,
   },
   images: {
