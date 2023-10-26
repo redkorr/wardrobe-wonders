@@ -1,12 +1,12 @@
 import { Router } from 'express';
-import Category from '../../models/Category.js';
+import ProductType from '../../models/ProductType.js';
 import { MongooseError } from 'mongoose';
 
 const router = Router();
 
 router.get('/', async (req, res) => {
   try {
-    const data = await Category.find().populate('types');
+    const data = await ProductType.find();
     console.log(data);
     res.status(200).json(data);
   } catch (error) {
