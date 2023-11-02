@@ -7,7 +7,6 @@ const router = Router();
 router.get('/', async (req, res) => {
   try {
     const data = await Category.find().populate('types');
-    console.log(data);
     res.status(200).json(data);
   } catch (error) {
     if (error instanceof MongooseError) {
