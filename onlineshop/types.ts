@@ -12,7 +12,7 @@ export type Product = {
   price: number;
   currency: string;
   category: Category;
-  type: string;
+  type: ProductType;
   images: string[];
   description: Description;
   color: string;
@@ -22,4 +22,10 @@ export type Product = {
 
 export type Category = {
   name: string;
+  types: ProductType[];
+};
+
+export type ProductType = {
+  name: string;
+  display_name: string;
 };
