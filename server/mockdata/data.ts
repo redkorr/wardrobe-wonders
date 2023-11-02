@@ -8,7 +8,7 @@ export const data: Array<Product> = [
     price: 59.9,
     currency: 'PLN',
     category: new Types.ObjectId('653ac6324034fcd15891180c'), // cloth
-    type: new Types.ObjectId('653a64ff0de8e3dc995d7692'),
+    type: new Types.ObjectId('653a64ff0de8e3dc995d7693'),
     images: [
       '/RW23-TSM060-67A_F1.webp',
       '/RW23-TSM060-67A_F3.webp',
@@ -28,7 +28,7 @@ export const data: Array<Product> = [
     price: 99.9,
     currency: 'PLN',
     category: new Types.ObjectId('653ac6324034fcd15891180c'), // cloth
-    type: new Types.ObjectId('653a64ff0de8e3dc995d7692'),
+    type: new Types.ObjectId('653a64ff0de8e3dc995d7693'),
     images: [
       '/RW23-TSM962-99X_F1.webp',
       '/RW23-TSM962-99X_F3.webp',
@@ -47,7 +47,7 @@ export const data: Array<Product> = [
     name: "Men's hooded sweatshirt color black",
     price: 179.9,
     currency: 'PLN',
-    category: new Types.ObjectId('65354d997cf9c16a88936aae'), // cloth
+    category: new Types.ObjectId('653ac6324034fcd15891180c'), // cloth
     type: new Types.ObjectId('653a64ff0de8e3dc995d7691'),
     images: [
       '/RW23-BLMA30-99X_F1.webp',
@@ -92,9 +92,9 @@ export const data: Array<Product> = [
     category: new Types.ObjectId('653ac6324034fcd15891180c'), // cloth
     type: new Types.ObjectId('653a64ff0de8e3dc995d7691'),
     images: [
-      '/RW23-BLM802-80M_F1.webp',
-      '/RW23-BLM802-80M_F1.webp',
-      '/RW23-BLM802-80M_F1.webp',
+      '/RW23-BLMA31-99X_F1.webp',
+      '/RW23-BLMA31-99X_F3.webp',
+      '/RW23-BLMA31-99X_F5.webp',
     ],
     description: {
       body: 'Hooded sweatshirt from the Medicine collection. Model made of knitted fabric with a print. - Regular cut. - Long sleeve. - Lowered shoulder line. - Drawstring hood. - Slip-in pockets. - Welt trim. - Printed model. - Sleeve length(measured from the hood): 80 cm. - Length: 74 cm. - Width under the arms: 62 cm. - Dimensions given for size: L.',
