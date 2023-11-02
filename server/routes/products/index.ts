@@ -17,17 +17,19 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/:sex/:category?', async (req, res) => {
+router.get('/:sex/:category?/:type?', async (req, res) => {
   const pathParams = req.params;
   const searchParams = req.query;
 
   try {
     const filters = await createFilters(pathParams, searchParams);
-    const data = await Product.find(filters).populate('category');
+    const data = await Product.find(filters)
+      .populate('category')
+      .populate('type');
 
     res.status(200).json(data);
   } catch (error) {
-    res.status(404).json({ status: 404, message: 'Category not found.' });
+    res.status(404).json({ status: 404, message: 'Not found.' });
   }
 });
 
