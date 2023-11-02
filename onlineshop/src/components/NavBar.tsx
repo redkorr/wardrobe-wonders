@@ -16,11 +16,8 @@ const Navbar = () => {
     <nav className="z-50 fixed top-0 flex items-center w-full p-6 justify-between bg-slate-800">
       <div className="text-3xl font-bold">Wardrobe Wonders</div>
       <div className="text-2xl font-semibold">
-        {sex?.toLocaleLowerCase() === 'his' ? (
-          <Link to={LINKS.productsHer}>Her</Link>
-        ) : (
-          <Link to={LINKS.productsHis}>His</Link>
-        )}
+        {sex?.toLocaleLowerCase() === 'his' && <NavLink to={LINKS.productsHer}>Her</NavLink>}
+        {sex?.toLocaleLowerCase() === 'her' && <NavLink to={LINKS.productsHis}>His</NavLink>}
       </div>
       <div>
         {categories?.map((category) => (

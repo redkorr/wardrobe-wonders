@@ -2,7 +2,7 @@ import { Schema, model } from 'mongoose';
 
 export interface ProductType {
   name: string;
-  display_name?: string;
+  display_name: string;
 }
 
 const productTypeSchema = new Schema<ProductType>({
@@ -13,6 +13,7 @@ const productTypeSchema = new Schema<ProductType>({
   },
   display_name: {
     type: Schema.Types.String,
+    required: true,
   },
 });
 

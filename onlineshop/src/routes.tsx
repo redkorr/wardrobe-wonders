@@ -24,7 +24,7 @@ export const ROUTES: Array<Route> = [
     element: <Register />
   },
   {
-    path: 'products/:sex/:category?',
+    path: 'products/:sex/:category?/:type?',
     element: <Products />
   },
   {
