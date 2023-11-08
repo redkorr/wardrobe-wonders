@@ -6,7 +6,7 @@ const Breadcrumbs = () => {
   const pathNamePartsArray = pathname.split('/').slice(1);
   const linkTo = (depth: number) => `/${pathNamePartsArray.slice(0, depth + 1).join('/')}`;
   return (
-    <div className="flex text-sm">
+    <div className="flex">
       {pathNamePartsArray.map((pathParam, index) => (
         <React.Fragment key={index}>
           <NavLink
