@@ -8,20 +8,24 @@ export interface Description {
   fabric_inside?: string[] | null;
 }
 
+export interface Size {
+  size: string;
+  stock: number;
+  price: number;
+}
+
 export interface Product {
   item_id?: string;
   product_id?: string;
   sex: string;
   name: string;
-  price: number;
+  sizes: Size[];
   currency: string;
   category: mongoose.Types.ObjectId;
   type: mongoose.Types.ObjectId;
   images: string[] | null;
   description: Description;
   color: string;
-  size: string;
-  stock: number;
 }
 
 const productSchema = new Schema<Product>({
@@ -45,10 +49,22 @@ const productSchema = new Schema<Product>({
     type: Schema.Types.String,
     required: true,
   },
-  price: {
-    type: Schema.Types.Number,
-    required: true,
-  },
+  sizes: [
+    {
+      size: {
+        type: Schema.Types.String,
+        required: true,
+      },
+      stock: {
+        type: Schema.Types.Number,
+        required: true,
+      },
+      price: {
+        type: Schema.Types.Number,
+        required: true,
+      },
+    },
+  ],
   currency: {
     type: Schema.Types.String,
     required: true,
@@ -89,14 +105,6 @@ const productSchema = new Schema<Product>({
   },
   color: {
     type: String,
-    require: true,
-  },
-  size: {
-    type: Schema.Types.String,
-    require: true,
-  },
-  stock: {
-    type: Schema.Types.Number,
     require: true,
   },
 });
