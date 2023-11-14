@@ -1,6 +1,6 @@
 import { useReducer } from 'react';
 import { FilterCheckbox } from '.';
-import { ChevronDown, ChevronUp } from 'lucide-react';
+import { ChevronUp } from 'lucide-react';
 
 const FilterDropDown = () => {
   const [isListOpen, toggleIsListOpen] = useReducer((listState) => !listState, false);
@@ -11,7 +11,8 @@ const FilterDropDown = () => {
         className="flex justify-between items-center text-base border border-slate-800 w-32 py-1 px-2"
         onClick={toggleIsListOpen}
       >
-        <p>Color</p> {isListOpen ? <ChevronUp /> : <ChevronDown />}
+        <p>Color</p>{' '}
+        <ChevronUp className={`transition ease-out duration-300 ${isListOpen && 'transition rotate-180'}`} />
       </button>
 
       {isListOpen && (
