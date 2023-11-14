@@ -9,7 +9,6 @@ export interface Description {
 }
 
 export interface Size {
-  size: string;
   stock: number;
   price: number;
 }
@@ -19,7 +18,9 @@ export interface Product {
   product_id?: string;
   sex: string;
   name: string;
-  sizes: Size[];
+  sizes: {
+    [sizeKey: string]: Size;
+  };
   currency: string;
   category: mongoose.Types.ObjectId;
   type: mongoose.Types.ObjectId;
@@ -27,6 +28,11 @@ export interface Product {
   description: Description;
   color: string;
 }
+
+const sizeSchema = new Schema<Size>({
+  stock: { type: Schema.Types.Number, required: true },
+  price: { type: Schema.Types.Number, required: true },
+});
 
 const productSchema = new Schema<Product>({
   item_id: {
@@ -49,22 +55,11 @@ const productSchema = new Schema<Product>({
     type: Schema.Types.String,
     required: true,
   },
-  sizes: [
-    {
-      size: {
-        type: Schema.Types.String,
-        required: true,
-      },
-      stock: {
-        type: Schema.Types.Number,
-        required: true,
-      },
-      price: {
-        type: Schema.Types.Number,
-        required: true,
-      },
-    },
-  ],
+  sizes: {
+    type: Map,
+    of: sizeSchema,
+  },
+
   currency: {
     type: Schema.Types.String,
     required: true,
