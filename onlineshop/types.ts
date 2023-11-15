@@ -9,15 +9,15 @@ export type Product = {
   product_id?: string;
   sex: string;
   name: string;
-  price: number;
+  sizes: {
+    [sizeKey: string]: Size;
+  };
   currency: string;
   category: Category;
   type: ProductType;
   images: string[];
   description: Description;
   color: string;
-  size: string;
-  stock: number;
 };
 
 export type Category = {
@@ -28,4 +28,9 @@ export type Category = {
 export type ProductType = {
   name: string;
   display_name: string;
+};
+
+export type Size = {
+  stock: number;
+  price: number;
 };
