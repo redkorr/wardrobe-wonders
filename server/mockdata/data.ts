@@ -35,6 +35,7 @@ export const data: Array<Product> = [
       L: { stock: 5, price: 99.9 },
       XL: { stock: 10, price: 99.9 },
       XXL: { stock: 12, price: 104.9 },
+      XXXL: { stock: 12, price: 104.9 },
     },
     currency: 'PLN',
     category: new Types.ObjectId('653ac6324034fcd15891180c'), // cloth
@@ -285,6 +286,7 @@ export const data: Array<Product> = [
       '41': { stock: 7, price: 329.9 },
       '42': { stock: 20, price: 329.9 },
       '43': { stock: 10, price: 329.9 },
+      '44': { stock: 20, price: 329.9 },
     },
     currency: 'PLN',
     category: new Types.ObjectId('653ac6324034fcd15891180d'), // shoes,
