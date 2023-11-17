@@ -56,7 +56,7 @@ const productSchema = new Schema<Product>({
     required: true,
   },
   sizes: {
-    type: Map,
+    type: Schema.Types.Mixed,
     of: sizeSchema,
   },
 
