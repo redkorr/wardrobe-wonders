@@ -2,6 +2,8 @@ import { Routes, Route, useNavigate, BrowserRouter as Router } from 'react-route
 import { ROUTES } from './routes';
 import './App.css';
 import { AuthenticateWithRedirectCallback, ClerkProvider } from '@clerk/clerk-react';
+import { store } from './redux/store';
+import { Provider } from 'react-redux';
 
 if (!import.meta.env.VITE_APP_CLERK_PUBLISHABLE_KEY) {
   throw new Error('Missing Publishable Key');
@@ -37,9 +39,11 @@ function ClerkProviderWithRoutes() {
 
 function App() {
   return (
-    <Router>
-      <ClerkProviderWithRoutes />
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <ClerkProviderWithRoutes />
+      </Router>
+    </Provider>
   );
 }
 

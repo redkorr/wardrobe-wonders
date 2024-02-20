@@ -3,6 +3,8 @@ import { type Product as ProductType } from '../models/Products.js';
 import { ParsedQs } from 'qs';
 import Category from '../models/Category.js';
 import Type from '../models/ProductType.js';
+import Product from '../models/Products.js';
+import util from 'util';
 
 type PathParams = {
   sex: string;
@@ -12,31 +14,6 @@ type PathParams = {
 };
 
 const WHITELISTED_SEARCH_PARAMS = ['size', 'color'];
-
-function mutateFiltersWithPrice(
-  filters: FilterQuery<ProductType>,
-  searchParams: ParsedQs
-) {
-  if (!searchParams || !filters) return;
-
-  const { $and } = filters;
-
-  if (
-    searchParams.hasOwnProperty('priceStart') &&
-    searchParams.hasOwnProperty('priceEnd')
-  ) {
-    $and?.push({
-      price: {
-        $gte: Number(searchParams.priceStart),
-        $lte: Number(searchParams.priceEnd),
-      },
-    });
-  } else if (searchParams.hasOwnProperty('priceStart')) {
-    $and?.push({ price: { $gte: Number(searchParams.priceStart) } });
-  } else if (searchParams.hasOwnProperty('priceEnd')) {
-    $and?.push({ price: { $lte: Number(searchParams.priceEnd) } });
-  }
-}
 
 export async function createFilters(
   pathParams: PathParams,
@@ -50,15 +27,21 @@ export async function createFilters(
 
   const { $and } = filters;
 
-  mutateFiltersWithPrice(filters, searchParams);
-
   if (category) {
     const categoryData = await Category.findOne({ name: category });
 
     if (!categoryData?.id) {
       throw new Error('Category not found.');
     }
+
     $and?.push({ category: categoryData?.id });
+
+    const priceFilter = await mutateFiltersWithPrice(
+      filters,
+      searchParams,
+      categoryData?.id
+    );
+    if (priceFilter) $and?.push(priceFilter);
   }
   if (type) {
     const typeData = await Type.findOne({ name: type });
@@ -74,9 +57,82 @@ export async function createFilters(
       searchParams.hasOwnProperty(key) &&
       WHITELISTED_SEARCH_PARAMS.includes(key)
     ) {
-      $and?.push({ [key]: searchParams[key] });
+      if (key === 'size') {
+        const sizeKeys = searchParams[key]?.toString().split(',');
+        console.log(searchParams[key]);
+
+        if (sizeKeys) {
+          for (const sizeKey of sizeKeys) {
+            $and?.push({
+              [`sizes.${sizeKey}`]: {
+                $exists: true,
+              },
+            });
+          }
+        }
+      }
+      if (key === 'color') {
+        const values = searchParams[key]?.toString().split(',');
+        console.log(values);
+
+        $and?.push({ [key]: { $in: values } });
+      }
     }
   }
-
+  console.log($and);
   return filters;
+}
+
+async function mutateFiltersWithPrice(
+  filters: FilterQuery<ProductType>,
+  searchParams: ParsedQs,
+  category: string
+) {
+  if (searchParams && filters) {
+    if (
+      searchParams.hasOwnProperty('min') ||
+      searchParams.hasOwnProperty('max')
+    ) {
+      const data = await Product.find({ category })
+        .populate('category')
+        .populate('type');
+
+      return {
+        $or: generatePriceFiltersFromSizes(data, searchParams, filters),
+      };
+    }
+  } else {
+    return;
+  }
+}
+
+function generatePriceFiltersFromSizes(
+  data: ProductType[],
+  searchParams: ParsedQs,
+  filters: FilterQuery<ProductType>
+) {
+  const { $and } = filters;
+  const pricefilter: FilterQuery<ProductType>[] = [];
+  data.forEach((product) => {
+    Object.keys(product.sizes).forEach((size) => {
+      if ($and) {
+        pricefilter.push({
+          [`sizes.${size}.price`]: {
+            ...(searchParams.hasOwnProperty('min') &&
+              searchParams.hasOwnProperty('max') && {
+                $gte: Number(searchParams.min),
+                $lte: Number(searchParams.max),
+              }),
+            ...(searchParams.hasOwnProperty('min') && {
+              $gte: Number(searchParams.min),
+            }),
+            ...(searchParams.hasOwnProperty('max') && {
+              $lte: Number(searchParams.max),
+            }),
+          },
+        });
+      }
+    });
+  });
+  return pricefilter;
 }
