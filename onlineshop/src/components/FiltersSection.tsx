@@ -1,13 +1,13 @@
-import { SetURLSearchParams } from 'react-router-dom';
 import { Breadcrumbs, ProductsHeader } from '.';
 import ProductsFilters from './ProductsFilters';
 
 interface FilterSectionProps {
   numberOfProducts: number | undefined;
   sex: string | undefined;
-  searchParams: [URLSearchParams, SetURLSearchParams];
+  category: string | undefined;
+  type: string | undefined;
 }
-const FiltersSection = ({ numberOfProducts, sex, searchParams }: FilterSectionProps) => {
+const FiltersSection = ({ numberOfProducts, sex, category, type }: FilterSectionProps) => {
   return (
     <div className="p-3 flex flex-col gap-2">
       <Breadcrumbs />
@@ -15,7 +15,10 @@ const FiltersSection = ({ numberOfProducts, sex, searchParams }: FilterSectionPr
         numberOfProducts={numberOfProducts}
         sex={sex}
       />
-      <ProductsFilters searchParams={searchParams} />
+      <ProductsFilters
+        category={category}
+        type={type}
+      />
     </div>
   );
 };

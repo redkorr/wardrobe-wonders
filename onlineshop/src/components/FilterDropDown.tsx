@@ -1,27 +1,86 @@
-import { useReducer } from 'react';
-import { FilterCheckbox } from '.';
+import { ReactNode } from 'react';
+import { FilterCheckbox, FilterSlider } from '.';
 import { ChevronDown, ChevronUp } from 'lucide-react';
+import { Price } from 'types';
+import { useNavigate } from 'react-router-dom';
+import { useAppSelector } from '@/hooks/useAppSelector';
 
-const FilterDropDown = () => {
-  const [isListOpen, toggleIsListOpen] = useReducer((listState) => !listState, false);
+interface FiltersDropDownProps {
+  filter: Filter;
+  isActive: boolean;
+  onClick: () => void;
+  filterKey: string;
+}
+
+type Filter = string[] | Price | undefined;
+
+const FilterDropDown = ({ filter, isActive = false, onClick, filterKey }: FiltersDropDownProps) => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const navigate = useNavigate();
+  const selectedFilters = useAppSelector((state) => state.filter);
+  function renderFilterDropDown(filter: Filter): ReactNode {
+    const isFilterArray = Array.isArray(filter);
+    const searchParamKey = filterKey.slice(0, filterKey.length - 1);
+    const arrayOfSelectedFilters: Array<string> = [];
+
+    const selectFilters = () => {
+      Object.keys(selectedFilters[filterKey as keyof typeof selectedFilters]).forEach((key) => {
+        arrayOfSelectedFilters.push(key);
+      });
+    };
+    const handleClick = () => {
+      selectFilters();
+      if (Object.keys(selectedFilters[filterKey as keyof typeof selectedFilters]).length === 0) {
+        urlParams.delete(searchParamKey);
+        navigate(`?${urlParams.toString()}`);
+      } else {
+        urlParams.set(searchParamKey, arrayOfSelectedFilters.join(','));
+        navigate(`?${urlParams.toString()}`);
+      }
+    };
+
+    if (!filter) {
+      return;
+    }
+    if (isFilterArray) {
+      return (
+        <div className="p-5">
+          {filter.map((filterItem: string) => (
+            <FilterCheckbox
+              filterItem={filterItem}
+              filterKey={filterKey}
+              key={filterItem}
+            />
+          ))}
+          <button
+            className="text-white mt-6 py-2 w-full bg-slate-700"
+            onClick={handleClick}
+          >
+            Accept
+          </button>
+        </div>
+      );
+    }
+    if ('min' in filter || 'max' in filter) {
+      return <FilterSlider filter={filter} />;
+    }
+  }
 
   return (
-    <div className="h-[34px]">
-      <button
-        className="flex justify-between items-center text-base border border-slate-800 w-32 py-1 px-2"
-        onClick={toggleIsListOpen}
-      >
-        <p>Color</p> {isListOpen ? <ChevronUp /> : <ChevronDown />}
-      </button>
-
-      {isListOpen && (
-        <div className="z-10 relative bg-white w-60 mt-2 border border-b-0 border-l-0 border-r-0">
-          <FilterCheckbox />
-          <button className="flex items-center gap-1 m-1">
-            Blue
-            <div className="w-2 h-2 bg-blue-700"></div>
+    <div className="flex flex-col w-fit relative">
+      <div className="h-[34px] flex">
+        <div>
+          <button
+            className="flex justify-between items-center text-base border border-slate-800 w-32 py-1 px-2"
+            onClick={onClick}
+          >
+            <p>{filterKey}</p> {isActive ? <ChevronUp /> : <ChevronDown />}
           </button>
-          <button className="text-center w-56 bg-[#f1f1f1] py-2 m-2">Accept</button>
+        </div>
+      </div>
+      {isActive && (
+        <div className="z-10 absolute top-[34px] left-0 w-60 bg-white mt-2 border border-b-0 border-l-0 border-r-0">
+          {renderFilterDropDown(filter)}
         </div>
       )}
     </div>

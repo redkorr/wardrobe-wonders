@@ -4,13 +4,46 @@ import useProducts from '@/hooks/useProducts';
 import undraw_void from '@/assets/undraw_void.svg';
 import { useParams, useSearchParams } from 'react-router-dom';
 import { Product } from 'types';
+import { useEffect } from 'react';
+import { useAppDispatch } from '@/hooks/useAppDispatch';
+import { addFilter, setMaxPriceFilter, setMinPriceFilter } from '@/features/filterSlice';
 
 const Products = () => {
   const { sex, category, type } = useParams();
 
   const searchParams = useSearchParams();
 
-  const products: Array<Product> | undefined = useProducts(sex, category, type);
+  const [params] = searchParams;
+
+  const products: Array<Product> | undefined = useProducts(sex, category, type, params);
+
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (params.has('color')) {
+      params
+        .get('color')
+        ?.split(',')
+        .forEach((color) => {
+          dispatch(addFilter({ parentKey: 'colors', childKey: color }));
+        });
+    }
+    if (params.has('size')) {
+      params
+        .get('size')
+        ?.split(',')
+        .forEach((size) => {
+          dispatch(addFilter({ parentKey: 'sizes', childKey: size }));
+        });
+    }
+    if (params.has('min')) {
+      dispatch(setMinPriceFilter(Number(params.get('min'))));
+    }
+    if (params.has('max')) {
+      dispatch(setMaxPriceFilter(Number(params.get('max'))));
+    }
+  }, [products]);
+
   return (
     <div className="pt-24 w-full">
       <NavBar />
@@ -23,7 +56,8 @@ const Products = () => {
           <FiltersSection
             numberOfProducts={products?.length}
             sex={sex}
-            searchParams={searchParams}
+            category={category}
+            type={type}
           />
           {products?.length === 0 && (
             <div className="flex w-full justify-center items-center">

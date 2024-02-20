@@ -29,7 +29,7 @@ router.get('/:sex/:category?/:type?', async (req, res) => {
 
     res.status(200).json(data);
   } catch (error) {
-    res.status(404).json({ status: 404, message: 'Not found.' });
+    res.status(404).json({ status: 404, message: error });
   }
 });
 
