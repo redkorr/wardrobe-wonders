@@ -9,15 +9,15 @@ export type Product = {
   product_id?: string;
   sex: string;
   name: string;
-  price: number;
+  sizes: {
+    [sizeKey: string]: Size;
+  };
   currency: string;
   category: Category;
   type: ProductType;
   images: string[];
   description: Description;
   color: string;
-  size: string;
-  stock: number;
 };
 
 export type Category = {
@@ -29,3 +29,38 @@ export type ProductType = {
   name: string;
   display_name: string;
 };
+
+export type Filters = {
+  colors: string[];
+  sizes: string[];
+  prices: Price;
+};
+
+export type Price = {
+  min: number;
+  max: number;
+};
+
+export type Size = {
+  stock: number;
+  price: number;
+};
+
+export type SelectedFilters = {
+  color: string[];
+  size: string[];
+  min: number;
+  max: number;
+};
+
+export type FilterState = {
+  colors: {
+    [color: string]: boolean;
+  };
+  sizes: {
+    [size: string]: boolean;
+  };
+  price: Price;
+};
+
+export type FilterStateWithoutPrice = Omit<FilterState, 'price'>;
