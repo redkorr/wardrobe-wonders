@@ -15,3 +15,5 @@ export { default as ProductsHeader } from './ProductsHeader';
 export { default as FilterDropDown } from './FilterDropDown';
 
 export { default as FilterCheckbox } from './FilterCheckbox';
+
+export { default as FilterSlider } from './FilterSlider/FilterSlider';
