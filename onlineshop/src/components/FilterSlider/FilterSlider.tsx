@@ -19,8 +19,8 @@ const FilterSlider = ({ filter }: FilterSliderProps) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { min: debouncedMinVal, max: debouncedMaxVal } = useAppSelector((state) => state.filter.price);
-  const [minVal, setMinVal] = useState(debouncedMinVal);
-  const [maxVal, setMaxVal] = useState(debouncedMaxVal);
+  const [minVal, setMinVal] = useState(min);
+  const [maxVal, setMaxVal] = useState(max);
 
   useEffect(() => {
     dispatch(setMinPriceFilter(min));
