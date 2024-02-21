@@ -43,14 +43,31 @@ const filterSlice = createSlice({
     },
     setMaxPriceFilter: (state: RootState, action: PayloadAction<number>) => {
       state.price.max = action.payload;
+    },
+    setBackPriceFilter: (state: RootState) => {
+      state.price.min = 0;
+      state.price.max = 0;
+    },
+    setBackAllFilters: (state: RootState) => {
+      state.colors = {};
+      state.sizes = {};
+      state.price.min = 0;
+      state.price.max = 0;
     }
   }
 });
 
 export const selectFilter = (state: RootState) => state.filter.value;
 
-export const { addFilter, toggleFilterState, deleteFilterItem, setMinPriceFilter, setMaxPriceFilter } =
-  filterSlice.actions;
+export const {
+  addFilter,
+  toggleFilterState,
+  deleteFilterItem,
+  setMinPriceFilter,
+  setMaxPriceFilter,
+  setBackPriceFilter,
+  setBackAllFilters
+} = filterSlice.actions;
 
 export type RootState = ReturnType<typeof rootReducer>;
 
