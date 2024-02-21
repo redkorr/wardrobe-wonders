@@ -46,13 +46,6 @@ export type Size = {
   price: number;
 };
 
-export type SelectedFilters = {
-  color: string[];
-  size: string[];
-  min: number;
-  max: number;
-};
-
 export type FilterState = {
   colors: {
     [color: string]: boolean;
