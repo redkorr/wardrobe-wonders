@@ -1,4 +1,5 @@
 import { Breadcrumbs, ProductsHeader } from '.';
+import FilterPills from './FilterPills';
 import ProductsFilters from './ProductsFilters';
 
 interface FilterSectionProps {
@@ -19,6 +20,7 @@ const FiltersSection = ({ numberOfProducts, sex, category, type }: FilterSection
         category={category}
         type={type}
       />
+      <FilterPills />
     </div>
   );
 };
