@@ -2,11 +2,12 @@ import { FiltersSection, NavBar } from '@/components';
 import { CategoriesAccordion } from '@/components';
 import useProducts from '@/hooks/useProducts';
 import undraw_void from '@/assets/undraw_void.svg';
-import { useParams, useSearchParams } from 'react-router-dom';
+import { Link, useParams, useSearchParams } from 'react-router-dom';
 import { Product } from 'types';
 import { useEffect } from 'react';
 import { useAppDispatch } from '@/hooks/useAppDispatch';
 import { addFilter, setMaxPriceFilter, setMinPriceFilter } from '@/features/filterSlice';
+import ScrolltoTopButton from '@/components/ScrolltoTopButton';
 
 const Products = () => {
   const { sex, category, type } = useParams();
@@ -75,17 +76,25 @@ const Products = () => {
                 key={product.product_id}
                 className="w-[360px]"
               >
-                <img
-                  width={360}
-                  height={540}
-                  src={`/${product.category.name}/${product.type.display_name}/${product.images[0]}`}
-                />
-                <h2 className="truncate text-lg mt-3">{product.name}</h2>
+                <Link to={`/product/${product.product_id}`}>
+                  <img
+                    width={360}
+                    height={540}
+                    src={`/${product.category.name}/${product.type.display_name}/${product.images[0]}`}
+                  />
+                </Link>
+                <Link
+                  to={`/product/${product.product_id}`}
+                  className="truncate text-lg mt-3"
+                >
+                  {product.name}
+                </Link>
               </div>
             ))}
           </div>
         </div>
       </div>
+      <ScrolltoTopButton />
     </div>
   );
 };
