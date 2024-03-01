@@ -1,9 +1,9 @@
 import { FilterQuery } from 'mongoose';
-import { type Product as ProductType } from '../models/Products.js';
+import { type Product as ProductType } from '../models/Product.js';
 import { ParsedQs } from 'qs';
 import Category from '../models/Category.js';
 import Type from '../models/ProductType.js';
-import Product from '../models/Products.js';
+import Product from '../models/Product.js';
 import util from 'util';
 
 type PathParams = {

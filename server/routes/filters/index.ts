@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import Product, { type Product as ProductType } from '../../models/Products.js';
+import Product, { type Product as ProductType } from '../../models/Product.js';
 import { type Category as CategoryType } from '../../models/Category.js';
 import { MongooseError } from 'mongoose';
 import { createFiltersFromProducts } from '../../lib/filtersFromProducts.js';

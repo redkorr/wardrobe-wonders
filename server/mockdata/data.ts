@@ -1,4 +1,4 @@
-import { type Product } from '../models/Products.js';
+import { type Product } from '../models/Product.js';
 import { Types } from 'mongoose';
 
 export const data: Array<Product> = [
@@ -21,7 +21,7 @@ export const data: Array<Product> = [
       '/RW23-TSM060-67A_F4.webp',
     ],
     description: {
-      body: 'T-shirt z kolekcji Medicine. Model wykonany z wzorzystej dzianiny. - Fason slim. - Krótki rękaw. - Klasyczny, okrągły dekolt. - Wzorzysta dzianina. - Długość: 74 cm. - Szerokość pod pachami: 55 cm. - Wymiary podane dla rozmiaru: L.',
+      body: 'T-shirt from the special collection of Medicine - Pop Icons. Model made of cotton knit fabric. - Regular cut. - Round neckline. - Short sleeve. - Model with a print. - Width under the arms: 57.2 cm. - Length: 74 cm. - Dimensions given for size: L.',
       fabric_main: ['95% Cotton', '5% Elastane'],
     },
     color: 'Green',
