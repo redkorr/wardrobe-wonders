@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import Product from '../../models/Products.js';
+import Product from '../../models/Product.js';
 import { MongooseError } from 'mongoose';
 
 import { createFilters } from '../../lib/filters.js';
