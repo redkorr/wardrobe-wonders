@@ -1,4 +1,4 @@
-import Product from '../models/Products.js';
+import Product from '../models/Product.js';
 import mongoose from 'mongoose';
 import { data } from '../mockdata/data.js';
 import { config as configDotEnv } from 'dotenv';
