@@ -13,7 +13,10 @@ const DetailsInfoHeader = ({ detailsInfoState, setDetailsInfoState }: DetailsInf
   };
 
   return (
-    <div className="border-b-[1px] mb-10">
+    <div
+      className="border-b-[1px] mb-10"
+      id="DetailsInfoHeader"
+    >
       {detailsInfoHeaderNames.map((name, index) => (
         <button
           className="w-28"

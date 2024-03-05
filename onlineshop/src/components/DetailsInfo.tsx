@@ -1,16 +1,16 @@
-import { useState } from 'react';
 import DetailsInfoHeader from './DetailsInfoHeader';
 import { Description } from 'types';
 import { Circle, Dot } from 'lucide-react';
+import { Dispatch } from 'react';
 
 type DetailsInfoParams = {
   description: Description | undefined;
   type: string | undefined;
+  detailsInfoState: number;
+  setDetailsInfoState: Dispatch<React.SetStateAction<number>>;
 };
 
-const DetailsInfo = ({ description, type }: DetailsInfoParams) => {
-  const [detailsInfoState, setDetailsInfoState] = useState(0);
-
+const DetailsInfo = ({ description, type, detailsInfoState, setDetailsInfoState }: DetailsInfoParams) => {
   const descriptionText = description?.body.split(' - ');
   const firstSentence = descriptionText?.shift();
 
