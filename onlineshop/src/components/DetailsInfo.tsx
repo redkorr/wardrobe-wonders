@@ -20,16 +20,16 @@ const DetailsInfo = ({ description, type, detailsInfoState, setDetailsInfoState 
         <div className="flex gap-10">
           <div className="flex flex-col w-1/2">
             <div className="mb-8">{firstSentence}</div>
-            {descriptionText?.map((sentence) => <div>- {sentence}</div>)}
+            {descriptionText?.map((sentence) => <div key={sentence}>- {sentence}</div>)}
           </div>
           <div>
             <div className="mb-3">
               <h3 className="mb-2 font-semibold">Main fabric</h3>
-              {description?.fabric_main.map((fabric) => <div>{fabric}</div>)}
+              {description?.fabric_main.map((fabric) => <div key={fabric}>{fabric}</div>)}
             </div>
             <div>
               <h3 className="mb-2 font-semibold">{type === 'pants' ? 'Lining' : 'Sole'}</h3>
-              {description?.fabric_other?.map((fabric) => <div>{fabric}</div>)}
+              {description?.fabric_other?.map((fabric) => <div key={fabric}>{fabric}</div>)}
             </div>
           </div>
         </div>
