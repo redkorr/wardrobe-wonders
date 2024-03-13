@@ -64,7 +64,7 @@ export async function createFilters(
         if (sizeKeys) {
           for (const sizeKey of sizeKeys) {
             $and?.push({
-              [`sizes.${sizeKey}`]: {
+              [`colors.sizes.${sizeKey}`]: {
                 $exists: true,
               },
             });
@@ -75,11 +75,12 @@ export async function createFilters(
         const values = searchParams[key]?.toString().split(',');
         console.log(values);
 
-        $and?.push({ [key]: { $in: values } });
+        $and?.push({ 'colors.color_name': { $in: values } });
       }
     }
   }
   console.log($and);
+
   return filters;
 }
 
@@ -114,24 +115,26 @@ function generatePriceFiltersFromSizes(
   const { $and } = filters;
   const pricefilter: FilterQuery<ProductType>[] = [];
   data.forEach((product) => {
-    Object.keys(product.sizes).forEach((size) => {
-      if ($and) {
-        pricefilter.push({
-          [`sizes.${size}.price`]: {
-            ...(searchParams.hasOwnProperty('min') &&
-              searchParams.hasOwnProperty('max') && {
+    product.colors?.forEach((color) => {
+      Object.keys(color.sizes).forEach((size) => {
+        if ($and) {
+          pricefilter.push({
+            [`colors.sizes.${size}.price`]: {
+              ...(searchParams.hasOwnProperty('min') &&
+                searchParams.hasOwnProperty('max') && {
+                  $gte: Number(searchParams.min),
+                  $lte: Number(searchParams.max),
+                }),
+              ...(searchParams.hasOwnProperty('min') && {
                 $gte: Number(searchParams.min),
+              }),
+              ...(searchParams.hasOwnProperty('max') && {
                 $lte: Number(searchParams.max),
               }),
-            ...(searchParams.hasOwnProperty('min') && {
-              $gte: Number(searchParams.min),
-            }),
-            ...(searchParams.hasOwnProperty('max') && {
-              $lte: Number(searchParams.max),
-            }),
-          },
-        });
-      }
+            },
+          });
+        }
+      });
     });
   });
   return pricefilter;
