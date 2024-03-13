@@ -5,19 +5,23 @@ export type Description = {
   fabric_inside?: string[];
 };
 export type Product = {
-  item_id?: string;
   product_id?: string;
   sex: string;
-  name: string;
-  sizes: {
-    [sizeKey: string]: Size;
-  };
   currency: string;
   category: Category;
   type: ProductType;
-  images: string[];
   description: Description;
+  colors: Color[];
+};
+export type Color = {
+  name: string;
+  item_id?: string;
+  color_name: string;
   color: string;
+  sizes: {
+    [sizeKey: string]: Size;
+  };
+  images: string[];
 };
 
 export type Category = {
