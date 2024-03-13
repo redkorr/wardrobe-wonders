@@ -29,7 +29,7 @@ export const ROUTES: Array<Route> = [
     element: <Products />
   },
   {
-    path: 'product/:id',
+    path: 'product/:id/:color',
     element: <Product />
   },
   {
