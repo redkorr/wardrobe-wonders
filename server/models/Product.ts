@@ -14,19 +14,23 @@ export interface Size {
 }
 
 export interface Product {
-  item_id?: string;
   product_id?: string;
   sex: string;
-  name: string;
-  sizes: {
-    [sizeKey: string]: Size;
-  };
   currency: string;
   category: mongoose.Types.ObjectId;
   type: mongoose.Types.ObjectId;
-  images: string[] | null;
+  colors: Color[] | null;
   description: Description;
+}
+
+export interface Color {
+  name: string;
+  color_name: string;
   color: string;
+  sizes: {
+    [sizeKey: string]: Size;
+  };
+  images: string[] | null;
 }
 
 const sizeSchema = new Schema<Size>({
@@ -34,13 +38,25 @@ const sizeSchema = new Schema<Size>({
   price: { type: Schema.Types.Number, required: true },
 });
 
-const productSchema = new Schema<Product>({
-  item_id: {
+const colorSchema = new Schema<Color>({
+  name: {
     type: Schema.Types.String,
-    default: () => randomUUID().toString(),
     required: true,
-    unique: true,
   },
+  color_name: { type: Schema.Types.String, required: true },
+  color: { type: Schema.Types.String, required: true },
+  sizes: {
+    type: Schema.Types.Mixed,
+    of: sizeSchema,
+  },
+  images: {
+    type: [Schema.Types.String],
+    default: () => null,
+    required: true,
+  },
+});
+
+const productSchema = new Schema<Product>({
   product_id: {
     type: Schema.Types.String,
     default: () => randomUUID().toString(),
@@ -50,14 +66,6 @@ const productSchema = new Schema<Product>({
   sex: {
     type: Schema.Types.String,
     required: true,
-  },
-  name: {
-    type: Schema.Types.String,
-    required: true,
-  },
-  sizes: {
-    type: Schema.Types.Mixed,
-    of: sizeSchema,
   },
 
   currency: {
@@ -74,10 +82,11 @@ const productSchema = new Schema<Product>({
     ref: 'ProductType',
     required: true,
   },
-  images: {
-    type: [Schema.Types.String],
+
+  colors: {
+    type: [Schema.Types.Mixed],
+    of: colorSchema,
     default: () => null,
-    required: true,
   },
   description: {
     body: {
@@ -97,10 +106,6 @@ const productSchema = new Schema<Product>({
       type: [Schema.Types.String],
       default: () => null,
     },
-  },
-  color: {
-    type: String,
-    require: true,
   },
 });
 
