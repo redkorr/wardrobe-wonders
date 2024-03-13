@@ -19,6 +19,7 @@ const DetailsInfoHeader = ({ detailsInfoState, setDetailsInfoState }: DetailsInf
     >
       {detailsInfoHeaderNames.map((name, index) => (
         <button
+          key={name}
           className="w-28"
           style={detailsInfoState === index ? { borderBottomWidth: '2px' } : {}}
           onClick={() => handleClick(index)}

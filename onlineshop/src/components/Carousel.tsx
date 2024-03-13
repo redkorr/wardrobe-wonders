@@ -4,16 +4,16 @@ import { useState } from 'react';
 interface CarouselProps {
   category: string | undefined;
   type: string | undefined;
-  path: string[] | undefined;
+  paths: string[] | undefined;
 }
 
-const Carousel = ({ category, type, path }: CarouselProps) => {
+const Carousel = ({ category, type, paths }: CarouselProps) => {
   const [firstImageIndex, setFirstImageIndex] = useState(0);
   const [secondImageIndex, setSecondImageIndex] = useState(1);
 
   const showImage = (index: number) => {
-    if (path) {
-      if (index === path.length - 1) {
+    if (paths) {
+      if (index === paths.length - 1) {
         setFirstImageIndex(index);
         setSecondImageIndex(0);
       } else {
@@ -24,17 +24,17 @@ const Carousel = ({ category, type, path }: CarouselProps) => {
   };
 
   const showPrevImage = () => {
-    if (path) {
+    if (paths) {
       setFirstImageIndex(() => {
         if (firstImageIndex === 0) {
-          return path?.length - 1;
+          return paths?.length - 1;
         } else {
           return firstImageIndex - 1;
         }
       });
       setSecondImageIndex(() => {
         if (secondImageIndex === 0) {
-          return path.length - 1;
+          return paths.length - 1;
         } else {
           return secondImageIndex - 1;
         }
@@ -42,16 +42,16 @@ const Carousel = ({ category, type, path }: CarouselProps) => {
     }
   };
   const showNextImage = () => {
-    if (path) {
+    if (paths) {
       setFirstImageIndex(() => {
-        if (firstImageIndex === path.length - 1) {
+        if (firstImageIndex === paths.length - 1) {
           return 0;
         } else {
           return firstImageIndex + 1;
         }
       });
       setSecondImageIndex(() => {
-        if (secondImageIndex === path.length - 1) {
+        if (secondImageIndex === paths.length - 1) {
           return 0;
         } else {
           return secondImageIndex + 1;
@@ -62,13 +62,14 @@ const Carousel = ({ category, type, path }: CarouselProps) => {
 
   return (
     <div>
-      {path && (
+      {paths && (
         <div className="flex gap-5">
           <div className="flex flex-col gap-4">
-            {path.map((image, index) => (
+            {paths.map((image, index) => (
               <div
                 key={image}
                 style={index === firstImageIndex || index === secondImageIndex ? { backgroundColor: 'gray' } : {}}
+                className="h-[118px]"
               >
                 <button onClick={() => showImage(index)}>
                   <img
@@ -84,13 +85,13 @@ const Carousel = ({ category, type, path }: CarouselProps) => {
             <button>
               <img
                 width={540}
-                src={`/${category}/${type}/${path[firstImageIndex]}`}
+                src={`/${category}/${type}/${paths[firstImageIndex]}`}
               />
             </button>
             <button>
               <img
                 width={540}
-                src={`/${category}/${type}/${path[secondImageIndex]}`}
+                src={`/${category}/${type}/${paths[secondImageIndex]}`}
               />
             </button>
             <button
