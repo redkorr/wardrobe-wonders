@@ -7,7 +7,7 @@ import { Product } from 'types';
 import { useEffect } from 'react';
 import { useAppDispatch } from '@/hooks/useAppDispatch';
 import { addFilter, setMaxPriceFilter, setMinPriceFilter } from '@/features/filterSlice';
-import ScrolltoTopButton from '@/components/ScrolltoTopButton';
+import ScrollToTopButton from '@/components/ScrollToTopButton';
 
 const Products = () => {
   const { sex, category, type } = useParams();
@@ -71,30 +71,33 @@ const Products = () => {
           )}
 
           <div className="flex flex-wrap gap-14">
-            {products?.map((product) => (
-              <div
-                key={product.product_id}
-                className="w-[360px]"
-              >
-                <Link to={`/product/${product.product_id}`}>
-                  <img
-                    width={360}
-                    height={540}
-                    src={`/${product.category.name}/${product.type.display_name}/${product.images[0]}`}
-                  />
-                </Link>
-                <Link
-                  to={`/product/${product.product_id}`}
-                  className="truncate text-lg mt-3"
-                >
-                  {product.name}
-                </Link>
-              </div>
-            ))}
+            {products?.map(
+              (product) =>
+                product.colors?.map((item) => (
+                  <div
+                    key={item.item_id}
+                    className="w-[360px]"
+                  >
+                    <Link to={`/product/${product.product_id}/${item.color_name}`}>
+                      <img
+                        width={360}
+                        height={540}
+                        src={`/${product.category.name}/${product.type.display_name}/${item.images[0]}`}
+                      />
+                    </Link>
+                    <Link
+                      to={`/product/${product.product_id}/${item.color_name}`}
+                      className="truncate text-lg mt-3"
+                    >
+                      {item.name}
+                    </Link>
+                  </div>
+                ))
+            )}
           </div>
         </div>
       </div>
-      <ScrolltoTopButton />
+      <ScrollToTopButton />
     </div>
   );
 };

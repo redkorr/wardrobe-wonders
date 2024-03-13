@@ -24,22 +24,24 @@ export const createFiltersFromProducts = (filteredData: Array<Product>) => {
   let prices: number[] = [];
 
   filteredData.forEach((item) => {
-    const itemSizes = item.sizes;
-    const itemSizesKeys = Object.keys(item.sizes);
+    item.colors?.forEach((color) => {
+      const itemSizes = color.sizes;
+      const itemSizesKeys = Object.keys(color.sizes);
 
-    if (!colors.includes(item.color)) {
-      colors = [...colors, item.color];
-    }
-
-    itemSizesKeys.forEach((size) => {
-      const price = itemSizes[size].price;
-      if (!sizes.includes(size)) {
-        sizes = [...sizes, size];
+      if (!colors.includes(color.color_name)) {
+        colors = [...colors, color.color_name];
       }
 
-      if (!prices.includes(price)) {
-        prices = [...prices, price];
-      }
+      itemSizesKeys.forEach((size) => {
+        const price = itemSizes[size].price;
+        if (!sizes.includes(size)) {
+          sizes = [...sizes, size];
+        }
+
+        if (!prices.includes(price)) {
+          prices = [...prices, price];
+        }
+      });
     });
   });
 
