@@ -1,10 +1,12 @@
 import filterSlice from '@/features/filterSlice';
+import shoppingCartSlice from '@/features/shoppingCartSlice';
 import { configureStore } from '@reduxjs/toolkit';
 // ...
 
 export const store = configureStore({
   reducer: {
-    filter: filterSlice
+    filter: filterSlice,
+    shoppingCart: shoppingCartSlice
   }
 });
 
