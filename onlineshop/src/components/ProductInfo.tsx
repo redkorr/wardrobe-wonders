@@ -1,7 +1,10 @@
+import { addShoppingCartItem } from '@/features/shoppingCartSlice';
+import { useAppDispatch } from '@/hooks/useAppDispatch';
 import { ChevronDown, ChevronUp, Shirt, ShoppingCart, Truck, Undo2 } from 'lucide-react';
 import { Dispatch, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
-import { Product } from 'types';
+import { Product, ShoppingCartItem } from 'types';
 
 interface ProductInfoParams {
   product: Product | undefined;
@@ -11,8 +14,11 @@ interface ProductInfoParams {
 }
 
 const ProductInfo = ({ product, setDetailsInfoState, indexOfFoundColor, selectColor }: ProductInfoParams) => {
-  const [selectedValue, setSelectedValue] = useState<string>('M');
+  const [selectedSize, setSelectedSize] = useState<string>('M');
   const [isActive, setIsActive] = useState(false);
+  const { pathname } = useLocation();
+  const colorName = pathname.split('/').slice(1)[2];
+  const dispatch = useAppDispatch();
   const scrollToDetails = (index: number) => {
     const element = document.getElementById('DetailsInfoHeader');
     if (element) {
@@ -21,11 +27,39 @@ const ProductInfo = ({ product, setDetailsInfoState, indexOfFoundColor, selectCo
     }
   };
 
+  const createShoppingCartItem = (): ShoppingCartItem | undefined => {
+    if (!product) return;
+    const shoppingCartId = product.product_id?.concat(
+      '',
+      product.colors[indexOfFoundColor].color_name.toLowerCase().concat('', selectedSize.toLowerCase())
+    );
+    const shoppingCartItem: ShoppingCartItem = {
+      shopping_cart_id: shoppingCartId,
+      product_id: product.product_id,
+      currency: product.currency,
+      type: product.type,
+      category: product.category,
+      quantity: 1,
+      color: {
+        color_name: colorName,
+        name: product.colors[indexOfFoundColor].name,
+        images: [product.colors[indexOfFoundColor].images[0]],
+        sizes: {
+          [selectedSize]: {
+            price: product.colors[indexOfFoundColor].sizes[selectedSize].price,
+            stock: product.colors[indexOfFoundColor].sizes[selectedSize].stock
+          }
+        }
+      }
+    };
+    return shoppingCartItem;
+  };
+
   return (
     <div className="w-3/4 p-6 mt-6 mx-auto">
       <h1 className="text-3xl mb-10">{product?.colors[indexOfFoundColor].name}</h1>
       <h2 className="text-2xl mb-10">
-        {product?.colors[indexOfFoundColor].sizes && product.colors[indexOfFoundColor].sizes[selectedValue].price}&nbsp;
+        {product?.colors[indexOfFoundColor].sizes && product.colors[indexOfFoundColor].sizes[selectedSize].price}&nbsp;
         {product?.currency}
       </h2>
       <div className="flex gap-2 mb-10">
@@ -52,7 +86,7 @@ const ProductInfo = ({ product, setDetailsInfoState, indexOfFoundColor, selectCo
         className="flex justify-between items-center text-base border border-slate-800 w-full py-2 px-3 mb-6"
         onClick={() => setIsActive(!isActive)}
       >
-        <p>{product?.colors[indexOfFoundColor].sizes && selectedValue}</p> {isActive ? <ChevronUp /> : <ChevronDown />}
+        <p>{product?.colors[indexOfFoundColor].sizes && selectedSize}</p> {isActive ? <ChevronUp /> : <ChevronDown />}
       </button>
       <div className="relative -top-6">
         {isActive && (
@@ -65,7 +99,7 @@ const ProductInfo = ({ product, setDetailsInfoState, indexOfFoundColor, selectCo
                   disabled={product.colors[indexOfFoundColor].sizes[size].stock <= 0}
                   key={size}
                   onClick={() => {
-                    setSelectedValue(size);
+                    setSelectedSize(size);
                     setIsActive(!isActive);
                   }}
                 >
@@ -76,7 +110,15 @@ const ProductInfo = ({ product, setDetailsInfoState, indexOfFoundColor, selectCo
           </div>
         )}
       </div>
-      <button className="flex py-2 px-3 mb-10 border border-blue-500 bg-blue-900 text-white w-full">
+      <button
+        className="flex py-2 px-3 mb-10 border border-blue-500 bg-blue-900 text-white w-full"
+        onClick={() => {
+          const shoppingCartItem = createShoppingCartItem();
+          if (shoppingCartItem) {
+            dispatch(addShoppingCartItem(shoppingCartItem));
+          }
+        }}
+      >
         <ShoppingCart className="absolute" />
         <p className="m-auto">Add to cart</p>
       </button>
