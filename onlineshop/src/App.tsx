@@ -4,6 +4,7 @@ import './App.css';
 import { AuthenticateWithRedirectCallback, ClerkProvider } from '@clerk/clerk-react';
 import { store } from './redux/store';
 import { Provider } from 'react-redux';
+import LocalStorageProvider from './components/LocalStorageProvider';
 
 if (!import.meta.env.VITE_APP_CLERK_PUBLISHABLE_KEY) {
   throw new Error('Missing Publishable Key');
@@ -40,9 +41,11 @@ function ClerkProviderWithRoutes() {
 function App() {
   return (
     <Provider store={store}>
-      <Router>
-        <ClerkProviderWithRoutes />
-      </Router>
+      <LocalStorageProvider>
+        <Router>
+          <ClerkProviderWithRoutes />
+        </Router>
+      </LocalStorageProvider>
     </Provider>
   );
 }
