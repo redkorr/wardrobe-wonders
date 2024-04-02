@@ -7,3 +7,7 @@ export { default as HomePage } from './HomePage';
 export { default as Register } from './Register';
 
 export { default as Products } from './Products';
+
+export { default as Product } from './Product';
+
+export { default as ShoppingCart } from './ShoppingCart';

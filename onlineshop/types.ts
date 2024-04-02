@@ -60,4 +60,23 @@ export type FilterState = {
   price: Price;
 };
 
+export type ShoppingCartState = {
+  items: ShoppingCartItem[];
+  count: number;
+  status: Status;
+};
+export type ShoppingCartItem = {
+  shopping_cart_id?: string;
+  product_id?: string;
+  currency: string;
+  quantity: number;
+  category: Category;
+  type: ProductType;
+  color: Partial<Color>;
+};
+
+const statuses = ['LOADING', 'SUCCESS', 'EMPTY'] as const;
+
+export type Status = (typeof statuses)[number];
+
 export type FilterStateWithoutPrice = Omit<FilterState, 'price'>;
