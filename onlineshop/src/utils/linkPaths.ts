@@ -5,7 +5,9 @@ const LINKS = {
   clothes: '/clothes',
   shoes: '/shoes',
   accessories: '/accessories',
-  products: '/products'
+  products: '/products',
+  product: '/product',
+  shoppingCart: '/shopping-cart'
 } as const;
 
 export default LINKS;
