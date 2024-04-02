@@ -7,7 +7,7 @@ import { Product } from 'types';
 import { useEffect } from 'react';
 import { useAppDispatch } from '@/hooks/useAppDispatch';
 import { addFilter, setMaxPriceFilter, setMinPriceFilter } from '@/features/filterSlice';
-import ScrollToTopButton from '@/components/ScrollToTopButton';
+import ScrollToTopButton from '@/components/ScrollToTop';
 
 const Products = () => {
   const { sex, category, type } = useParams();

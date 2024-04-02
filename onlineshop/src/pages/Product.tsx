@@ -2,7 +2,7 @@ import { Breadcrumbs, NavBar } from '@/components';
 import Carousel from '@/components/Carousel';
 import DetailsInfo from '@/components/DetailsInfo';
 import ProductInfo from '@/components/ProductInfo';
-import ScrollToTopButton from '@/components/ScrollToTopButton';
+import ScrollToTopButton from '@/components/ScrollToTop';
 import useProduct from '@/hooks/useProduct';
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
@@ -63,5 +63,4 @@ const Product = () => {
     </div>
   );
 };
-
 export default Product;
