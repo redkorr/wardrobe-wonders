@@ -1,3 +1,4 @@
+import { useAppSelector } from '@/hooks/useAppSelector';
 import useCategories from '@/hooks/useCategories';
 import LINKS from '@/utils/linkPaths';
 import { UserButton, useAuth, useSignIn } from '@clerk/clerk-react';
@@ -9,6 +10,7 @@ const Navbar = () => {
   const { isSignedIn } = useAuth();
   const { isLoaded } = useSignIn();
   const { sex } = useParams();
+  const shoppingCartCount = useAppSelector((state) => state.shoppingCart.count);
 
   const categories: Array<Category> | undefined = useCategories();
 
@@ -40,7 +42,19 @@ const Navbar = () => {
             afterSignOutUrl="/"
           />
         )}
-        <ShoppingCart />
+        <div>
+          <Link
+            to={LINKS.shoppingCart}
+            className="relative"
+          >
+            <ShoppingCart />
+            {Number(shoppingCartCount) > 0 && (
+              <div className="absolute -bottom-1 -right-1 w-4 h-4 text-xs text-center text-white rounded-full bg-red-700">
+                {shoppingCartCount}
+              </div>
+            )}
+          </Link>
+        </div>
       </div>
     </nav>
   );
