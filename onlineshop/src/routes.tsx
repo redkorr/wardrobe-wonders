@@ -1,6 +1,5 @@
 import { RedirectToSignIn, SignedIn, SignedOut } from '@clerk/clerk-react';
-import { Login, HomePage, Register, Products, MyAccount } from './pages';
-import Product from './pages/Product';
+import { Login, HomePage, Register, Products, MyAccount, Product, ShoppingCart } from './pages';
 
 interface Route {
   path: string;
@@ -44,6 +43,10 @@ export const ROUTES: Array<Route> = [
         </SignedOut>
       </>
     )
+  },
+  {
+    path: '/shopping-cart',
+    element: <ShoppingCart />
   }
   // {
   //   path: '*',
