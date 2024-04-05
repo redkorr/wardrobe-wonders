@@ -6,12 +6,16 @@ import {
 } from '@/features/shoppingCartSlice';
 import { useAppDispatch } from '@/hooks/useAppDispatch';
 import { useAppSelector } from '@/hooks/useAppSelector';
-import { Minus, Plus, X } from 'lucide-react';
+import useDiscount from '@/hooks/useDiscount';
+import { Minus, PercentSquare, Plus, X } from 'lucide-react';
+import { useRef, useState } from 'react';
 
 const ShoppingCart = () => {
+  const { fetchDiscount, discount } = useDiscount();
+  const discountRef = useRef(null);
   const dispatch = useAppDispatch();
   const shoppingCart = useAppSelector((state) => state.shoppingCart);
-  // const [isDiscountOpen, setIsDiscountOpen] = useState(false);
+  const [isDiscountOpen, setIsDiscountOpen] = useState(false);
 
   const sumValueOfProducts = () => {
     let valueOfProducts = 0;
@@ -24,7 +28,14 @@ const ShoppingCart = () => {
     return valueOfProducts.toFixed(1);
   };
 
-  // const valueToPay = () => {};
+  const valueToPay = () => {
+    const valueOfProducts = Number(sumValueOfProducts());
+    if (discount?.value) {
+      return (valueOfProducts - valueOfProducts * (discount.value / 100)).toFixed(2);
+    } else {
+      return valueOfProducts;
+    }
+  };
   return (
     <div>
       <NavBar />
@@ -129,7 +140,7 @@ const ShoppingCart = () => {
         {shoppingCart && shoppingCart.items.length > 0 && (
           <div className="w-1/4">
             <p className="text-2xl font-semibold mb-3">Summary</p>
-            <div className="flex flex-col gap-4 bg-slate-700 text-slate-300 p-5">
+            <div className="flex flex-col gap-4 bg-slate-700 text-slate-300 p-5 pb-0">
               <div className="flex justify-between">
                 <p>Value of products:</p>
                 <div className="flex gap-1 text-slate-100">
@@ -140,8 +151,8 @@ const ShoppingCart = () => {
               <div className="flex justify-between">
                 <p>Discout value:</p>
                 <div className="flex gap-1 text-slate-100">
-                  <p>0</p>
-                  <p>{shoppingCart.items[0].currency}</p>
+                  <p>{discount ? discount.value : 0}</p>
+                  <p>%</p>
                 </div>
               </div>
               <div className="flex justify-between">
@@ -151,34 +162,59 @@ const ShoppingCart = () => {
                   <p>{shoppingCart.items[0].currency}</p>
                 </div>
               </div>
-              <hr className="my-3"></hr>
+              <hr className="my-3" />
               <div className="flex justify-between text-slate-100">
                 <p>To pay:</p>
                 <div className="flex gap-1 text-2xl">
-                  <p>0</p>
+                  <p>{valueToPay()}</p>
                   <p>{shoppingCart.items[0].currency}</p>
                 </div>
               </div>
-              <hr className="my-3"></hr>
-              {/* <div className="mb-3 text-slate-100">
-              {isDiscountOpen ? (
-                <div>
-                  <input className=""></input>
-                  <button className="text-black">
-                    <X />
-                  </button>
-                  <button className="border p-2">Use code</button>
-                </div>
+              <hr className="mt-3" />
+            </div>
+            <div className="flex flex-col bg-slate-700 text-slate-300 p-5 pt-0">
+              {discount === null && isDiscountOpen ? (
+                <p className="text-red-600 text-sm h-4">Incorrect code</p>
               ) : (
-                <button
-                  className="flex gap-3"
-                  onClick={() => setIsDiscountOpen(true)}
-                >
-                  <PercentSquare />
-                  <p>I've a discount</p>
-                </button>
+                <div className="h-4 w-1"></div>
               )}
-            </div> */}
+              <div className="mb-3 text-slate-100">
+                {isDiscountOpen ? (
+                  <div className=" flex">
+                    <div className=" flex items-center focus-within:border-[1px] border-zinc-500 w-full">
+                      <input
+                        className="p-1 text-black focus-visible:outline-none w-full"
+                        ref={discountRef}
+                      ></input>
+                      <button
+                        className="text-black bg-white h-8"
+                        onClick={() => setIsDiscountOpen(false)}
+                      >
+                        <X />
+                      </button>
+                    </div>
+                    <button
+                      className="border p-1 w-24"
+                      onClick={() => {
+                        discountRef.current && fetchDiscount(discountRef.current.value);
+                        if (discount === null) {
+                          setIsDiscountOpen(false);
+                        }
+                      }}
+                    >
+                      Use code
+                    </button>
+                  </div>
+                ) : (
+                  <button
+                    className="flex gap-3 h-[34px]"
+                    onClick={() => setIsDiscountOpen(true)}
+                  >
+                    <PercentSquare />
+                    <p>I've a discount</p>
+                  </button>
+                )}
+              </div>
               <button className="py-2 px-3 border-blue-500 bg-blue-900 text-slate-100">Go to the checkout</button>
             </div>
           </div>
