@@ -1,6 +1,5 @@
-import { Breadcrumbs, ProductsHeader } from '.';
+import { Breadcrumbs, ProductsFilters, ProductsHeader } from '.';
 import FilterPills from './FilterPills';
-import ProductsFilters from './ProductsFilters';
 
 interface FilterSectionProps {
   numberOfProducts: number | undefined;
