@@ -1,8 +1,4 @@
-import { Breadcrumbs, NavBar } from '@/components';
-import Carousel from '@/components/Carousel';
-import DetailsInfo from '@/components/DetailsInfo';
-import ProductInfo from '@/components/ProductInfo';
-import ScrollToTopButton from '@/components/ScrollToTop';
+import { Breadcrumbs, Carousel, DetailsInfo, NavBar, ProductInfo, ScrollToTop } from '@/components';
 import useProduct from '@/hooks/useProduct';
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
@@ -59,7 +55,7 @@ const Product = () => {
           type={product?.type.display_name}
         />
       </div>
-      <ScrollToTopButton />
+      <ScrollToTop />
     </div>
   );
 };
