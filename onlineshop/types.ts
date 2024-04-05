@@ -50,6 +50,12 @@ export type Size = {
   price: number;
 };
 
+export type Discount = {
+  discount_id: number;
+  value: number;
+  code: number;
+};
+
 export type FilterState = {
   colors: {
     [color: string]: boolean;
