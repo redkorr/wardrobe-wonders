@@ -1,7 +1,7 @@
-import DetailsInfoHeader from './DetailsInfoHeader';
 import { Description } from 'types';
 import { Circle, Dot } from 'lucide-react';
 import { Dispatch } from 'react';
+import { DetailsInfoHeader } from '.';
 
 type DetailsInfoParams = {
   description: Description | undefined;

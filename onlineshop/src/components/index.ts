@@ -17,3 +17,19 @@ export { default as FilterDropDown } from './FilterDropDown';
 export { default as FilterCheckbox } from './FilterCheckbox';
 
 export { default as FilterSlider } from './FilterSlider/FilterSlider';
+
+export { default as LocalStorageProvider } from './LocalStorageProvider';
+
+export { default as Carousel } from './Carousel';
+
+export { default as DetailsInfo } from './DetailsInfo';
+
+export { default as DetailsInfoHeader } from './DetailsInfoHeader';
+
+export { default as ProductInfo } from './ProductInfo';
+
+export { default as FilterPills } from './FilterPills';
+
+export { default as ScrollToTop } from './ScrollToTop';
+
+export { default as ProductsFilters } from './ProductsFilters';
