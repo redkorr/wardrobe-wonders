@@ -1,5 +1,4 @@
-import { FiltersSection, NavBar } from '@/components';
-import { CategoriesAccordion } from '@/components';
+import { FiltersSection, NavBar, CategoriesAccordion } from '@/components';
 import useProducts from '@/hooks/useProducts';
 import undraw_void from '@/assets/undraw_void.svg';
 import { Link, useParams, useSearchParams } from 'react-router-dom';
