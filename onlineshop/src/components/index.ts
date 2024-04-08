@@ -33,3 +33,7 @@ export { default as FilterPills } from './FilterPills';
 export { default as ScrollToTop } from './ScrollToTop';
 
 export { default as ProductsFilters } from './ProductsFilters';
+
+export { default as CartSummary } from './CartSummary';
+
+export { default as ShoppingCartList } from './ShoppingCartList';
