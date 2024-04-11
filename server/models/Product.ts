@@ -67,7 +67,6 @@ const productSchema = new Schema<Product>({
     type: Schema.Types.String,
     required: true,
   },
-
   currency: {
     type: Schema.Types.String,
     required: true,
@@ -82,7 +81,6 @@ const productSchema = new Schema<Product>({
     ref: 'ProductType',
     required: true,
   },
-
   colors: {
     type: [Schema.Types.Mixed],
     of: colorSchema,
