@@ -351,7 +351,6 @@ export const data: Array<Product> = [
   },
   {
     sex: 'male',
-
     currency: 'PLN',
     category: new Types.ObjectId('653ac6324034fcd15891180d'), // shoes,
     type: new Types.ObjectId('653a64ff0de8e3dc995d7695'),
