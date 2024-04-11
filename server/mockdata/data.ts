@@ -72,7 +72,6 @@ export const data: Array<Product> = [
     colors: [
       {
         name: "Men's hooded sweatshirt color black",
-
         color_name: 'Black',
         color: '#000000',
         sizes: {
@@ -97,11 +96,9 @@ export const data: Array<Product> = [
   },
   {
     sex: 'male',
-
     currency: 'PLN',
     category: new Types.ObjectId('653ac6324034fcd15891180c'), // cloth
     type: new Types.ObjectId('653a64ff0de8e3dc995d7691'),
-
     colors: [
       {
         name: "Men's hooded sweatshirt color beige",
@@ -190,11 +187,9 @@ export const data: Array<Product> = [
   },
   {
     sex: 'male',
-
     currency: 'PLN',
     category: new Types.ObjectId('653ac6324034fcd15891180c'), // cloth
     type: new Types.ObjectId('653a64ff0de8e3dc995d7694'),
-
     colors: [
       {
         name: "Men's slim jeans navy blue color",
@@ -222,11 +217,9 @@ export const data: Array<Product> = [
   },
   {
     sex: 'male',
-
     currency: 'PLN',
     category: new Types.ObjectId('653ac6324034fcd15891180c'),
     type: new Types.ObjectId('653a64ff0de8e3dc995d7694'),
-
     colors: [
       {
         name: "Men's jeans regular color blue",
@@ -254,7 +247,6 @@ export const data: Array<Product> = [
   },
   {
     sex: 'male',
-
     currency: 'PLN',
     category: new Types.ObjectId('653ac6324034fcd15891180c'), // cloth
     type: new Types.ObjectId('653a64ff0de8e3dc995d7692'),
@@ -286,7 +278,6 @@ export const data: Array<Product> = [
   },
   {
     sex: 'male',
-
     currency: 'PLN',
     category: new Types.ObjectId('653ac6324034fcd15891180c'), // cloth
     type: new Types.ObjectId('653a64ff0de8e3dc995d7692'),
@@ -318,7 +309,6 @@ export const data: Array<Product> = [
   },
   {
     sex: 'male',
-
     currency: 'PLN',
     category: new Types.ObjectId('653ac6324034fcd15891180d'), // shoes,
     type: new Types.ObjectId('653a64ff0de8e3dc995d7695'),
@@ -351,7 +341,6 @@ export const data: Array<Product> = [
   },
   {
     sex: 'male',
-
     currency: 'PLN',
     category: new Types.ObjectId('653ac6324034fcd15891180d'), // shoes,
     type: new Types.ObjectId('653a64ff0de8e3dc995d7695'),
