@@ -105,7 +105,7 @@ const CartSummary = () => {
                   onClick={() => setIsDiscountOpen(true)}
                 >
                   <PercentSquare />
-                  <p>I've a discount</p>
+                  <p>I have a discount</p>
                 </button>
               )}
             </div>
