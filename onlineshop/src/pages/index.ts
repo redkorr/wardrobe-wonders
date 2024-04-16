@@ -11,3 +11,5 @@ export { default as Products } from './Products';
 export { default as Product } from './Product';
 
 export { default as ShoppingCart } from './ShoppingCart';
+
+export { default as Checkout } from './Checkout';
