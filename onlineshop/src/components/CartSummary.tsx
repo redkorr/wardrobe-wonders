@@ -2,6 +2,7 @@ import { useAppSelector } from '@/hooks/useAppSelector';
 import useDiscount from '@/hooks/useDiscount';
 import { PercentSquare, X } from 'lucide-react';
 import { useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const CartSummary = () => {
   const [isDiscountOpen, setIsDiscountOpen] = useState(false);
@@ -104,11 +105,16 @@ const CartSummary = () => {
                   onClick={() => setIsDiscountOpen(true)}
                 >
                   <PercentSquare />
-                  <p>I've a discount</p>
+                  <p>I have a discount</p>
                 </button>
               )}
             </div>
-            <button className="py-2 px-3 border-blue-500 bg-blue-900 text-slate-100">Go to the checkout</button>
+            <Link
+              to="/checkout/login"
+              className="py-2 px-3 text-center border-blue-500 bg-blue-900 text-slate-100"
+            >
+              Go to the checkout
+            </Link>
           </div>
         </div>
       )}
