@@ -86,3 +86,13 @@ const statuses = ['LOADING', 'SUCCESS', 'EMPTY'] as const;
 export type Status = (typeof statuses)[number];
 
 export type FilterStateWithoutPrice = Omit<FilterState, 'price'>;
+
+export type CheckoutFormData = {
+  first_name: string;
+  last_name: string;
+  address: string;
+  postal_code: string;
+  city: string;
+  phone_number: string;
+  email: string;
+};
