@@ -1,4 +1,4 @@
-import { CartSummary, NavBar, ShoppingCartList } from '@/components';
+import { ShoppingCartSummary, NavBar, ShoppingCartList } from '@/components';
 
 const ShoppingCart = () => {
   return (
@@ -6,7 +6,7 @@ const ShoppingCart = () => {
       <NavBar />
       <div className=" flex m-8 mt-32 gap-8 font-medium">
         <ShoppingCartList />
-        <CartSummary />
+        <ShoppingCartSummary />
       </div>
     </>
   );
