@@ -1,6 +1,13 @@
 import mongoose, { Date, Schema, model } from 'mongoose';
 
-const order_statuses = ['PENDING', 'CANCELED', 'COMPLETED'] as const;
+const order_statuses = [
+  'ACCEPTED',
+  'PENDING',
+  'CANCELED',
+  'RETURNING',
+  'RETURNED',
+  'COMPLETED',
+] as const;
 
 export type OrderStatus = (typeof order_statuses)[number];
 
