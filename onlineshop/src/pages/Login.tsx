@@ -11,7 +11,7 @@ const Login = () => {
           path="/checkout/login"
           routing="path"
           signUpUrl="/checkout/register"
-          redirectUrl="/checkout-r"
+          redirectUrl="/checkout"
         />
         <Link
           to="/checkout"
