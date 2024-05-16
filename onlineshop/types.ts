@@ -68,6 +68,9 @@ export type FilterState = {
 
 export type ShoppingCartState = {
   items: ShoppingCartItem[];
+  delivery_cost: number;
+  total_value: number;
+  discount_value: number;
   count: number;
   status: Status;
 };
@@ -81,13 +84,14 @@ export type ShoppingCartItem = {
   color: Partial<Color>;
 };
 
-const statuses = ['LOADING', 'SUCCESS', 'EMPTY'] as const;
+const STATUSES = ['LOADING', 'SUCCESS', 'EMPTY'] as const;
 
-export type Status = (typeof statuses)[number];
+export type Status = (typeof STATUSES)[number];
 
 export type FilterStateWithoutPrice = Omit<FilterState, 'price'>;
 
 export type CheckoutFormData = {
+  delivery: string;
   first_name: string;
   last_name: string;
   address: string;
