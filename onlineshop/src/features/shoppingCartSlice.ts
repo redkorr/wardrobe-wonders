@@ -3,7 +3,10 @@ import { ShoppingCartItem, ShoppingCartState } from 'types';
 
 const initialState: ShoppingCartState = {
   items: [],
+  delivery_cost: 0,
   count: 0,
+  total_value: 0,
+  discount_value: 0,
   status: 'LOADING'
 };
 
@@ -34,6 +37,7 @@ const shoppingCartSlice = createSlice({
         localStorage.setItem('shopping-cart', JSON.stringify(state.items));
         localStorage.setItem('count', JSON.stringify(state.count));
       }
+      shoppingCartSlice.caseReducers.calculateValueOfProducts(state);
     },
     incrementShoppingCartItemQuantity: (state: RootState, action: PayloadAction<string>) => {
       state.items[
@@ -42,6 +46,7 @@ const shoppingCartSlice = createSlice({
       state.count += 1;
       localStorage.setItem('shopping-cart', JSON.stringify(state.items));
       localStorage.setItem('count', JSON.stringify(state.count));
+      shoppingCartSlice.caseReducers.calculateValueOfProducts(state);
     },
     decrementShoppingCartItemQuantity: (state: RootState, action: PayloadAction<string>) => {
       const itemIndex = current(state).items.findIndex(
@@ -55,11 +60,13 @@ const shoppingCartSlice = createSlice({
         localStorage.setItem('shopping-cart', JSON.stringify(state.items));
         localStorage.setItem('count', JSON.stringify(state.count));
       }
+      shoppingCartSlice.caseReducers.calculateValueOfProducts(state);
     },
     loadShoppingCartFromStorage: (state: RootState, action: PayloadAction<string | null>) => {
       const test = action.payload ? action.payload : '[]';
       state.items = JSON.parse(test);
       state.count = Number(localStorage.getItem('count'));
+      shoppingCartSlice.caseReducers.calculateValueOfProducts(state);
     },
     deleteShoppingCartItem: (state: RootState, action: PayloadAction<string>) => {
       const itemIndex = current(state).items.findIndex(
@@ -69,6 +76,40 @@ const shoppingCartSlice = createSlice({
       state.items.splice(itemIndex, 1);
       localStorage.setItem('shopping-cart', JSON.stringify(state.items));
       localStorage.setItem('count', JSON.stringify(state.count));
+      shoppingCartSlice.caseReducers.calculateValueOfProducts(state);
+    },
+    calculateValueOfProducts: (state: RootState) => {
+      let value_of_products = 0;
+      current(state).items.forEach((item: ShoppingCartItem) => {
+        if (item.color.sizes) {
+          value_of_products += item.color.sizes[Object.keys(item.color.sizes)[0]].price * item.quantity;
+        }
+      });
+      if (current(state).discount_value > 0 || current(state).delivery_cost > 0) {
+        state.total_value = Number(
+          (
+            value_of_products -
+            value_of_products * (current(state).discount_value / 100) -
+            current(state).delivery_cost
+          ).toFixed(2)
+        );
+      } else {
+        state.total_value = value_of_products - current(state).delivery_cost;
+      }
+    },
+    updateDiscountValue: (state: RootState, action: PayloadAction<number | undefined>) => {
+      if (action.payload) {
+        state.discount_value = action.payload;
+
+        shoppingCartSlice.caseReducers.calculateValueOfProducts(state);
+      }
+    },
+    updateDeliveryCost: (state: RootState, action: PayloadAction<number | undefined>) => {
+      if (action.payload !== null || action.payload !== undefined) {
+        state.delivery_cost = action.payload;
+
+        shoppingCartSlice.caseReducers.calculateValueOfProducts(state);
+      }
     }
   }
 });
@@ -80,7 +121,10 @@ export const {
   incrementShoppingCartItemQuantity,
   decrementShoppingCartItemQuantity,
   loadShoppingCartFromStorage,
-  deleteShoppingCartItem
+  deleteShoppingCartItem,
+  calculateValueOfProducts,
+  updateDiscountValue,
+  updateDeliveryCost
 } = shoppingCartSlice.actions;
 
 export type RootState = ReturnType<typeof rootReducer>;

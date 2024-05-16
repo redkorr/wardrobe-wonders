@@ -1,10 +1,13 @@
-import { NavBar } from '@/components';
+import { Summary, NavBar } from '@/components';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { CheckoutFormData } from 'types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z, ZodType } from 'zod';
+import { useAppDispatch } from '@/hooks/useAppDispatch';
+import { updateDeliveryCost } from '@/features/shoppingCartSlice';
 
 export const CheckoutSchema: ZodType<CheckoutFormData> = z.object({
+  delivery: z.string({ invalid_type_error: 'Delivery method must be selected.' }),
   first_name: z.string().min(1, { message: 'This field is required.' }),
   last_name: z.string().min(1, { message: 'This field is required.' }),
   address: z
@@ -21,7 +24,7 @@ export const CheckoutSchema: ZodType<CheckoutFormData> = z.object({
   email: z.string().email({ message: 'Wrong format.' }).min(1, { message: 'This field is required.' })
 });
 
-const Login = () => {
+const Checkout = () => {
   const {
     register,
     handleSubmit,
@@ -29,7 +32,10 @@ const Login = () => {
   } = useForm<CheckoutFormData>({
     resolver: zodResolver(CheckoutSchema)
   });
+  const dispatch = useAppDispatch();
+
   const onSubmit: SubmitHandler<CheckoutFormData> = (data) => console.log(data);
+
   return (
     <div>
       <NavBar />
@@ -42,12 +48,15 @@ const Login = () => {
             <div className="p-4">
               <p className="text-2xl font-semibold mb-3">Delivery Method</p>
               <div className="p-3 border">
-                <div>
+                <div
+                  className="w-full"
+                  onClick={() => dispatch(updateDeliveryCost(14.9))}
+                >
                   <label className="flex w-full p-2">
                     <input
                       type="radio"
-                      name="delivery"
-                      defaultChecked
+                      value={'courier'}
+                      {...register('delivery')}
                     />
                     <div className="flex w-full justify-between ml-2">
                       <p className="font-semibold">Courier</p>
@@ -55,11 +64,15 @@ const Login = () => {
                     </div>
                   </label>
                 </div>
-                <div>
+                <div
+                  className="w-full"
+                  onClick={() => dispatch(updateDeliveryCost(9.9))}
+                >
                   <label className="flex w-full p-2">
                     <input
                       type="radio"
-                      name="delivery"
+                      value={'inpost'}
+                      {...register('delivery')}
                     />
                     <div className="flex w-full justify-between ml-2">
                       <p className="font-semibold">InPost Paczkomat</p>
@@ -67,12 +80,15 @@ const Login = () => {
                     </div>
                   </label>
                 </div>
-                <div>
+                <div
+                  className="w-full"
+                  onClick={() => dispatch(updateDeliveryCost(0))}
+                >
                   <label className="flex w-full p-2">
                     <input
-                      className="ring-red-400"
                       type="radio"
-                      name="delivery"
+                      value={'self_pickup'}
+                      {...register('delivery')}
                     />
                     <div className="flex w-full justify-between ml-2">
                       <p className="font-semibold">Self Pickup</p>
@@ -81,7 +97,9 @@ const Login = () => {
                   </label>
                 </div>
               </div>
+              {errors.delivery?.message && <span>{errors.delivery.message}</span>}
             </div>
+
             <div className="p-4">
               <p className="text-2xl font-semibold mb-3">Billing Address</p>
               <div className="flex flex-col child:flex child:flex-col gap-3 p-3 border">
@@ -141,14 +159,18 @@ const Login = () => {
                   />
                   {errors.email && <span>{errors.email.message}</span>}
                 </div>
-                <input type="submit" />
               </div>
             </div>
           </form>
         </div>
+        <Summary
+          buttonText="Buy"
+          path="payment"
+          handleSubmit={handleSubmit}
+        />
       </div>
     </div>
   );
 };
 
-export default Login;
+export default Checkout;
