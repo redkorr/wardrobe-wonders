@@ -8,11 +8,14 @@ import { useAppSelector } from '@/hooks/useAppSelector';
 
 interface FilterSliderProps {
   filter: Price;
+  isActive: boolean;
+  onClick: () => void;
 }
 
-const FilterSlider = ({ filter }: FilterSliderProps) => {
+const FilterSlider = ({ filter, onClick, isActive }: FilterSliderProps) => {
   const { min, max } = filter;
   const urlParams = new URLSearchParams(window.location.search);
+  const dropdownRef = useRef<HTMLDivElement>(null);
   const minValRef = useRef(min);
   const maxValRef = useRef(max);
   const range = useRef<HTMLInputElement>(null);
@@ -21,6 +24,14 @@ const FilterSlider = ({ filter }: FilterSliderProps) => {
   const { min: debouncedMinVal, max: debouncedMaxVal } = useAppSelector((state) => state.filter.price);
   const [minVal, setMinVal] = useState(min);
   const [maxVal, setMaxVal] = useState(max);
+
+  const closeDropdown = (event: MouseEvent | TouchEvent) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node) && isActive) {
+      onClick();
+    }
+  };
+
+  document.addEventListener('mousedown', closeDropdown);
 
   useEffect(() => {
     dispatch(setMinPriceFilter(min));
@@ -91,7 +102,10 @@ const FilterSlider = ({ filter }: FilterSliderProps) => {
   }, [maxVal, 500]);
 
   return (
-    <div className="p-5">
+    <div
+      className="p-5"
+      ref={dropdownRef}
+    >
       <div className="flex items-center justify-center h-10 flex-col">
         <input
           type="range"
