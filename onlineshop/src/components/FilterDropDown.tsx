@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, useRef } from 'react';
 import { FilterCheckbox, FilterSlider } from '.';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import { Price } from 'types';
@@ -16,10 +16,12 @@ type Filter = string[] | Price | undefined;
 
 const FilterDropDown = ({ filter, isActive = false, onClick, filterKey }: FiltersDropDownProps) => {
   const urlParams = new URLSearchParams(window.location.search);
+  const dropdownRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
   const selectedFilters = useAppSelector((state) => state.filter);
   function renderFilterDropDown(filter: Filter): ReactNode {
     const isFilterArray = Array.isArray(filter);
+
     const searchParamKey = filterKey.slice(0, filterKey.length - 1);
     const arrayOfSelectedFilters: Array<string> = [];
 
@@ -32,19 +34,29 @@ const FilterDropDown = ({ filter, isActive = false, onClick, filterKey }: Filter
       selectFilters();
       if (Object.keys(selectedFilters[filterKey as keyof typeof selectedFilters]).length === 0) {
         urlParams.delete(searchParamKey);
-        navigate(`?${urlParams.toString()}`);
       } else {
         urlParams.set(searchParamKey, arrayOfSelectedFilters.join(','));
-        navigate(`?${urlParams.toString()}`);
+      }
+      navigate(`?${urlParams.toString()}`);
+      onClick();
+    };
+    const closeDropdown = (event: MouseEvent | TouchEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node) && isActive) {
+        onClick();
       }
     };
+
+    document.addEventListener('mousedown', closeDropdown);
 
     if (!filter) {
       return;
     }
     if (isFilterArray) {
       return (
-        <div className="p-5">
+        <div
+          className="p-5"
+          ref={dropdownRef}
+        >
           {filter.map((filterItem: string) => (
             <FilterCheckbox
               filterItem={filterItem}
@@ -62,7 +74,13 @@ const FilterDropDown = ({ filter, isActive = false, onClick, filterKey }: Filter
       );
     }
     if ('min' in filter || 'max' in filter) {
-      return <FilterSlider filter={filter} />;
+      return (
+        <FilterSlider
+          filter={filter}
+          onClick={onClick}
+          isActive={isActive}
+        />
+      );
     }
   }
 
