@@ -43,7 +43,7 @@ const Navbar = () => {
 
       <div className="flex gap-8 text-gray-300">
         {!isSignedIn && isLoaded ? (
-          <Link to={LINKS.checkoutLogin}>Sign In</Link>
+          <Link to={LINKS.myAccountLogin}>Sign In</Link>
         ) : (
           <UserButton
             showName
