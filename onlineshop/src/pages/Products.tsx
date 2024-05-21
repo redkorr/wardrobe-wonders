@@ -111,11 +111,8 @@ const Products = () => {
                             src={`/${product.category.name}/${product.type.display_name}/${item.images[0]}`}
                           />
                         </Link>
-                        <Link
-                          to={`/product/${product.product_id}/${item.color_name}`}
-                          className="truncate text-lg mt-3"
-                        >
-                          {item.name}
+                        <Link to={`/product/${product.product_id}/${item.color_name}`}>
+                          <p className="truncate text-lg mt-3">{item.name}</p>
                         </Link>
                       </div>
                     ))
