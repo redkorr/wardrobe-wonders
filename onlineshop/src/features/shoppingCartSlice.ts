@@ -4,10 +4,11 @@ import { ShoppingCartItem, ShoppingCartState } from 'types';
 const initialState: ShoppingCartState = {
   items: [],
   delivery_cost: 0,
+  payment_cost: 0,
   count: 0,
   total_value: 0,
   discount_value: 0,
-  status: 'LOADING'
+  status: 'ACCEPTED'
 };
 
 const rootReducer = combineReducers({});
@@ -89,12 +90,13 @@ const shoppingCartSlice = createSlice({
         state.total_value = Number(
           (
             value_of_products -
-            value_of_products * (current(state).discount_value / 100) -
-            current(state).delivery_cost
+            value_of_products * (current(state).discount_value / 100) +
+            current(state).delivery_cost +
+            current(state).payment_cost
           ).toFixed(2)
         );
       } else {
-        state.total_value = value_of_products - current(state).delivery_cost;
+        state.total_value = value_of_products + current(state).delivery_cost + current(state).payment_cost;
       }
     },
     updateDiscountValue: (state: RootState, action: PayloadAction<number | undefined>) => {
@@ -107,6 +109,13 @@ const shoppingCartSlice = createSlice({
     updateDeliveryCost: (state: RootState, action: PayloadAction<number | undefined>) => {
       if (action.payload !== null || action.payload !== undefined) {
         state.delivery_cost = action.payload;
+
+        shoppingCartSlice.caseReducers.calculateValueOfProducts(state);
+      }
+    },
+    updatePaymentCost: (state: RootState, action: PayloadAction<number | undefined>) => {
+      if (action.payload !== null || action.payload !== undefined) {
+        state.payment_cost = action.payload;
 
         shoppingCartSlice.caseReducers.calculateValueOfProducts(state);
       }
@@ -124,7 +133,8 @@ export const {
   deleteShoppingCartItem,
   calculateValueOfProducts,
   updateDiscountValue,
-  updateDeliveryCost
+  updateDeliveryCost,
+  updatePaymentCost
 } = shoppingCartSlice.actions;
 
 export type RootState = ReturnType<typeof rootReducer>;

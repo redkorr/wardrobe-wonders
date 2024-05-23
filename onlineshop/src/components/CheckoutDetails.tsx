@@ -54,9 +54,16 @@ const Summary = ({ buttonText, path, handleSubmit }: SummaryProps) => {
                 </div>
               </div>
               <div className="flex justify-between">
-                <p>Cost of delivery:</p>
+                <p>Delivery cost:</p>
                 <div className="flex gap-1 text-slate-100">
                   <p>{shoppingCart.delivery_cost}</p>
+                  <p>{shoppingCart.items[0].currency}</p>
+                </div>
+              </div>
+              <div className="flex justify-between">
+                <p>Payment cost:</p>
+                <div className="flex gap-1 text-slate-100">
+                  <p>{shoppingCart.payment_cost}</p>
                   <p>{shoppingCart.items[0].currency}</p>
                 </div>
               </div>
