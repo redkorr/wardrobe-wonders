@@ -140,13 +140,14 @@ const Summary = ({ buttonText, path, handleSubmit }: SummaryProps) => {
               </SignedIn>
               <SignedOut>
                 <button
-                  onClick={
-                    handleSubmit &&
-                    handleSubmit((d) => {
-                      console.log(d);
-                      navigate(path === 'checkout' ? `../${path}/login` : `../${path}`);
-                    })
-                  }
+                  onClick={() => {
+                    if (handleSubmit) {
+                      handleSubmit((d) => {
+                        console.log(d);
+                      });
+                    }
+                    navigate(path === 'checkout' ? `../${path}/login` : `../${path}`);
+                  }}
                   className="py-2 px-3 text-center border border-blue-500 bg-blue-900 text-slate-100"
                 >
                   {buttonText}
