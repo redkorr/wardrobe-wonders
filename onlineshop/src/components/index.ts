@@ -34,6 +34,6 @@ export { default as ScrollToTop } from './ScrollToTop';
 
 export { default as ProductsFilters } from './ProductsFilters';
 
-export { default as Summary } from './Summary';
+export { default as Summary } from './CheckoutDetails';
 
 export { default as ShoppingCartList } from './ShoppingCartList';
