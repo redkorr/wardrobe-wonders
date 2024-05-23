@@ -4,7 +4,7 @@ import { CheckoutFormData } from 'types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z, ZodType } from 'zod';
 import { useAppDispatch } from '@/hooks/useAppDispatch';
-import { updateDeliveryCost } from '@/features/shoppingCartSlice';
+import { updateDeliveryCost, updatePaymentCost } from '@/features/shoppingCartSlice';
 
 export const CheckoutSchema: ZodType<CheckoutFormData> = z.object({
   delivery: z.string({ invalid_type_error: 'Delivery method must be selected.' }),
@@ -21,7 +21,8 @@ export const CheckoutSchema: ZodType<CheckoutFormData> = z.object({
     .min(1, { message: 'This field is required.' }),
   city: z.string().min(1, { message: 'This field is required.' }),
   phone_number: z.string().regex(/^\d{9}$/),
-  email: z.string().email({ message: 'Wrong format.' }).min(1, { message: 'This field is required.' })
+  email: z.string().email({ message: 'Wrong format.' }).min(1, { message: 'This field is required.' }),
+  payment: z.string({ invalid_type_error: 'Payment method must be selected.' })
 });
 
 const Checkout = () => {
@@ -99,7 +100,6 @@ const Checkout = () => {
               </div>
               {errors.delivery?.message && <span>{errors.delivery.message}</span>}
             </div>
-
             <div className="p-4">
               <p className="text-2xl font-semibold mb-3">Billing Address</p>
               <div className="flex flex-col child:flex child:flex-col gap-3 p-3 border">
@@ -161,10 +161,80 @@ const Checkout = () => {
                 </div>
               </div>
             </div>
+            <div className="p-4">
+              <p className="text-2xl font-semibold mb-3">Payment Method</p>
+              <div className="p-3 border">
+                <div
+                  className="w-full"
+                  onClick={() => dispatch(updatePaymentCost(0.0))}
+                >
+                  <label className="flex w-full p-2">
+                    <input
+                      type="radio"
+                      value={'online_payment'}
+                      {...register('payment')}
+                    />
+                    <div className="flex w-full justify-between ml-2">
+                      <p className="font-semibold">Online payment</p>
+                      <p>0,00 PLN</p>
+                    </div>
+                  </label>
+                </div>
+                <div
+                  className="w-full"
+                  onClick={() => dispatch(updatePaymentCost(0.0))}
+                >
+                  <label className="flex w-full p-2">
+                    <input
+                      type="radio"
+                      value={'visa_card'}
+                      {...register('payment')}
+                    />
+                    <div className="flex w-full justify-between ml-2">
+                      <p className="font-semibold">Visa card</p>
+                      <p>0,00 PLN</p>
+                    </div>
+                  </label>
+                </div>
+                <div
+                  className="w-full"
+                  onClick={() => dispatch(updatePaymentCost(0.0))}
+                >
+                  <label className="flex w-full p-2">
+                    <input
+                      type="radio"
+                      value={'bank_transfer'}
+                      {...register('payment')}
+                    />
+                    <div className="flex w-full justify-between ml-2">
+                      <p className="font-semibold">Bank transfer</p>
+                      <p>0,00 PLN</p>
+                    </div>
+                  </label>
+                </div>
+                <div
+                  className="w-full"
+                  onClick={() => dispatch(updatePaymentCost(5.0))}
+                >
+                  <label className="flex w-full p-2">
+                    <input
+                      type="radio"
+                      value={'cod'}
+                      {...register('payment')}
+                    />
+                    <div className="flex w-full justify-between ml-2">
+                      <p className="font-semibold">Cash on delivery</p>
+                      <p>5,00 PLN</p>
+                    </div>
+                  </label>
+                </div>
+              </div>
+              {errors.payment?.message && <span>{errors.payment.message}</span>}
+            </div>
           </form>
         </div>
         <Summary
-          buttonText="Buy"
+          buttonText="Pay"
           path="payment"
           handleSubmit={handleSubmit}
         />
