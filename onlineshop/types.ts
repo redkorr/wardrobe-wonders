@@ -69,6 +69,7 @@ export type FilterState = {
 export type ShoppingCartState = {
   items: ShoppingCartItem[];
   delivery_cost: number;
+  payment_cost: number;
   total_value: number;
   discount_value: number;
   count: number;
@@ -84,7 +85,7 @@ export type ShoppingCartItem = {
   color: Partial<Color>;
 };
 
-const STATUSES = ['LOADING', 'SUCCESS', 'EMPTY'] as const;
+const STATUSES = ['ACCEPTED', 'PENDING', 'CANCELED', 'RETURNING', 'RETURNED', 'COMPLETED'] as const;
 
 export type Status = (typeof STATUSES)[number];
 
@@ -99,4 +100,5 @@ export type CheckoutFormData = {
   city: string;
   phone_number: string;
   email: string;
+  payment: string;
 };
