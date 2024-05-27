@@ -10,7 +10,8 @@ const LINKS = {
   products: '/products',
   product: '/product',
   shoppingCart: '/shopping-cart',
-  checkout: '/checkout'
+  checkout: '/checkout',
+  summary: '/summary'
 } as const;
 
 export default LINKS;

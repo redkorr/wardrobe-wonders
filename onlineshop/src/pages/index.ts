@@ -14,4 +14,4 @@ export { default as ShoppingCart } from './ShoppingCart';
 
 export { default as Checkout } from './Checkout';
 
-export { default as Payment } from './Payment';
+export { default as Summary } from './Summary';
