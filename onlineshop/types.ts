@@ -102,3 +102,36 @@ export type CheckoutFormData = {
   email: string;
   payment: string;
 };
+
+export type Order = {
+  user_id?: string | null;
+  date: Date;
+  total: number;
+  order_status: OrderStatus;
+  order_items: Array<OrderItem> | null;
+  billing_address: BillingAddress;
+};
+
+export interface OrderItem {
+  product_id?: string;
+  name?: string;
+  image_path: string;
+  color_name?: string;
+  price: number;
+  size: string;
+  quantity: number;
+}
+
+export interface BillingAddress {
+  first_name: string;
+  last_name: string;
+  address: string;
+  postal_code: string;
+  city: string;
+  phone_number: string;
+  email: string;
+}
+
+const order_statuses = ['ACCEPTED', 'PENDING', 'CANCELED', 'RETURNING', 'RETURNED', 'COMPLETED'] as const;
+
+export type OrderStatus = (typeof order_statuses)[number];
