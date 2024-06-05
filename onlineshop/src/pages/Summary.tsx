@@ -1,7 +1,7 @@
 const Summary = () => {
   return (
     <div>
-      <div>
+      {/* <div>
         <p>your order is confirmed</p>
         <p> An email was sent to you at {}</p>
       </div>
@@ -11,7 +11,7 @@ const Summary = () => {
             <th></th>
           </tr>
         </table>
-      </div>
+      </div> */}
     </div>
   );
 };
