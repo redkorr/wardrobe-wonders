@@ -1,19 +1,17 @@
 import { useAppSelector } from '@/hooks/useAppSelector';
 import useDiscount from '@/hooks/useDiscount';
 import { PercentSquare, X } from 'lucide-react';
-import { useRef, useState } from 'react';
+import { RefObject, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SignedIn, SignedOut } from '@clerk/clerk-react';
-import { UseFormHandleSubmit } from 'react-hook-form';
-import { CheckoutFormData } from 'types';
 
 interface SummaryProps {
   buttonText: string;
   path: string;
-  handleSubmit?: UseFormHandleSubmit<CheckoutFormData, undefined>;
+  formRef?: RefObject<HTMLFormElement>;
 }
 
-const Summary = ({ buttonText, path, handleSubmit }: SummaryProps) => {
+const CheckoutDetails = ({ buttonText, path, formRef }: SummaryProps) => {
   const [isDiscountOpen, setIsDiscountOpen] = useState(false);
   const { updateDiscount, discount } = useDiscount();
   const discountRef = useRef<HTMLInputElement>(null);
@@ -126,10 +124,8 @@ const Summary = ({ buttonText, path, handleSubmit }: SummaryProps) => {
               <SignedIn>
                 <button
                   onClick={() => {
-                    if (handleSubmit) {
-                      handleSubmit((d) => {
-                        console.log(d);
-                      });
+                    if (formRef?.current) {
+                      formRef.current.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
                     }
                     navigate(`../${path}`);
                   }}
@@ -141,12 +137,38 @@ const Summary = ({ buttonText, path, handleSubmit }: SummaryProps) => {
               <SignedOut>
                 <button
                   onClick={() => {
-                    if (handleSubmit) {
-                      handleSubmit((d) => {
-                        console.log(d);
-                      });
-                    }
-                    navigate(path === 'checkout' ? `../${path}/login` : `../${path}`);
+                    // if (handleSubmit) {
+                    //   handleSubmit((d) => {
+                    //     const orderItems: Array<OrderItem> = [];
+                    //     shoppingCart.items.forEach((item) => {
+                    //       if (item.color.images && item.color.sizes)
+                    //         orderItems.push({
+                    //           product_id: item.product_id,
+                    //           name: item.color.name,
+                    //           image_path: item.color.images[0],
+                    //           color_name: item.color.color_name,
+                    //           price: item.color.sizes[0].price,
+                    //           size: Object.keys(item.color.sizes[0]).join(),
+                    //           quantity: item.quantity
+                    //         });
+                    //     });
+                    //     useOrder({
+                    //       total: shoppingCart.total_value,
+                    //       date: Date.now(),
+                    //       billing_address: {
+                    //         first_name: d.first_name,
+                    //         last_name: d.last_name,
+                    //         address: d.address,
+                    //         postal_code: d.postal_code,
+                    //         city: d.city,
+                    //         phone_number: d.phone_number,
+                    //         email: d.email
+                    //       },
+                    //       order_items: orderItems
+                    //     });
+                    //   });
+                    // }
+                    navigate(`../${path}`);
                   }}
                   className="py-2 px-3 text-center border border-blue-500 bg-blue-900 text-slate-100"
                 >
@@ -161,4 +183,4 @@ const Summary = ({ buttonText, path, handleSubmit }: SummaryProps) => {
   );
 };
 
-export default Summary;
+export default CheckoutDetails;
