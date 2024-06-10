@@ -39,3 +39,5 @@ export { default as CheckoutDetails } from './CheckoutDetails';
 export { default as ShoppingCartList } from './ShoppingCartList';
 
 export { default as CheckoutForm } from './CheckoutForm';
+
+export { default as OrderItemsList } from './OrderItemsList';
