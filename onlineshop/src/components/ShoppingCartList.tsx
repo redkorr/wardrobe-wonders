@@ -21,7 +21,6 @@ const ShoppingCartList = () => {
 
       <div>
         <hr className="my-3" />
-        {!shoppingCart || (shoppingCart.items.length === 0 && <div>dupa</div>)}
         {shoppingCart &&
           shoppingCart.items.length > 0 &&
           shoppingCart.items.map((shoppingCartItem, index) => (

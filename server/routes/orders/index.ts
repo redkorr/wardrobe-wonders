@@ -20,8 +20,13 @@ router.post('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   const id = req.params.id;
   try {
-    const data = await Order.find({ user_id: id });
-    res.status(200).json();
+    if (id.includes('user')) {
+      const data = await Order.findOne({ user_id: id });
+      res.status(200).json(data);
+    } else {
+      const data = await Order.findOne({ order_id: id });
+      res.status(200).json(data);
+    }
   } catch (error) {
     if (error instanceof MongooseError) {
       res.status(500).json(error);
