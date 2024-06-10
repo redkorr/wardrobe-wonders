@@ -8,6 +8,8 @@ import { updateDeliveryCost, updatePaymentCost } from '@/features/shoppingCartSl
 import { useAppSelector } from '@/hooks/useAppSelector';
 import useOrder from '@/hooks/useOrder';
 import { useUser } from '@clerk/clerk-react';
+import { v4 as uuidv4 } from 'uuid';
+import { useNavigate } from 'react-router-dom';
 
 export const CheckoutSchema: ZodType<CheckoutFormData> = z.object({
   delivery: z.string({ invalid_type_error: 'Delivery method must be selected.' }),
@@ -30,12 +32,14 @@ export const CheckoutSchema: ZodType<CheckoutFormData> = z.object({
 
 interface CheckoutFormProps {
   formRef: RefObject<HTMLFormElement>;
+  path: string;
 }
 
-const CheckoutForm = ({ formRef }: CheckoutFormProps) => {
+const CheckoutForm = ({ formRef, path }: CheckoutFormProps) => {
   const shoppingCart = useAppSelector((state) => state.shoppingCart);
+  const navigate = useNavigate();
   const { user } = useUser();
-  const fetchData = useOrder();
+  const { postOrder } = useOrder();
 
   const {
     register,
@@ -48,11 +52,17 @@ const CheckoutForm = ({ formRef }: CheckoutFormProps) => {
 
   const onSubmit: SubmitHandler<CheckoutFormData> = (data) => {
     const orderItems: Array<OrderItem> = [];
+    const orderId = uuidv4();
+    console.log(orderId);
+
     shoppingCart.items.forEach((item) => {
       if (item.color.images && item.color.sizes) {
         const sizeKey = Object.keys(item.color.sizes);
         orderItems.push({
           product_id: item.product_id,
+          category: item.category.name,
+          type: item.type.name,
+          currency: item.currency,
           name: item.color.name,
           image_path: item.color.images[0],
           color_name: item.color.color_name,
@@ -62,10 +72,20 @@ const CheckoutForm = ({ formRef }: CheckoutFormProps) => {
         });
       }
     });
-    fetchData({
+    postOrder({
       user_id: user?.id,
+      order_id: orderId,
+      items_price: shoppingCart.items_price,
       total: shoppingCart.total_value,
       date: new Date(),
+      delivery: {
+        type: data.delivery,
+        cost: shoppingCart.delivery_cost
+      },
+      payment: {
+        type: data.payment,
+        cost: shoppingCart.payment_cost
+      },
       billing_address: {
         first_name: data.first_name,
         last_name: data.last_name,
@@ -78,12 +98,14 @@ const CheckoutForm = ({ formRef }: CheckoutFormProps) => {
       order_items: orderItems,
       order_status: 'ACCEPTED'
     });
+    navigate(`../${path}/${orderId}`);
   };
   return (
     <div>
       <form
         className="flex flex-col"
         ref={formRef}
+        id="checkout-form"
         onSubmit={handleSubmit(onSubmit)}
       >
         <div className="p-4">
@@ -259,7 +281,7 @@ const CheckoutForm = ({ formRef }: CheckoutFormProps) => {
               <label className="flex w-full p-2">
                 <input
                   type="radio"
-                  value={'cod'}
+                  value={'cash on delivery'}
                   {...register('payment')}
                 />
                 <div className="flex w-full justify-between ml-2">
