@@ -53,7 +53,7 @@ export const ROUTES: Array<Route> = [
     element: <Checkout />
   },
   {
-    path: 'summary',
+    path: 'summary/:id',
     element: <Summary />
   }
   // {

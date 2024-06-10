@@ -1,4 +1,5 @@
 import mongoose, { Date, Schema, model } from 'mongoose';
+import { randomUUID } from 'crypto';
 
 const order_statuses = [
   'ACCEPTED',
@@ -12,16 +13,33 @@ const order_statuses = [
 export type OrderStatus = (typeof order_statuses)[number];
 
 export interface Order {
+  order_id: string;
   user_id: string;
+  items_price: number;
   total: number;
   date: Date;
+  delivery: Delivery;
+  payment: Payment;
   order_status: OrderStatus;
   order_items: Array<OrderItem> | null;
   billing_address: BillingAddress;
 }
 
+export interface Delivery {
+  type: string;
+  cost: number;
+}
+
+export interface Payment {
+  type: string;
+  cost: number;
+}
+
 export interface OrderItem {
   product_id: string;
+  category: string;
+  type: string;
+  currency: string;
   name: string;
   image_path: string;
   color_name: string;
@@ -42,6 +60,9 @@ export interface BillingAddress {
 
 const orderItemSchema = new Schema<OrderItem>({
   product_id: { type: Schema.Types.String, required: true },
+  category: { type: Schema.Types.String, required: true },
+  type: { type: Schema.Types.String, required: true },
+  currency: { type: Schema.Types.String, required: true },
   name: { type: Schema.Types.String, required: true },
   image_path: { type: Schema.Types.String, required: true },
   color_name: { type: Schema.Types.String, required: true },
@@ -60,8 +81,20 @@ const billingAddressSchema = new Schema<BillingAddress>({
   email: { type: Schema.Types.String, required: true },
 });
 
+const deliverySchema = new Schema<Delivery>({
+  type: { type: Schema.Types.String, required: true },
+  cost: { type: Schema.Types.Number, required: true },
+});
+
+const paymentSchema = new Schema<Payment>({
+  type: { type: Schema.Types.String, required: true },
+  cost: { type: Schema.Types.Number, required: true },
+});
+
 const orderSchema = new Schema<Order>({
+  order_id: { type: Schema.Types.String, required: true, unique: true },
   user_id: { type: Schema.Types.String },
+  items_price: { type: Schema.Types.Number, required: true },
   total: { type: Schema.Types.Number, required: true },
   date: { type: Schema.Types.Date, required: true },
   order_status: { type: Schema.Types.String, required: true },
@@ -72,8 +105,18 @@ const orderSchema = new Schema<Order>({
     required: true,
   },
   billing_address: {
-    type: [Schema.Types.Mixed],
+    type: Schema.Types.Mixed,
     of: billingAddressSchema,
+    required: true,
+  },
+  delivery: {
+    type: Schema.Types.Mixed,
+    of: deliverySchema,
+    required: true,
+  },
+  payment: {
+    type: Schema.Types.Mixed,
+    of: paymentSchema,
     required: true,
   },
 });
