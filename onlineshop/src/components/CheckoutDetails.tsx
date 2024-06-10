@@ -1,34 +1,21 @@
 import { useAppSelector } from '@/hooks/useAppSelector';
 import useDiscount from '@/hooks/useDiscount';
 import { PercentSquare, X } from 'lucide-react';
-import { RefObject, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRef, useState } from 'react';
 import { SignedIn, SignedOut } from '@clerk/clerk-react';
+import { useNavigate } from 'react-router-dom';
 
 interface SummaryProps {
   buttonText: string;
-  path: string;
-  formRef?: RefObject<HTMLFormElement>;
+  path?: string;
 }
 
-const CheckoutDetails = ({ buttonText, path, formRef }: SummaryProps) => {
+const CheckoutDetails = ({ buttonText, path }: SummaryProps) => {
   const [isDiscountOpen, setIsDiscountOpen] = useState(false);
   const { updateDiscount, discount } = useDiscount();
   const discountRef = useRef<HTMLInputElement>(null);
-  const shoppingCart = useAppSelector((state) => state.shoppingCart);
-
   const navigate = useNavigate();
-
-  const sumValueOfProducts = () => {
-    let valueOfProducts = 0;
-    if (shoppingCart)
-      shoppingCart.items.forEach((item) => {
-        if (item.color.sizes) {
-          valueOfProducts += item.color.sizes[Object.keys(item.color.sizes)[0]].price * item.quantity;
-        }
-      });
-    return valueOfProducts.toFixed(1);
-  };
+  const shoppingCart = useAppSelector((state) => state.shoppingCart);
 
   return (
     <>
@@ -40,12 +27,12 @@ const CheckoutDetails = ({ buttonText, path, formRef }: SummaryProps) => {
               <div className="flex justify-between">
                 <p>Value of products:</p>
                 <div className="flex gap-1 text-slate-100">
-                  <p>{sumValueOfProducts()}</p>
+                  <p>{shoppingCart.items_price}</p>
                   <p>{shoppingCart.items[0].currency}</p>
                 </div>
               </div>
               <div className="flex justify-between">
-                <p>Discout value:</p>
+                <p>Discount value:</p>
                 <div className="flex gap-1 text-slate-100">
                   <p>{discount ? discount.value : 0}</p>
                   <p>%</p>
@@ -124,10 +111,9 @@ const CheckoutDetails = ({ buttonText, path, formRef }: SummaryProps) => {
               <SignedIn>
                 <button
                   onClick={() => {
-                    if (formRef?.current) {
-                      formRef.current.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
+                    if (path) {
+                      navigate(`../${path}`);
                     }
-                    navigate(`../${path}`);
                   }}
                   className="py-2 px-3 text-center border-blue-500 bg-blue-900 text-slate-100"
                 >
@@ -136,41 +122,14 @@ const CheckoutDetails = ({ buttonText, path, formRef }: SummaryProps) => {
               </SignedIn>
               <SignedOut>
                 <button
-                  onClick={() => {
-                    // if (handleSubmit) {
-                    //   handleSubmit((d) => {
-                    //     const orderItems: Array<OrderItem> = [];
-                    //     shoppingCart.items.forEach((item) => {
-                    //       if (item.color.images && item.color.sizes)
-                    //         orderItems.push({
-                    //           product_id: item.product_id,
-                    //           name: item.color.name,
-                    //           image_path: item.color.images[0],
-                    //           color_name: item.color.color_name,
-                    //           price: item.color.sizes[0].price,
-                    //           size: Object.keys(item.color.sizes[0]).join(),
-                    //           quantity: item.quantity
-                    //         });
-                    //     });
-                    //     useOrder({
-                    //       total: shoppingCart.total_value,
-                    //       date: Date.now(),
-                    //       billing_address: {
-                    //         first_name: d.first_name,
-                    //         last_name: d.last_name,
-                    //         address: d.address,
-                    //         postal_code: d.postal_code,
-                    //         city: d.city,
-                    //         phone_number: d.phone_number,
-                    //         email: d.email
-                    //       },
-                    //       order_items: orderItems
-                    //     });
-                    //   });
-                    // }
-                    navigate(`../${path}`);
-                  }}
+                  form="checkout-form"
+                  type="submit"
                   className="py-2 px-3 text-center border border-blue-500 bg-blue-900 text-slate-100"
+                  onClick={() => {
+                    if (path) {
+                      navigate(`../${path}`);
+                    }
+                  }}
                 >
                   {buttonText}
                 </button>

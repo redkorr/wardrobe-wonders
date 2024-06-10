@@ -70,6 +70,7 @@ export type ShoppingCartState = {
   items: ShoppingCartItem[];
   delivery_cost: number;
   payment_cost: number;
+  items_price: number;
   total_value: number;
   discount_value: number;
   count: number;
@@ -105,24 +106,41 @@ export type CheckoutFormData = {
 
 export type Order = {
   user_id?: string | null;
+  order_id: string | undefined;
   date: Date;
+  delivery: Delivery;
+  payment: Payment;
+  items_price: number;
   total: number;
   order_status: OrderStatus;
   order_items: Array<OrderItem> | null;
   billing_address: BillingAddress;
 };
 
-export interface OrderItem {
+export type OrderItem = {
   product_id?: string;
+  category: string;
+  currency: string;
+  type: string;
   name?: string;
   image_path: string;
   color_name?: string;
   price: number;
   size: string;
   quantity: number;
-}
+};
 
-export interface BillingAddress {
+export type Delivery = {
+  type: string;
+  cost: number;
+};
+
+export type Payment = {
+  type: string;
+  cost: number;
+};
+
+export type BillingAddress = {
   first_name: string;
   last_name: string;
   address: string;
@@ -130,7 +148,7 @@ export interface BillingAddress {
   city: string;
   phone_number: string;
   email: string;
-}
+};
 
 const order_statuses = ['ACCEPTED', 'PENDING', 'CANCELED', 'RETURNING', 'RETURNED', 'COMPLETED'] as const;
 
