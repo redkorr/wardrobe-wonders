@@ -17,6 +17,7 @@
     "@reduxjs/toolkit": "^2.0.1",
     "@types/node": "^20.8.6",
     "js-sha256": "^0.10.1",
+    "libphonenumber-js": "^1.11.3",
     "lucide-react": "^0.288.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
