@@ -10,6 +10,7 @@ import useOrder from '@/hooks/useOrder';
 import { useUser } from '@clerk/clerk-react';
 import { v4 as uuidv4 } from 'uuid';
 import { useNavigate } from 'react-router-dom';
+import { isValidPhoneNumber } from 'libphonenumber-js';
 
 export const CheckoutSchema: ZodType<CheckoutFormData> = z.object({
   delivery: z.string({ invalid_type_error: 'Delivery method must be selected.' }),
@@ -25,7 +26,7 @@ export const CheckoutSchema: ZodType<CheckoutFormData> = z.object({
     .regex(/^\d{2}-\d{3}$/, { message: 'Wrong format.' })
     .min(1, { message: 'This field is required.' }),
   city: z.string().min(1, { message: 'This field is required.' }),
-  phone_number: z.string().regex(/^\d{9}$/),
+  phone_number: z.string().refine((val) => isValidPhoneNumber(val), { message: 'Wrong format.' }),
   email: z.string().email({ message: 'Wrong format.' }).min(1, { message: 'This field is required.' }),
   payment: z.string({ invalid_type_error: 'Payment method must be selected.' })
 });
@@ -169,6 +170,7 @@ const CheckoutForm = ({ formRef, path }: CheckoutFormProps) => {
               <label>First Name</label>
               <input
                 className="border p-1"
+                placeholder="Bob"
                 {...register('first_name', { required: true })}
               />
               {errors.first_name && <span>{errors.first_name.message}</span>}
@@ -177,6 +179,7 @@ const CheckoutForm = ({ formRef, path }: CheckoutFormProps) => {
               <label>Last Name</label>
               <input
                 className="border p-1"
+                placeholder="Kowalsky"
                 {...register('last_name', { required: true })}
               />
               {errors.last_name && <span>{errors.last_name.message}</span>}
@@ -185,6 +188,7 @@ const CheckoutForm = ({ formRef, path }: CheckoutFormProps) => {
               <label>Address</label>
               <input
                 className="border p-1"
+                placeholder="Krakowska 40"
                 {...register('address', { required: true })}
               />
               {errors.address && <span>{errors.address.message}</span>}
@@ -193,6 +197,7 @@ const CheckoutForm = ({ formRef, path }: CheckoutFormProps) => {
               <label>Postal Code</label>
               <input
                 className="border p-1"
+                placeholder="12-345"
                 {...register('postal_code', { required: true })}
               />
               {errors.postal_code && <span>{errors.postal_code.message}</span>}
@@ -201,6 +206,7 @@ const CheckoutForm = ({ formRef, path }: CheckoutFormProps) => {
               <label>City</label>
               <input
                 className="border p-1"
+                placeholder="Katowice"
                 {...register('city', { required: true })}
               />
               {errors.city && <span>{errors.city.message}</span>}
@@ -209,6 +215,7 @@ const CheckoutForm = ({ formRef, path }: CheckoutFormProps) => {
               <label>Phone Number</label>
               <input
                 className="border p-1"
+                placeholder="+00123456789"
                 {...register('phone_number', { required: true })}
               />
               {errors.phone_number && <span>{errors.phone_number.message}</span>}
@@ -217,6 +224,7 @@ const CheckoutForm = ({ formRef, path }: CheckoutFormProps) => {
               <label>Email</label>
               <input
                 className="border p-1"
+                placeholder="bob.kowalsky@gmail.com"
                 {...register('email', { required: true })}
               />
               {errors.email && <span>{errors.email.message}</span>}
