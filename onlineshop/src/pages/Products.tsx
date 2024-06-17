@@ -1,4 +1,4 @@
-import { FiltersSection, NavBar, CategoriesAccordion } from '@/components';
+import { FiltersSection, NavBar, CategoriesAccordion, ProductButton } from '@/components';
 import useProducts from '@/hooks/useProducts';
 import undraw_void from '@/assets/undraw_void.svg';
 import { Link, useParams, useSearchParams } from 'react-router-dom';
@@ -69,55 +69,7 @@ const Products = () => {
             </div>
           )}
 
-          <div className="flex flex-wrap gap-14">
-            {params.has('color')
-              ? products?.map(
-                  (product) =>
-                    product.colors?.map(
-                      (item) =>
-                        params.get('color')?.split(',').includes(item.color_name) && (
-                          <div
-                            key={item.item_id}
-                            className="w-[360px]"
-                          >
-                            <Link to={`/product/${product.product_id}/${item.color_name}`}>
-                              <img
-                                width={360}
-                                height={540}
-                                src={`/${product.category.name}/${product.type.display_name}/${item.images[0]}`}
-                              />
-                            </Link>
-                            <Link
-                              to={`/product/${product.product_id}/${item.color_name}`}
-                              className="truncate text-lg mt-3"
-                            >
-                              {item.name}
-                            </Link>
-                          </div>
-                        )
-                    )
-                )
-              : products?.map(
-                  (product) =>
-                    product.colors?.map((item) => (
-                      <div
-                        key={item.item_id}
-                        className="w-[360px]"
-                      >
-                        <Link to={`/product/${product.product_id}/${item.color_name}`}>
-                          <img
-                            width={360}
-                            height={540}
-                            src={`/${product.category.name}/${product.type.display_name}/${item.images[0]}`}
-                          />
-                        </Link>
-                        <Link to={`/product/${product.product_id}/${item.color_name}`}>
-                          <p className="truncate text-lg mt-3">{item.name}</p>
-                        </Link>
-                      </div>
-                    ))
-                )}
-          </div>
+          <div className="flex flex-wrap gap-14">{products?.map((product) => <ProductButton product={product} />)}</div>
         </div>
       </div>
       <ScrollToTopButton />
