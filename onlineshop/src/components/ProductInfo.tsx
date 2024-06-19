@@ -76,7 +76,7 @@ const ProductInfo = ({ product, setDetailsInfoState, indexOfFoundColor, selectCo
           >
             <div className="w-11 h-11 z-0 absolute top-[2px] right-[2px] border-2 border-white rounded-full "></div>
             <img
-              src="/public/fabric.png"
+              src="/fabric.png"
               className="opacity-30 rounded-full"
             />
           </button>
