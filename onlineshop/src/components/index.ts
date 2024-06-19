@@ -43,3 +43,7 @@ export { default as CheckoutForm } from './CheckoutForm';
 export { default as OrderItemsList } from './OrderItemsList';
 
 export { default as ProductButton } from './ProductButton';
+
+export { default as LimitButtons } from './LimitButtons';
+
+export { default as Pagination } from './Pagination';
