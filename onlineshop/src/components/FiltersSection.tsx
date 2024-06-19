@@ -9,7 +9,7 @@ interface FilterSectionProps {
 }
 const FiltersSection = ({ numberOfProducts, sex, category, type }: FilterSectionProps) => {
   return (
-    <div className="p-3 flex flex-col gap-2">
+    <div className="p-3 flex flex-col">
       <Breadcrumbs />
       <ProductsHeader
         numberOfProducts={numberOfProducts}

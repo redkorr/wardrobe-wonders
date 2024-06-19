@@ -54,7 +54,7 @@ const ProductButton = ({ product }: ProductButtonProps) => {
                   >
                     <div className="w-9 h-9 z-0 absolute top-[2px] right-[2px] border-2 border-white rounded-full "></div>
                     <img
-                      src="/public/fabric.png"
+                      src="/fabric.png"
                       className="opacity-30 rounded-full"
                     />
                   </Link>
@@ -95,7 +95,7 @@ const ProductButton = ({ product }: ProductButtonProps) => {
           >
             <div className="w-9 h-9 z-0 absolute top-[2px] right-[2px] border-2 border-white rounded-full "></div>
             <img
-              src="/public/fabric.png"
+              src="/fabric.png"
               className="opacity-30 rounded-full"
             />
           </Link>
