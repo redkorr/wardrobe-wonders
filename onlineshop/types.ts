@@ -13,6 +13,11 @@ export type Product = {
   description: Description;
   colors: Color[];
 };
+
+export type ProductsData = {
+  data: Array<Product>;
+  count: number;
+};
 export type Color = {
   name: string;
   item_id?: string;
@@ -64,6 +69,12 @@ export type FilterState = {
     [size: string]: boolean;
   };
   price: Price;
+};
+
+export type PaginationState = {
+  page: number;
+  limit: number;
+  numberOfPages: number;
 };
 
 export type ShoppingCartState = {
