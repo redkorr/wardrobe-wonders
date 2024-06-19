@@ -1,22 +1,18 @@
-import { FiltersSection, NavBar, CategoriesAccordion, ProductButton } from '@/components';
+import { FiltersSection, NavBar, CategoriesAccordion, ProductButton, LimitButtons, Pagination } from '@/components';
 import useProducts from '@/hooks/useProducts';
 import undraw_void from '@/assets/undraw_void.svg';
-import { Link, useParams, useSearchParams } from 'react-router-dom';
-import { Product } from 'types';
+import { useParams, useSearchParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useAppDispatch } from '@/hooks/useAppDispatch';
 import { addFilter, setMaxPriceFilter, setMinPriceFilter } from '@/features/filterSlice';
 import ScrollToTopButton from '@/components/ScrollToTop';
+import { setLimit, setPage } from '@/features/paginationSlice';
 
 const Products = () => {
   const { sex, category, type } = useParams();
-
   const searchParams = useSearchParams();
-
   const [params] = searchParams;
-
-  const products: Array<Product> | undefined = useProducts(sex, category, type, params);
-
+  const products = useProducts(sex, category, type, params);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -42,24 +38,31 @@ const Products = () => {
     if (params.has('max')) {
       dispatch(setMaxPriceFilter(Number(params.get('max'))));
     }
+    if (params.has('page')) {
+      dispatch(setPage(Number(params.get('page'))));
+    }
+    if (params.has('limit')) {
+      dispatch(setLimit(Number(params.get('limit'))));
+    }
   }, [products]);
 
   return (
     <div className="pt-24 w-full">
       <NavBar />
-      <div className="flex flex-row ">
+      <div className="flex flex-row w-full">
         <CategoriesAccordion
           sex={sex}
           activeCategory={category}
         />
-        <div className="flex flex-col px-10">
+        <div className="flex flex-col px-10 w-full">
           <FiltersSection
-            numberOfProducts={products?.length}
+            numberOfProducts={products?.count}
             sex={sex}
             category={category}
             type={type}
           />
-          {products?.length === 0 && (
+
+          {products?.count === 0 && (
             <div className="flex w-full justify-center items-center">
               <img
                 src={undraw_void}
@@ -68,10 +71,18 @@ const Products = () => {
               />
             </div>
           )}
+          <div className="flex">
+            <LimitButtons numberOfProducts={products?.count} />
+            <Pagination />
+          </div>
 
-          <div className="flex flex-wrap gap-14">{products?.map((product) => <ProductButton product={product} />)}</div>
+          <div className="flex flex-wrap gap-14">
+            {products?.data.map((product) => <ProductButton product={product} />)}
+          </div>
+          <Pagination />
         </div>
       </div>
+
       <ScrollToTopButton />
     </div>
   );
