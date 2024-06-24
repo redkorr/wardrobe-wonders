@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Product, ProductsData } from '../../types';
+import { ProductsData } from '../../types';
 
 const useProducts = (
   sex: string | undefined,
@@ -16,19 +16,8 @@ const useProducts = (
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch(`${URL}`);
+        const response = await fetch(URL);
         const json = await response.json();
-
-        setData(json);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-    async function fetchCount() {
-      try {
-        const response = await fetch(`${URL}/count`);
-        const json = await response.json();
-
         setData(json);
       } catch (error) {
         console.error(error);

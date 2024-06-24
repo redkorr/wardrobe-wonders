@@ -40,6 +40,8 @@ const Products = () => {
     }
     if (params.has('page')) {
       dispatch(setPage(Number(params.get('page'))));
+    } else {
+      dispatch(setPage(1));
     }
     if (params.has('limit')) {
       dispatch(setLimit(Number(params.get('limit'))));
@@ -72,14 +74,14 @@ const Products = () => {
             </div>
           )}
           <div className="flex">
-            <LimitButtons numberOfProducts={products?.count} />
-            <Pagination />
+            <LimitButtons />
+            <Pagination numberOfPages={products?.numberOfPages} />
           </div>
 
           <div className="flex flex-wrap gap-14">
-            {products?.data.map((product) => <ProductButton product={product} />)}
+            {products?.data?.map((product) => <ProductButton product={product} />)}
           </div>
-          <Pagination />
+          <Pagination numberOfPages={products?.numberOfPages} />
         </div>
       </div>
 
