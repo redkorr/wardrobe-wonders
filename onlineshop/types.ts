@@ -17,6 +17,7 @@ export type Product = {
 export type ProductsData = {
   data: Array<Product>;
   count: number;
+  numberOfPages: number;
 };
 export type Color = {
   name: string;
@@ -74,7 +75,6 @@ export type FilterState = {
 export type PaginationState = {
   page: number;
   limit: number;
-  numberOfPages: number;
 };
 
 export type ShoppingCartState = {

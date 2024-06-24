@@ -21,7 +21,7 @@ router.get('/:sex/:category?/:type?', async (req, res) => {
   const pathParams = req.params;
   const searchParams = req.query;
   const { page, limit } = req.query;
-  console.log(searchParams);
+  let numberOfPages = 0;
 
   try {
     const filters = await createFilters(pathParams, searchParams);
@@ -36,11 +36,23 @@ router.get('/:sex/:category?/:type?', async (req, res) => {
           : 0
       )
       .limit(limit ? Number(limit) : 10);
+
     const count = await Product.find(filters)
       .populate('category')
       .populate('type')
       .countDocuments();
-    res.status(200).json({ data: data, count: count });
+
+    if (limit) {
+      numberOfPages = Math.ceil(count / Number(limit));
+    } else {
+      numberOfPages = Math.ceil(count / 10);
+    }
+    console.log(numberOfPages);
+    res.status(200).json({
+      data: data,
+      count: count,
+      numberOfPages: numberOfPages,
+    });
   } catch (error) {
     res.status(404).json({ status: 404, message: error });
   }
