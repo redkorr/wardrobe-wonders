@@ -5,9 +5,12 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const Pagination = () => {
+interface PaginationProps {
+  numberOfPages: number | undefined;
+}
+
+const Pagination = ({ numberOfPages }: PaginationProps) => {
   const page = useAppSelector((state) => state.pagination.page);
-  const numberOfPages = useAppSelector((state) => state.pagination.numberOfPages);
   const dispatch = useAppDispatch();
   const urlParams = new URLSearchParams(window.location.search);
   const navigate = useNavigate();
@@ -19,7 +22,7 @@ const Pagination = () => {
 
   return (
     <div className="flex flex-row-reverse items-center w-full text-xl mb-4">
-      <button onClick={() => dispatch(incrementPageNumber())}>
+      <button onClick={() => dispatch(incrementPageNumber(numberOfPages))}>
         <ChevronRight className="w-8 h-8" />
       </button>
 
