@@ -47,3 +47,9 @@ export { default as ProductButton } from './ProductButton';
 export { default as LimitButtons } from './LimitButtons';
 
 export { default as Pagination } from './Pagination';
+
+export { default as MyAccountComponent } from './MyAccountComponent';
+
+export { default as MyOrders } from './MyOrders';
+
+export { default as BillingAddressForm } from './BillingAddressForm';
