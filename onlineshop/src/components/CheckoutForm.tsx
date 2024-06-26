@@ -215,7 +215,7 @@ const CheckoutForm = ({ formRef, path }: CheckoutFormProps) => {
               <label>Phone Number</label>
               <input
                 className="border p-1"
-                placeholder="+00123456789"
+                placeholder="+48123456789"
                 {...register('phone_number', { required: true })}
               />
               {errors.phone_number && <span>{errors.phone_number.message}</span>}
