@@ -126,13 +126,13 @@ export type BillingAddressFormData = {
 };
 export type BillingAddressData = {
   user_id?: string;
-  first_name?: string;
-  last_name?: string;
-  address?: string;
-  postal_code?: string;
-  city?: string;
-  phone_number?: string;
-  email?: string;
+  first_name: string;
+  last_name: string;
+  address: string;
+  postal_code: string;
+  city: string;
+  phone_number: string;
+  email: string;
 };
 
 export type Order = {
