@@ -103,7 +103,7 @@ const ShoppingCartList = () => {
                   </button>
                 </div>
               </div>
-              <hr className="my-3"></hr>
+              <hr className="my-3" />
             </div>
           ))}
       </div>
