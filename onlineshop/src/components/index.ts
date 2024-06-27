@@ -53,3 +53,7 @@ export { default as MyAccountComponent } from './MyAccountComponent';
 export { default as MyOrders } from './MyOrders';
 
 export { default as BillingAddressForm } from './BillingAddressForm';
+
+export { default as BillingAddresses } from './BillingAddresses';
+
+export { default as UserPageNavbar } from './UserPageNavbar.tsx';
