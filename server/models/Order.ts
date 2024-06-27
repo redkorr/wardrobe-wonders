@@ -54,7 +54,7 @@ export interface BillingAddress {
   address: string;
   postal_code: string;
   city: string;
-  phone_number: number;
+  phone_number: string;
   email: string;
 }
 
@@ -77,7 +77,7 @@ const billingAddressSchema = new Schema<BillingAddress>({
   address: { type: Schema.Types.String, required: true },
   postal_code: { type: Schema.Types.String, required: true },
   city: { type: Schema.Types.String, required: true },
-  phone_number: { type: Schema.Types.Number, required: true },
+  phone_number: { type: Schema.Types.String, required: true },
   email: { type: Schema.Types.String, required: true },
 });
 
