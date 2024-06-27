@@ -6,6 +6,7 @@ import filtersRouter from './filters/index.js';
 import productRouter from './product/index.js';
 import discountRouter from './discounts/index.js';
 import orderRouter from './orders/index.js';
+import billingAddressRouter from './billingAddress/index.js';
 
 const router = Router();
 router.use('/products', productsRouter);
@@ -15,5 +16,6 @@ router.use('/filters', filtersRouter);
 router.use('/product', productRouter);
 router.use('/discount', discountRouter);
 router.use('/order', orderRouter);
+router.use('/billing-address', billingAddressRouter);
 
 export default router;
