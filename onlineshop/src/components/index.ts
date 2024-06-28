@@ -54,6 +54,8 @@ export { default as MyOrders } from './MyOrders';
 
 export { default as BillingAddressForm } from './BillingAddressForm';
 
-export { default as BillingAddresses } from './BillingAddresses';
+export { default as BillingAddressList } from './BillingAddressList.tsx';
 
 export { default as UserPageNavbar } from './UserPageNavbar.tsx';
+
+export { default as BillingAddressEditList } from './BillingAddressEditForm.tsx';
