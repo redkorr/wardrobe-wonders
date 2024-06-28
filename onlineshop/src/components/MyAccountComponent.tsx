@@ -26,7 +26,9 @@ const MyAccountComponent = () => {
         </button>
       </div>,
       <div>
-        <button onClick={() => setIndex(0)}></button>
+        <button onClick={() => setIndex(0)}>
+          <ChevronLeft />
+        </button>
         <BillingAddressForm />
       </div>,
       <div>
