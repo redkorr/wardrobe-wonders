@@ -110,12 +110,14 @@ const CheckoutDetails = ({ buttonText, path }: SummaryProps) => {
               </div>
               <SignedIn>
                 <button
+                  form="checkout-form"
+                  type="submit"
                   onClick={() => {
                     if (path) {
                       navigate(`../${path}`);
                     }
                   }}
-                  className="py-2 px-3 text-center border-blue-500 bg-blue-900 text-slate-100"
+                  className="py-2 px-3 text-center border border-blue-500 bg-blue-900 text-slate-100"
                 >
                   {buttonText}
                 </button>
