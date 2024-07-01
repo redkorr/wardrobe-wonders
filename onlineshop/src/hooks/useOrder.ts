@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Order } from '../../types';
 
 const useOrder = () => {
-  const [data, setData] = useState<Order>();
+  const [data, setData] = useState<Array<Order> | Order>();
   const env = import.meta.env.NODE_ENV === 'production' ? `${import.meta.env.VITE_API_URL}` : 'http://localhost:5000';
   const URL = `${env}/api/order`;
   async function postOrder(order: Order) {

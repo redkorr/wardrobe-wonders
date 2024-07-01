@@ -30,7 +30,7 @@ const BillingAddressList = ({ setIndex, setBillingAddress }: BillingAddressListP
               setBillingAddress(billingAddress);
               setIndex(3);
             }}
-            className="text-lg w-full border h-32 my-3 relative"
+            className="text-lg w-full border my-3 relative px-4 py-8"
             key={billingAddress._id}
           >
             {`${billingAddress.first_name}
