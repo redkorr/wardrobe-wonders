@@ -21,7 +21,7 @@ router.get('/:id', async (req, res) => {
   const id = req.params.id;
   try {
     if (id.includes('user')) {
-      const data = await Order.findOne({ user_id: id });
+      const data = await Order.find({ user_id: id });
       res.status(200).json(data);
     } else {
       const data = await Order.findOne({ order_id: id });
