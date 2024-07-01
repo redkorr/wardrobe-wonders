@@ -6,7 +6,7 @@ interface OrderItemsListProps {
 
 const OrderItemsList = ({ orderItems }: OrderItemsListProps) => {
   return (
-    <div className="w-2/3">
+    <div>
       <hr className="my-2" />
       {orderItems &&
         orderItems.length > 0 &&
