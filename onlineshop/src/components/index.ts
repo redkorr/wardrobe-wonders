@@ -59,3 +59,5 @@ export { default as BillingAddressList } from './BillingAddressList.tsx';
 export { default as UserPageNavbar } from './UserPageNavbar.tsx';
 
 export { default as BillingAddressEditList } from './BillingAddressEditForm.tsx';
+
+export { default as OrderButton } from './OrderButton.tsx';
