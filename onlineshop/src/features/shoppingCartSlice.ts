@@ -128,6 +128,7 @@ const shoppingCartSlice = createSlice({
     },
     clearShoppingCart: () => {
       localStorage.removeItem('shopping-cart');
+      localStorage.removeItem('count');
       return { ...initialState };
     }
   }
