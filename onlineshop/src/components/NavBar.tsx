@@ -46,8 +46,17 @@ const Navbar = () => {
           <Link to={LINKS.myAccountLogin}>Sign In</Link>
         ) : (
           <UserButton
+            appearance={{
+              variables: {
+                colorInputText: 'white',
+                colorBackground: '#0F52BA',
+                colorText: 'white'
+              }
+            }}
             showName
             afterSignOutUrl="/"
+            userProfileMode="navigation"
+            userProfileUrl="/my-account"
           />
         )}
         <div>
