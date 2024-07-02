@@ -4,7 +4,7 @@ import { CheckoutFormData, OrderItem } from 'types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z, ZodType } from 'zod';
 import { useAppDispatch } from '@/hooks/useAppDispatch';
-import { updateDeliveryCost, updatePaymentCost } from '@/features/shoppingCartSlice';
+import { clearShoppingCart, updateDeliveryCost, updatePaymentCost } from '@/features/shoppingCartSlice';
 import { useAppSelector } from '@/hooks/useAppSelector';
 import useOrder from '@/hooks/useOrder';
 import { useUser } from '@clerk/clerk-react';
@@ -54,7 +54,6 @@ const CheckoutForm = ({ formRef, path }: CheckoutFormProps) => {
   const onSubmit: SubmitHandler<CheckoutFormData> = (data) => {
     const orderItems: Array<OrderItem> = [];
     const orderId = uuidv4();
-    console.log(orderId);
 
     shoppingCart.items.forEach((item) => {
       if (item.color.images && item.color.sizes) {
@@ -99,6 +98,7 @@ const CheckoutForm = ({ formRef, path }: CheckoutFormProps) => {
       order_items: orderItems,
       order_status: 'ACCEPTED'
     });
+    dispatch(clearShoppingCart());
     navigate(`../${path}/${orderId}`);
   };
   return (
