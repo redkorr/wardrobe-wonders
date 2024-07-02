@@ -125,6 +125,10 @@ const shoppingCartSlice = createSlice({
 
         shoppingCartSlice.caseReducers.calculateValueOfProducts(state);
       }
+    },
+    clearShoppingCart: () => {
+      localStorage.removeItem('shopping-cart');
+      return { ...initialState };
     }
   }
 });
@@ -141,7 +145,8 @@ export const {
   updateDiscountValue,
   updateDeliveryCost,
   updatePaymentCost,
-  calculateTotalPrice
+  calculateTotalPrice,
+  clearShoppingCart
 } = shoppingCartSlice.actions;
 
 export type RootState = ReturnType<typeof rootReducer>;
