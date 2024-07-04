@@ -1,71 +1,71 @@
 import { Breadcrumbs, Carousel, DetailsInfo, NavBar, ProductInfo, ScrollToTop } from '@/components';
 import useProduct from '@/hooks/useProduct';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { Product as ProductType } from 'types';
 
 const Product = () => {
   const [detailsInfoState, setDetailsInfoState] = useState(0);
-  const [indexOfFoundColor, setIndexOfFoundColor] = useState<number>();
   const { id } = useParams();
   const product: ProductType | undefined = useProduct(id);
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  const colorName = pathname.split('/').slice(1)[2];
+  const colorName = pathname.split('/')[3];
 
+  if (!product) {
+    return <div>empty</div>;
+  }
   const selectColor = (selectedColor: string) => {
-    if (product?.colors && product?.colors.length > 0) {
-      const foundColor = product?.colors.find((color) => color.color_name === selectedColor) || product?.colors[0];
-      setIndexOfFoundColor(product?.colors.indexOf(foundColor));
-      const path = window.location.pathname.split('/');
-      path.splice(window.location.pathname.split('/').length - 1, 1, foundColor.color_name);
-      navigate(path.toString().replaceAll(',', '/'));
-      console.log(indexOfFoundColor);
+    if (!product.colors.length) {
+      return;
     }
+    const foundColor = product.colors.find((color) => color.color_name === selectedColor) || product.colors[0];
+    const newPath = updatePathname(foundColor.color_name);
+    navigate(newPath);
   };
-  useEffect(() => {
-    selectColor(colorName);
-  }, [product]);
+  const updatePathname = (newColor: string): string => {
+    const pathParts = pathname.split('/');
+    pathParts.splice(3, 1, newColor);
+    return pathParts.join('/');
+  };
 
   return (
-    <>
-      {indexOfFoundColor ? (
-        <div className="h-full">
-          <NavBar />
-          <Breadcrumbs />
-          <div className="mt-24 flex">
-            <div className="flex gap-5 p-6 w-full">
-              <Carousel
-                category={product?.category.name}
-                type={product?.type.display_name}
-                paths={product?.colors[indexOfFoundColor].images}
-              />
-              <div className="w-2/5">
-                <ProductInfo
-                  product={product}
-                  setDetailsInfoState={setDetailsInfoState}
-                  indexOfFoundColor={indexOfFoundColor}
-                  selectColor={selectColor}
-                />
-              </div>
-            </div>
-          </div>
-          <div>
-            <DetailsInfo
-              detailsInfoState={detailsInfoState}
+    <div className="h-full">
+      <NavBar />
+      <Breadcrumbs />
+      <div className="mt-24 flex">
+        <div className="flex gap-5 p-6 w-full">
+          <Carousel
+            category={product?.category.name}
+            type={product?.type.display_name}
+            paths={
+              product?.colors[
+                product?.colors.indexOf(
+                  product?.colors.find((color) => color.color_name === colorName) || product?.colors[0]
+                )
+              ].images
+            }
+          />
+          <div className="w-2/5">
+            <ProductInfo
+              product={product}
               setDetailsInfoState={setDetailsInfoState}
-              description={product?.description}
-              type={product?.type.display_name}
+              color={product?.colors.find((color) => color.color_name === colorName) || product?.colors[0]}
+              selectColor={selectColor}
             />
           </div>
-          <ScrollToTop />
         </div>
-      ) : (
-        <div>
-          <p className="mt-32">Loading...</p>
-        </div>
-      )}
-    </>
+      </div>
+      <div>
+        <DetailsInfo
+          detailsInfoState={detailsInfoState}
+          setDetailsInfoState={setDetailsInfoState}
+          description={product?.description}
+          type={product?.type.display_name}
+        />
+      </div>
+      <ScrollToTop />
+    </div>
   );
 };
 export default Product;
