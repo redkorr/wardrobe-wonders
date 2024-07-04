@@ -2,13 +2,13 @@ import { Breadcrumbs, Carousel, DetailsInfo, NavBar, ProductInfo, ScrollToTop } 
 import useProduct from '@/hooks/useProduct';
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import { Product } from 'types';
+import { Product as ProductType } from 'types';
 
 const Product = () => {
   const [detailsInfoState, setDetailsInfoState] = useState(0);
-  const [indexOfFoundColor, setIndexOfFoundColor] = useState(0);
+  const [indexOfFoundColor, setIndexOfFoundColor] = useState<number>();
   const { id } = useParams();
-  const product: Product | undefined = useProduct(id);
+  const product: ProductType | undefined = useProduct(id);
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const colorName = pathname.split('/').slice(1)[2];
@@ -20,43 +20,52 @@ const Product = () => {
       const path = window.location.pathname.split('/');
       path.splice(window.location.pathname.split('/').length - 1, 1, foundColor.color_name);
       navigate(path.toString().replaceAll(',', '/'));
+      console.log(indexOfFoundColor);
     }
   };
   useEffect(() => {
     selectColor(colorName);
-  }, []);
+  }, [product]);
 
   return (
-    <div className="h-full">
-      <NavBar />
-      <Breadcrumbs />
-      <div className="mt-24 flex">
-        <div className="flex gap-5 p-6 w-full">
-          <Carousel
-            category={product?.category.name}
-            type={product?.type.display_name}
-            paths={product?.colors[indexOfFoundColor].images}
-          />
-          <div className="w-2/5">
-            <ProductInfo
-              product={product}
+    <>
+      {indexOfFoundColor ? (
+        <div className="h-full">
+          <NavBar />
+          <Breadcrumbs />
+          <div className="mt-24 flex">
+            <div className="flex gap-5 p-6 w-full">
+              <Carousel
+                category={product?.category.name}
+                type={product?.type.display_name}
+                paths={product?.colors[indexOfFoundColor].images}
+              />
+              <div className="w-2/5">
+                <ProductInfo
+                  product={product}
+                  setDetailsInfoState={setDetailsInfoState}
+                  indexOfFoundColor={indexOfFoundColor}
+                  selectColor={selectColor}
+                />
+              </div>
+            </div>
+          </div>
+          <div>
+            <DetailsInfo
+              detailsInfoState={detailsInfoState}
               setDetailsInfoState={setDetailsInfoState}
-              indexOfFoundColor={indexOfFoundColor}
-              selectColor={selectColor}
+              description={product?.description}
+              type={product?.type.display_name}
             />
           </div>
+          <ScrollToTop />
         </div>
-      </div>
-      <div>
-        <DetailsInfo
-          detailsInfoState={detailsInfoState}
-          setDetailsInfoState={setDetailsInfoState}
-          description={product?.description}
-          type={product?.type.display_name}
-        />
-      </div>
-      <ScrollToTop />
-    </div>
+      ) : (
+        <div>
+          <p className="mt-32">Loading...</p>
+        </div>
+      )}
+    </>
   );
 };
 export default Product;
