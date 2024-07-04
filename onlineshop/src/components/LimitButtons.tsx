@@ -11,7 +11,6 @@ const LimitButtons = () => {
   const limit = useAppSelector((state) => state.pagination.limit);
 
   useEffect(() => {
-    console.log('limit-button', limit);
     urlParams.set('limit', limit.toString());
     navigate(`?${urlParams.toString()}`);
   }, [limit]);
