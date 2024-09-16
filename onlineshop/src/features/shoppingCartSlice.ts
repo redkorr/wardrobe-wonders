@@ -87,7 +87,7 @@ const shoppingCartSlice = createSlice({
           value_of_products += item.color.sizes[Object.keys(item.color.sizes)[0]].price * item.quantity;
         }
       });
-      state.items_price = value_of_products;
+      state.items_price = value_of_products.toFixed(2);
       shoppingCartSlice.caseReducers.calculateTotalPrice(state);
     },
     calculateTotalPrice: (state: RootState) => {
@@ -102,7 +102,7 @@ const shoppingCartSlice = createSlice({
           ).toFixed(2)
         );
       } else {
-        state.total_value = totalValue + current(state).delivery_cost + current(state).payment_cost;
+        state.total_value = Number(totalValue + current(state).delivery_cost + current(state).payment_cost).toFixed(2);
       }
     },
     updateDiscountValue: (state: RootState, action: PayloadAction<number | undefined>) => {
@@ -128,6 +128,7 @@ const shoppingCartSlice = createSlice({
     },
     clearShoppingCart: () => {
       localStorage.removeItem('shopping-cart');
+      localStorage.removeItem('count');
       return { ...initialState };
     }
   }
