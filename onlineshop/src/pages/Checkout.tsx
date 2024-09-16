@@ -1,8 +1,10 @@
 import { NavBar, CheckoutForm, CheckoutDetails } from '@/components';
 import { useRef } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 const Checkout = () => {
   const formRef = useRef<HTMLFormElement>(null);
+  const orderId = uuidv4();
 
   return (
     <div>
@@ -12,9 +14,13 @@ const Checkout = () => {
           <CheckoutForm
             formRef={formRef}
             path="summary"
+            orderId={orderId}
           />
         </div>
-        <CheckoutDetails buttonText="Pay" />
+        <CheckoutDetails
+          buttonText="Pay"
+          orderId={orderId}
+        />
       </div>
     </div>
   );

@@ -185,3 +185,7 @@ export type BillingAddress = {
 const order_statuses = ['ACCEPTED', 'PENDING', 'CANCELED', 'RETURNING', 'RETURNED', 'COMPLETED'] as const;
 
 export type OrderStatus = (typeof order_statuses)[number];
+
+export interface Session {
+  url: string;
+}
