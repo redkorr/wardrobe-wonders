@@ -7,6 +7,7 @@ import productRouter from './product/index.js';
 import discountRouter from './discounts/index.js';
 import orderRouter from './orders/index.js';
 import billingAddressRouter from './billingAddress/index.js';
+import stripePayment from './stripe/index.js';
 
 const router = Router();
 router.use('/products', productsRouter);
@@ -17,5 +18,6 @@ router.use('/product', productRouter);
 router.use('/discount', discountRouter);
 router.use('/order', orderRouter);
 router.use('/billing-address', billingAddressRouter);
+router.use('/stripe', stripePayment);
 
 export default router;

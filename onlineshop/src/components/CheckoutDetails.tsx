@@ -4,18 +4,21 @@ import { PercentSquare, X } from 'lucide-react';
 import { useRef, useState } from 'react';
 import { SignedIn, SignedOut } from '@clerk/clerk-react';
 import { useNavigate } from 'react-router-dom';
+import usePayment from '@/hooks/usePayment';
 
 interface SummaryProps {
   buttonText: string;
   path?: string;
+  orderId: string;
 }
 
-const CheckoutDetails = ({ buttonText, path }: SummaryProps) => {
+const CheckoutDetails = ({ buttonText, path, orderId }: SummaryProps) => {
   const [isDiscountOpen, setIsDiscountOpen] = useState(false);
   const { updateDiscount, discount } = useDiscount();
   const discountRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
   const shoppingCart = useAppSelector((state) => state.shoppingCart);
+  const { getClientSecret } = usePayment(orderId);
 
   return (
     <>
@@ -127,10 +130,9 @@ const CheckoutDetails = ({ buttonText, path }: SummaryProps) => {
                   form="checkout-form"
                   type="submit"
                   className="py-2 px-3 text-center border border-blue-500 bg-blue-900 text-slate-100"
-                  onClick={() => {
-                    if (path) {
-                      navigate(`../${path}`);
-                    }
+                  onClick={async () => {
+                    const response = await getClientSecret();
+                    window.location.href = response.session.url;
                   }}
                 >
                   {buttonText}

@@ -8,8 +8,6 @@ import { clearShoppingCart, updateDeliveryCost, updatePaymentCost } from '@/feat
 import { useAppSelector } from '@/hooks/useAppSelector';
 import useOrder from '@/hooks/useOrder';
 import { useUser } from '@clerk/clerk-react';
-import { v4 as uuidv4 } from 'uuid';
-import { useNavigate } from 'react-router-dom';
 import { isValidPhoneNumber } from 'libphonenumber-js';
 
 export const CheckoutSchema: ZodType<CheckoutFormData> = z.object({
@@ -34,11 +32,11 @@ export const CheckoutSchema: ZodType<CheckoutFormData> = z.object({
 interface CheckoutFormProps {
   formRef: RefObject<HTMLFormElement>;
   path: string;
+  orderId: string;
 }
 
-const CheckoutForm = ({ formRef, path }: CheckoutFormProps) => {
+const CheckoutForm = ({ formRef, path, orderId }: CheckoutFormProps) => {
   const shoppingCart = useAppSelector((state) => state.shoppingCart);
-  const navigate = useNavigate();
   const { user } = useUser();
   const { postOrder } = useOrder();
 
@@ -53,7 +51,6 @@ const CheckoutForm = ({ formRef, path }: CheckoutFormProps) => {
 
   const onSubmit: SubmitHandler<CheckoutFormData> = (data) => {
     const orderItems: Array<OrderItem> = [];
-    const orderId = uuidv4();
 
     shoppingCart.items.forEach((item) => {
       if (item.color.images && item.color.sizes) {
@@ -99,7 +96,7 @@ const CheckoutForm = ({ formRef, path }: CheckoutFormProps) => {
       order_status: 'ACCEPTED'
     });
     dispatch(clearShoppingCart());
-    navigate(`../${path}/${orderId}`);
+    // navigate(`../${path}/${orderId}`);
   };
   return (
     <div>
