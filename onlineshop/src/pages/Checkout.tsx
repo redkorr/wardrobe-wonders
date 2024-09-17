@@ -13,7 +13,6 @@ const Checkout = () => {
         <div className="w-1/3">
           <CheckoutForm
             formRef={formRef}
-            path="summary"
             orderId={orderId}
           />
         </div>
