@@ -2,23 +2,19 @@ import { useAppSelector } from '@/hooks/useAppSelector';
 import useDiscount from '@/hooks/useDiscount';
 import { PercentSquare, X } from 'lucide-react';
 import { useRef, useState } from 'react';
-import { SignedIn, SignedOut } from '@clerk/clerk-react';
-import { useNavigate } from 'react-router-dom';
-import usePayment from '@/hooks/usePayment';
+import CheckoutDetailsButton from './CheckoutDetailsButton';
+import ShoppingCartDetailsButton from './ShoppingCartDetailsButton';
 
 interface SummaryProps {
   buttonText: string;
-  path?: string;
   orderId: string;
 }
 
-const CheckoutDetails = ({ buttonText, path, orderId }: SummaryProps) => {
+const CheckoutDetails = ({ buttonText, orderId }: SummaryProps) => {
   const [isDiscountOpen, setIsDiscountOpen] = useState(false);
   const { updateDiscount, discount } = useDiscount();
   const discountRef = useRef<HTMLInputElement>(null);
-  const navigate = useNavigate();
   const shoppingCart = useAppSelector((state) => state.shoppingCart);
-  const { getClientSecret } = usePayment(orderId);
 
   return (
     <>
@@ -111,33 +107,14 @@ const CheckoutDetails = ({ buttonText, path, orderId }: SummaryProps) => {
                   </button>
                 )}
               </div>
-              <SignedIn>
-                <button
-                  form="checkout-form"
-                  type="submit"
-                  onClick={() => {
-                    if (path) {
-                      navigate(`../${path}`);
-                    }
-                  }}
-                  className="py-2 px-3 text-center border border-blue-500 bg-blue-900 text-slate-100"
-                >
-                  {buttonText}
-                </button>
-              </SignedIn>
-              <SignedOut>
-                <button
-                  form="checkout-form"
-                  type="submit"
-                  className="py-2 px-3 text-center border border-blue-500 bg-blue-900 text-slate-100"
-                  onClick={async () => {
-                    const response = await getClientSecret();
-                    window.location.href = response.session.url;
-                  }}
-                >
-                  {buttonText}
-                </button>
-              </SignedOut>
+              {buttonText === 'Pay' ? (
+                <CheckoutDetailsButton
+                  buttonText={buttonText}
+                  orderId={orderId}
+                />
+              ) : (
+                <ShoppingCartDetailsButton buttonText={buttonText} />
+              )}
             </div>
           </div>
         </div>
