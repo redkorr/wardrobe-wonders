@@ -31,11 +31,10 @@ export const CheckoutSchema: ZodType<CheckoutFormData> = z.object({
 
 interface CheckoutFormProps {
   formRef: RefObject<HTMLFormElement>;
-  path: string;
   orderId: string;
 }
 
-const CheckoutForm = ({ formRef, path, orderId }: CheckoutFormProps) => {
+const CheckoutForm = ({ formRef, orderId }: CheckoutFormProps) => {
   const shoppingCart = useAppSelector((state) => state.shoppingCart);
   const { user } = useUser();
   const { postOrder } = useOrder();
