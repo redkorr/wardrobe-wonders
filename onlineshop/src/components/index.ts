@@ -61,3 +61,7 @@ export { default as UserPageNavbar } from './UserPageNavbar.tsx';
 export { default as BillingAddressEditList } from './BillingAddressEditForm.tsx';
 
 export { default as OrderButton } from './OrderButton.tsx';
+
+export { default as CheckoutDetailsButton } from './CheckoutDetailsButton.tsx';
+
+export { default as ShoppingCartDetailsButton } from './ShoppingCartDetailsButton';
