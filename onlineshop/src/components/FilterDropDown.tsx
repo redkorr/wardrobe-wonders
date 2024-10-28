@@ -1,9 +1,12 @@
-import { ReactNode, useRef } from 'react';
+import { ReactNode, useEffect, useRef, useState } from 'react';
 import { FilterCheckbox, FilterSlider } from '.';
 import { ChevronDown, ChevronUp } from 'lucide-react';
-import { Price } from 'types';
+import { FilterState, Price } from 'types';
 import { useNavigate } from 'react-router-dom';
 import { useAppSelector } from '@/hooks/useAppSelector';
+import { useAppDispatch } from '@/hooks/useAppDispatch';
+import { setFiltersState } from '@/features/filterSlice';
+import selectFilters from '@/utils/selectFilters';
 
 interface FiltersDropDownProps {
   filter: Filter;
@@ -15,24 +18,30 @@ interface FiltersDropDownProps {
 type Filter = string[] | Price | undefined;
 
 const FilterDropDown = ({ filter, isActive = false, onClick, filterKey }: FiltersDropDownProps) => {
+  const selectedFilters = useAppSelector((state) => state.filter);
+  const [newSelectedFilters, setNewSelectedFilters] = useState<FilterState>(selectedFilters);
+  useEffect(() => {
+    setNewSelectedFilters(selectedFilters);
+  }, [selectedFilters]);
+
   const urlParams = new URLSearchParams(window.location.search);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const selectedFilters = useAppSelector((state) => state.filter);
   function renderFilterDropDown(filter: Filter): ReactNode {
     const isFilterArray = Array.isArray(filter);
 
     const searchParamKey = filterKey.slice(0, filterKey.length - 1);
-    const arrayOfSelectedFilters: Array<string> = [];
 
-    const selectFilters = () => {
-      Object.keys(selectedFilters[filterKey as keyof typeof selectedFilters]).forEach((key) => {
-        arrayOfSelectedFilters.push(key);
-      });
-    };
     const handleClick = () => {
-      selectFilters();
-      if (Object.keys(selectedFilters[filterKey as keyof typeof selectedFilters]).length === 0) {
+      dispatch(setFiltersState(newSelectedFilters));
+
+      const arrayOfSelectedFilters = selectFilters(newSelectedFilters, filterKey);
+
+      if (
+        Object.values(newSelectedFilters[filterKey as keyof typeof selectedFilters]).every((filter) => filter === false)
+      ) {
         urlParams.delete(searchParamKey);
       } else {
         urlParams.set(searchParamKey, arrayOfSelectedFilters.join(','));
@@ -41,7 +50,13 @@ const FilterDropDown = ({ filter, isActive = false, onClick, filterKey }: Filter
       onClick();
     };
     const closeDropdown = (event: MouseEvent | TouchEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node) && isActive) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node) &&
+        buttonRef.current &&
+        !buttonRef.current.contains(event.target as Node) &&
+        isActive
+      ) {
         onClick();
       }
     };
@@ -62,6 +77,8 @@ const FilterDropDown = ({ filter, isActive = false, onClick, filterKey }: Filter
               filterItem={filterItem}
               filterKey={filterKey}
               key={filterItem}
+              newSelectedFilters={newSelectedFilters}
+              setNewSelectedFilters={setNewSelectedFilters}
             />
           ))}
           <button
@@ -79,6 +96,7 @@ const FilterDropDown = ({ filter, isActive = false, onClick, filterKey }: Filter
           filter={filter}
           onClick={onClick}
           isActive={isActive}
+          buttonRef={buttonRef}
         />
       );
     }
@@ -87,14 +105,13 @@ const FilterDropDown = ({ filter, isActive = false, onClick, filterKey }: Filter
   return (
     <div className="flex flex-col w-fit relative">
       <div className="h-[34px] flex">
-        <div>
-          <button
-            className="flex justify-between items-center text-base border border-slate-800 w-32 py-1 px-2"
-            onClick={onClick}
-          >
-            <p>{filterKey}</p> {isActive ? <ChevronUp /> : <ChevronDown />}
-          </button>
-        </div>
+        <button
+          ref={buttonRef}
+          className="flex justify-between items-center text-base border border-slate-800 w-32 py-1 px-2"
+          onClick={onClick}
+        >
+          <p>{filterKey}</p> {isActive ? <ChevronUp /> : <ChevronDown />}
+        </button>
       </div>
       {isActive && (
         <div className="z-10 absolute top-[34px] left-0 w-60 bg-white mt-2 border border-b-0 border-l-0 border-r-0">

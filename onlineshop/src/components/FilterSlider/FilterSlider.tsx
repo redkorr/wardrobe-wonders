@@ -1,18 +1,18 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { RefObject, useCallback, useEffect, useRef, useState } from 'react';
 import { Price } from 'types';
 import './FilterSlider.css';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '@/hooks/useAppDispatch';
 import { setMaxPriceFilter, setMinPriceFilter } from '@/features/filterSlice';
-import { useAppSelector } from '@/hooks/useAppSelector';
 
 interface FilterSliderProps {
   filter: Price;
   isActive: boolean;
   onClick: () => void;
+  buttonRef: RefObject<HTMLButtonElement>;
 }
 
-const FilterSlider = ({ filter, onClick, isActive }: FilterSliderProps) => {
+const FilterSlider = ({ filter, onClick, isActive, buttonRef }: FilterSliderProps) => {
   const { min, max } = filter;
   const urlParams = new URLSearchParams(window.location.search);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -21,23 +21,22 @@ const FilterSlider = ({ filter, onClick, isActive }: FilterSliderProps) => {
   const range = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { min: debouncedMinVal, max: debouncedMaxVal } = useAppSelector((state) => state.filter.price);
   const [minVal, setMinVal] = useState(min);
   const [maxVal, setMaxVal] = useState(max);
 
   const closeDropdown = (event: MouseEvent | TouchEvent) => {
-    if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node) && isActive) {
+    if (
+      dropdownRef.current &&
+      !dropdownRef.current.contains(event.target as Node) &&
+      buttonRef.current &&
+      !buttonRef.current.contains(event.target as Node) &&
+      isActive
+    ) {
       onClick();
     }
   };
 
   document.addEventListener('mousedown', closeDropdown);
-
-  useEffect(() => {
-    dispatch(setMinPriceFilter(min));
-    dispatch(setMaxPriceFilter(max));
-  }, [dispatch]);
-
   const getPercent = useCallback((value: number) => Math.round(((value - min) / (max - min)) * 100), [min, max]);
   useEffect(() => {
     if (!range.current) return;
@@ -72,35 +71,28 @@ const FilterSlider = ({ filter, onClick, isActive }: FilterSliderProps) => {
   }, [maxVal, getPercent]);
 
   const HandleClick = () => {
-    if (minVal < min) {
-      urlParams.set('min', min.toString());
-    } else {
-      urlParams.set('min', debouncedMinVal.toString());
+    if (minValRef.current > min && maxValRef.current < max) {
+      dispatch(setMinPriceFilter(minValRef.current));
+      dispatch(setMaxPriceFilter(maxValRef.current));
+      urlParams.set('min', minValRef.current.toString());
+      urlParams.set('max', maxValRef.current.toString());
     }
-    if (maxVal >= max) {
+    if (maxValRef.current < max && minValRef.current <= min) {
+      dispatch(setMinPriceFilter(min));
+      dispatch(setMaxPriceFilter(maxValRef.current));
+      urlParams.set('min', min.toString());
+      urlParams.set('max', maxValRef.current.toString());
+    }
+    if (maxValRef.current >= max && minValRef.current > min) {
+      dispatch(setMinPriceFilter(minValRef.current));
+      dispatch(setMaxPriceFilter(max));
+      urlParams.set('min', minValRef.current.toString());
       urlParams.set('max', max.toString());
-    } else if (maxVal < minVal) {
-      urlParams.set('max', debouncedMinVal.toString());
-    } else {
-      urlParams.set('max', debouncedMaxVal.toString());
     }
 
+    onClick();
     navigate('?' + urlParams.toString());
   };
-
-  useEffect(() => {
-    const delayMinVal = setTimeout(() => {
-      dispatch(setMinPriceFilter(minVal));
-    }, 500);
-    return () => clearTimeout(delayMinVal);
-  }, [minVal, 500]);
-  useEffect(() => {
-    const delayMaxVal = setTimeout(() => {
-      dispatch(setMaxPriceFilter(maxVal));
-    }, 500);
-    return () => clearTimeout(delayMaxVal);
-  }, [maxVal, 500]);
-
   return (
     <div
       className="p-5"
