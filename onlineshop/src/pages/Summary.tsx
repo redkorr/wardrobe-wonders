@@ -9,7 +9,6 @@ const Summary = () => {
   useEffect(() => {
     getOrderById(pathname.split('/').slice(1)[1]);
   }, []);
-  console.log(data);
 
   return (
     <div>
