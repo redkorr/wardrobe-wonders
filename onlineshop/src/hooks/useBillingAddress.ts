@@ -23,7 +23,6 @@ const useBillingAddress = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(billingAddress)
       });
-      console.log(billingAddress);
     } catch (error) {
       console.error(error);
     }
