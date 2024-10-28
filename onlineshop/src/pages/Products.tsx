@@ -4,9 +4,15 @@ import undraw_void from '@/assets/undraw_void.svg';
 import { useParams, useSearchParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useAppDispatch } from '@/hooks/useAppDispatch';
-import { addFilter, setMaxPriceFilter, setMinPriceFilter } from '@/features/filterSlice';
+import {
+  createFilterItem,
+  createFilterItemFromParams,
+  setMaxPriceFilter,
+  setMinPriceFilter
+} from '@/features/filterSlice';
 import ScrollToTopButton from '@/components/ScrollToTop';
 import { setLimit, setPage } from '@/features/paginationSlice';
+import useFilters from '@/hooks/useFilters';
 
 const Products = () => {
   const { sex, category, type } = useParams();
@@ -15,13 +21,26 @@ const Products = () => {
   const products = useProducts(sex, category, type, params);
   const dispatch = useAppDispatch();
 
+  const filters = useFilters(category, type);
+  useEffect(() => {
+    if (filters) {
+      Object.keys(filters).map((filterKey) => {
+        if (filterKey === 'prices') {
+        } else {
+          filters[filterKey as keyof typeof filters].forEach((element: string) => {
+            dispatch(createFilterItem({ parentKey: filterKey, childKey: element }));
+          });
+        }
+      });
+    }
+  }, [products]);
   useEffect(() => {
     if (params.has('color')) {
       params
         .get('color')
         ?.split(',')
         .forEach((color) => {
-          dispatch(addFilter({ parentKey: 'colors', childKey: color }));
+          dispatch(createFilterItemFromParams({ parentKey: 'colors', childKey: color }));
         });
     }
     if (params.has('size')) {
@@ -29,7 +48,7 @@ const Products = () => {
         .get('size')
         ?.split(',')
         .forEach((size) => {
-          dispatch(addFilter({ parentKey: 'sizes', childKey: size }));
+          dispatch(createFilterItemFromParams({ parentKey: 'sizes', childKey: size }));
         });
     }
     if (params.has('min')) {
