@@ -1,7 +1,4 @@
-import { addFilter, deleteFilterItem } from '@/features/filterSlice';
-import { useAppDispatch } from '@/hooks/useAppDispatch';
-import { useAppSelector } from '@/hooks/useAppSelector';
-import { FilterStateWithoutPrice } from 'types';
+import { FilterState, FilterStateWithoutPrice } from 'types';
 
 const parentKey = ['colors', 'sizes'] as const;
 
@@ -10,24 +7,25 @@ export type ParentKey = (typeof parentKey)[number];
 interface FilterCheckboxProps {
   filterItem: string;
   filterKey: string;
+  newSelectedFilters: FilterState;
+  setNewSelectedFilters: (arg: FilterState) => void;
 }
 
 export const isParentKey = (value: string): value is ParentKey => {
   return parentKey.includes(value as ParentKey);
 };
 
-const FilterCheckbox = ({ filterItem, filterKey }: FilterCheckboxProps) => {
-  const selectedFilters = useAppSelector((state) => state.filter);
-  const dispatch = useAppDispatch();
+const FilterCheckbox = ({ filterItem, filterKey, newSelectedFilters, setNewSelectedFilters }: FilterCheckboxProps) => {
   function handleClick() {
     if (!filterItem) return;
-    if (selectedFilters[filterKey as keyof FilterStateWithoutPrice][filterItem]) {
-      dispatch(deleteFilterItem({ parentKey: filterKey, childKey: filterItem }));
-    } else {
-      if (isParentKey(filterKey)) dispatch(addFilter({ parentKey: filterKey, childKey: filterItem }));
-    }
+    setNewSelectedFilters({
+      ...newSelectedFilters,
+      [filterKey]: {
+        ...newSelectedFilters[filterKey as keyof FilterStateWithoutPrice],
+        [filterItem]: !newSelectedFilters[filterKey as keyof FilterStateWithoutPrice][filterItem]
+      }
+    });
   }
-
   return (
     <button
       onClick={() => handleClick()}
@@ -35,11 +33,7 @@ const FilterCheckbox = ({ filterItem, filterKey }: FilterCheckboxProps) => {
     >
       <input
         type="checkbox"
-        checked={
-          selectedFilters[filterKey as keyof FilterStateWithoutPrice][filterItem]
-            ? selectedFilters[filterKey as keyof FilterStateWithoutPrice][filterItem]
-            : false
-        }
+        checked={newSelectedFilters[filterKey as keyof FilterStateWithoutPrice][filterItem]}
         onChange={() => handleClick()}
         className="relative peer shrink-0 cursor-pointer appearance-none w-4 h-4 border-[1px] border-[#1b1b1b] rounded-none bg-white checked:bg-white focus:outline-none focus:ring-offset-0 focus:ring-2 focus:ring-blue-100 disabled:border-steel-400 disabled:bg-steel-400"
       />

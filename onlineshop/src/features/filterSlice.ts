@@ -17,7 +17,19 @@ const filterSlice = createSlice({
   name: 'filter',
   initialState,
   reducers: {
-    addFilter: (state: RootState, action: PayloadAction<{ parentKey: ParentKey; childKey: string }>) => {
+    createFilterItem: (state: RootState, action: PayloadAction<{ parentKey: ParentKey; childKey: string }>) => {
+      return {
+        ...state,
+        [action.payload.parentKey]: {
+          ...state[action.payload.parentKey],
+          [action.payload.childKey]: false
+        }
+      };
+    },
+    createFilterItemFromParams: (
+      state: RootState,
+      action: PayloadAction<{ parentKey: ParentKey; childKey: string }>
+    ) => {
       return {
         ...state,
         [action.payload.parentKey]: {
@@ -26,15 +38,10 @@ const filterSlice = createSlice({
         }
       };
     },
-    toggleFilterState: (state: RootState, action: PayloadAction<{ parentKey: string; childKey: string }>) => {
-      return {
-        ...state,
-        [action.payload.parentKey]: {
-          ...state[action.payload.parentKey],
-          [action.payload.childKey]: !state.colors[action.payload.childKey]
-        }
-      };
+    setFiltersState: (state: RootState, action: PayloadAction<FilterState>) => {
+      return action.payload;
     },
+
     deleteFilterItem: (state: RootState, action: PayloadAction<{ parentKey: string; childKey: string }>) => {
       delete state[action.payload.parentKey][action.payload.childKey];
     },
@@ -49,10 +56,7 @@ const filterSlice = createSlice({
       state.price.max = 0;
     },
     setBackAllFilters: (state: RootState) => {
-      state.colors = {};
-      state.sizes = {};
-      state.price.min = 0;
-      state.price.max = 0;
+      return initialState;
     }
   }
 });
@@ -60,8 +64,9 @@ const filterSlice = createSlice({
 export const selectFilter = (state: RootState) => state.filter.value;
 
 export const {
-  addFilter,
-  toggleFilterState,
+  createFilterItem,
+  createFilterItemFromParams,
+  setFiltersState,
   deleteFilterItem,
   setMinPriceFilter,
   setMaxPriceFilter,

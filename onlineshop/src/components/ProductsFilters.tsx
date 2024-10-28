@@ -18,11 +18,11 @@ const ProductsFilters = ({ category, type }: ProductsFiltersProps) => {
 
   const handleDropdownClick = (index: number) => {
     const newStates = dropdownStates.map((state, i) => {
-      if (state) {
+      if (index === i) {
         return !state;
       }
-      return i === index;
     });
+
     setDropdownStates(newStates as DropdownsStateTuple);
   };
   return (
