@@ -65,9 +65,9 @@ const Carousel = ({ category, type, paths }: CarouselProps) => {
       {paths && (
         <div className="flex gap-5">
           <div className="flex flex-col gap-4">
-            {paths.map((image, index) => (
+            {paths.map((path, index) => (
               <div
-                key={image}
+                key={path}
                 style={index === firstImageIndex || index === secondImageIndex ? { backgroundColor: 'gray' } : {}}
                 className="h-[118px]"
               >
@@ -75,25 +75,29 @@ const Carousel = ({ category, type, paths }: CarouselProps) => {
                   <img
                     width={80}
                     style={index === firstImageIndex || index === secondImageIndex ? {} : { opacity: '0.7' }}
-                    src={`/${category}/${type}/${image}`}
+                    src={`/${category}/${type}/${path}`}
                   />
                 </button>
               </div>
             ))}
           </div>
-          <div className="relative flex gap-5">
-            <button>
+          <div className="relative flex gap-5 w-[1080px]">
+            <div className="flex overflow-hidden">
+              {paths.map((path, index) => (
+                <img
+                  key={path}
+                  src={`/${category}/${type}/${paths[index]}`}
+                  style={{ translate: `${-100 * firstImageIndex}%` }}
+                  className="duration-300 ease-in-out"
+                />
+              ))}
+
               <img
-                width={540}
-                src={`/${category}/${type}/${paths[firstImageIndex]}`}
+                src={`/${category}/${type}/${paths[0]}`}
+                style={{ translate: `${-100 * firstImageIndex}%` }}
+                className="duration-300 ease-in-out"
               />
-            </button>
-            <button>
-              <img
-                width={540}
-                src={`/${category}/${type}/${paths[secondImageIndex]}`}
-              />
-            </button>
+            </div>
             <button
               className="absolute top-0 left-0 h-full hover:bg-black/10 p-1 transition duration-200 ease-in-out"
               onClick={showPrevImage}
