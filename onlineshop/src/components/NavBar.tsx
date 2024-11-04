@@ -22,7 +22,7 @@ const Navbar = () => {
       >
         Wardrobe Wonders
       </Link>
-      <div className="text-2xl font-semibold text-gray-300">
+      <div className="text-2xl font-semibold text-gray-300 hover:text-slate-200 transition duration-200 ease-in-out">
         {sex?.toLocaleLowerCase() === 'his' && <NavLink to={LINKS.productsHer}>Her</NavLink>}
         {sex?.toLocaleLowerCase() === 'her' && <NavLink to={LINKS.productsHis}>His</NavLink>}
       </div>
@@ -32,7 +32,7 @@ const Navbar = () => {
             <NavLink
               key={category.name}
               style={({ isActive }) => (isActive ? { fontWeight: 700, color: 'white' } : {})}
-              className="px-4 text-lg font-semibold text-gray-300"
+              className="px-4 text-lg font-semibold text-gray-300 hover:text-slate-200 transition duration-200 ease-in-out"
               to={`${LINKS.products}/${sex}/${category.name}`}
             >
               {category.name}
@@ -62,7 +62,7 @@ const Navbar = () => {
         <div>
           <Link
             to={LINKS.shoppingCart}
-            className="relative"
+            className="relative text-slate-100 hover:text-slate-300 transition duration-200 ease-in-out"
           >
             <ShoppingCart />
             {Number(shoppingCartCount) > 0 && (

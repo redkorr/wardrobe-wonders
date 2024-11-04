@@ -23,7 +23,7 @@ const Pagination = ({ numberOfPages }: PaginationProps) => {
   return (
     <div className="flex flex-row-reverse items-center w-full text-xl mb-4">
       <button onClick={() => dispatch(incrementPageNumber(numberOfPages))}>
-        <ChevronRight className="w-8 h-8" />
+        <ChevronRight className="w-8 h-8 hover:text-slate-600 transition duration-200 ease-in-out" />
       </button>
 
       <p className="h-8">
@@ -34,7 +34,7 @@ const Pagination = ({ numberOfPages }: PaginationProps) => {
         className="w-8"
         onClick={() => dispatch(decrementPageNumber())}
       >
-        <ChevronLeft className="w-8 h-8" />
+        <ChevronLeft className="w-8 h-8 hover:text-slate-600 transition duration-200 ease-in-out" />
       </button>
     </div>
   );
