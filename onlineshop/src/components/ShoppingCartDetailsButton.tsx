@@ -11,7 +11,7 @@ const ShoppingCartDetailsButton = ({ buttonText }: ShoppingCartDetailsButtonProp
     <button
       form="checkout-form"
       type="submit"
-      className="w-full py-2 px-3 text-center border border-blue-500 bg-blue-900 text-slate-100"
+      className="w-full py-2 px-3 text-center border border-blue-500 bg-blue-900 text-slate-100 hover:bg-blue-800 transition duration-200 ease-in-out"
       onClick={() => {
         navigate(navLink);
       }}

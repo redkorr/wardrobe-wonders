@@ -163,7 +163,11 @@ const FilterSlider = ({ filter, onClick, isActive, buttonRef }: FilterSliderProp
       <div className="flex justify-center ">
         <button
           disabled={maxVal >= max && minVal <= min}
-          className={` text-white mt-6 py-2 w-full ${maxVal < max || minVal > min ? 'bg-slate-700' : 'bg-slate-300'}`}
+          className={` text-white mt-6 py-2 w-full ${
+            maxVal < max || minVal > min
+              ? 'bg-slate-700 hover:bg-slate-800 transition duration-200 ease-in-out'
+              : 'bg-slate-300'
+          }`}
           onClick={HandleClick}
         >
           Accept
