@@ -9,7 +9,7 @@ const UserPageNavbar = ({ setIndex, index }: UserPageNavbarProps) => {
   return (
     <div className="flex gap-4">
       <button
-        className="p-4"
+        className="p-4 hover:text-slate-600 transition duration-200 ease-in-out"
         style={
           index === 0
             ? { borderBottom: '1px solid', fontSize: '18px', fontWeight: '600' }
@@ -20,7 +20,7 @@ const UserPageNavbar = ({ setIndex, index }: UserPageNavbarProps) => {
         My Account
       </button>
       <button
-        className="p-4"
+        className="p-4 hover:text-slate-600 transition duration-200 ease-in-out"
         style={
           index === 1
             ? { borderBottom: '1px solid', fontSize: '18px', fontWeight: '600' }

@@ -9,7 +9,12 @@ const Breadcrumbs = () => {
     <div className="flex">
       {pathNamePartsArray.map((pathParam, index) => (
         <React.Fragment key={index}>
-          <NavLink to={pathParam === 'products' ? '/' : linkTo(index)}>{pathParam}</NavLink>
+          <NavLink
+            to={pathParam === 'products' ? '/' : linkTo(index)}
+            className="hover:underline"
+          >
+            {pathParam}
+          </NavLink>
           {index !== pathNamePartsArray.length - 1 && <span>&nbsp;&gt;&nbsp;</span>}
         </React.Fragment>
       ))}

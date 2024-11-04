@@ -21,7 +21,11 @@ const DetailsInfoHeader = ({ detailsInfoState, setDetailsInfoState }: DetailsInf
         <button
           key={name}
           className="w-28"
-          style={detailsInfoState === index ? { borderBottomWidth: '2px' } : {}}
+          style={
+            detailsInfoState === index
+              ? { borderBottomWidth: '2px', borderBottomColor: 'black', fontWeight: '600' }
+              : {}
+          }
           onClick={() => handleClick(index)}
         >
           {name}

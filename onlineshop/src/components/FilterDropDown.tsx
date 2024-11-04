@@ -82,7 +82,7 @@ const FilterDropDown = ({ filter, isActive = false, onClick, filterKey }: Filter
             />
           ))}
           <button
-            className="text-white mt-6 py-2 w-full bg-slate-700"
+            className="text-white mt-6 py-2 w-full bg-slate-700 hover:bg-slate-800 transition duration-200 ease-in-out"
             onClick={handleClick}
           >
             Accept

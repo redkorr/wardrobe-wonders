@@ -21,10 +21,10 @@ const ScrollToTopButton = () => {
   return (
     <button
       onClick={scrollToTop}
-      className="fixed bottom-16 right-20 bg-slate-950 p-3 rounded-full"
+      className="fixed bottom-16 right-20 bg-slate-950 text-gray-300 p-3 rounded-full hover:bg-slate-800 hover:text-slate-100 transition duration-200 ease-in-out"
       style={{ display: visible ? 'inline' : 'none' }}
     >
-      <ArrowUp className="text-gray-300 h-12 w-12 p-0" />
+      <ArrowUp className=" h-12 w-12 p-0" />
     </button>
   );
 };
