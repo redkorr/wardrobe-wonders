@@ -62,7 +62,7 @@ const ShoppingCartList = () => {
                                 dispatch(decrementShoppingCartItemQuantity(shoppingCartItem.shopping_cart_id));
                             }}
                           >
-                            <Minus className="w-5 h-5" />
+                            <Minus className="w-5 h-5 hover:text-slate-600 transition duration-200 ease-in-out" />
                           </button>
                           <p>{shoppingCartItem.quantity}</p>
                           <button
@@ -72,7 +72,7 @@ const ShoppingCartList = () => {
                                 dispatch(incrementShoppingCartItemQuantity(shoppingCartItem.shopping_cart_id));
                             }}
                           >
-                            <Plus className="w-5 h-5" />
+                            <Plus className="w-5 h-5 hover:text-slate-600 transition duration-200 ease-in-out" />
                           </button>
                         </div>
                       </div>
@@ -101,7 +101,7 @@ const ShoppingCartList = () => {
                           dispatch(deleteShoppingCartItem(shoppingCartItem.shopping_cart_id));
                       }}
                     >
-                      <X className="ml-4" />
+                      <X className="ml-4 hover:text-slate-600 transition duration-200 ease-in-out" />
                     </button>
                   </div>
                 </div>

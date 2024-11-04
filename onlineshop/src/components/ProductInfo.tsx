@@ -110,7 +110,7 @@ const ProductInfo = ({ setDetailsInfoState, color, selectColor, product }: Produ
             )}
           </div>
           <button
-            className="flex py-2 px-3 mb-10 border border-blue-500 bg-blue-900 text-white w-full"
+            className="flex py-2 px-3 mb-10 border border-blue-500 bg-blue-900 text-white w-full hover:bg-blue-800 transition duration-200 ease-in-out"
             onClick={() => {
               const shoppingCartItem = createShoppingCartItem();
               if (shoppingCartItem) {
@@ -123,21 +123,21 @@ const ProductInfo = ({ setDetailsInfoState, color, selectColor, product }: Produ
           </button>
           <div className="flex justify-center flex-wrap gap-4">
             <button
-              className="flex items-center gap-3 m-3 text-lg"
+              className="flex items-center gap-3 m-3 text-lg hover:text-slate-600 transition duration-200 ease-in-out"
               onClick={() => scrollToDetails(0)}
             >
               <Shirt />
               Product details
             </button>
             <button
-              className="flex items-center gap-3 m-3 text-lg"
+              className="flex items-center gap-3 m-3 text-lg hover:text-slate-600 transition duration-200 ease-in-out"
               onClick={() => scrollToDetails(1)}
             >
               <Truck />
               Shipping in up to 30 days
             </button>
             <button
-              className="flex items-center gap-3 m-3 text-lg"
+              className="flex items-center gap-3 m-3 text-lg hover:text-slate-600 transition duration-200 ease-in-out"
               onClick={() => scrollToDetails(2)}
             >
               <Undo2 />

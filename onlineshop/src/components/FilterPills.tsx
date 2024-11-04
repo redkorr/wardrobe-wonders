@@ -3,7 +3,6 @@ import { useAppDispatch } from '@/hooks/useAppDispatch';
 import { useAppSelector } from '@/hooks/useAppSelector';
 import createArrayOfFilters from '@/utils/createArrayOfFilters';
 import { X } from 'lucide-react';
-import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const FilterPills = () => {
@@ -48,7 +47,7 @@ const FilterPills = () => {
       {filterArray.map((filter) => (
         <button
           key={filter}
-          className="flex items-center border pl-1 border-slate-800 p-[1px]"
+          className="flex items-center border pl-1 border-slate-800 p-[1px] hover:text-slate-600 transition duration-200 ease-in-out"
           onClick={() => handleClick(filter)}
         >
           {filter}
@@ -57,7 +56,7 @@ const FilterPills = () => {
       ))}
       {filterArray.length > 1 && (
         <button
-          className="flex items-center border pl-1 border-slate-800 p-[1px]"
+          className="flex items-center border pl-1 border-slate-800 p-[1px] hover:text-slate-600 transition duration-200 ease-in-out"
           onClick={() => {
             const keys = [...urlParams.keys()];
             for (const key of keys) {
