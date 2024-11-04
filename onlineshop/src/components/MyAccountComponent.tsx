@@ -11,14 +11,14 @@ const MyAccountComponent = () => {
     const components = [
       <div className="flex">
         <button
-          className="text-lg w-[48%] border m-3 h-32 relative"
+          className="text-lg w-[48%] border m-3 h-32 relative text-slate-800 hover:text-slate-600 transition duration-200 ease-in-out"
           onClick={() => setIndex(1)}
         >
           Add Billing Address
           <Plus className="absolute top-4 right-4" />
         </button>
         <button
-          className="text-lg w-[48%] border h-32 m-3 relative"
+          className="text-lg w-[48%] border h-32 m-3 relative text-slate-800 hover:text-slate-600 transition duration-200 ease-in-out"
           onClick={() => setIndex(2)}
         >
           Edit Billing Address

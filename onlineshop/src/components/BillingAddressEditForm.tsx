@@ -68,80 +68,83 @@ const BillingAddressEditForm = ({ billingAddress }: BillingAddressEditListProps)
       >
         <div className="p-4">
           <p className="text-2xl font-semibold mb-3">Billing Address</p>
-          <div className="flex flex-col child:flex child:flex-col gap-3 p-3 border">
-            <div>
-              <label>First Name</label>
-              <input
-                className="border p-1"
-                defaultValue={billingAddress ? billingAddress.first_name : ''}
-                placeholder="Bob"
-                {...register('first_name', { required: true })}
-              />
-              {errors.first_name && <span>{errors.first_name.message}</span>}
-            </div>
-            <div>
-              <label>Last Name</label>
-              <input
-                className="border p-1"
-                defaultValue={billingAddress ? billingAddress.last_name : ''}
-                placeholder="Kowalsky"
-                {...register('last_name', { required: true })}
-              />
-              {errors.last_name && <span>{errors.last_name.message}</span>}
-            </div>
-            <div>
-              <label>Address</label>
-              <input
-                className="border p-1"
-                defaultValue={billingAddress ? billingAddress.address : ''}
-                placeholder="Krakowska 40"
-                {...register('address', { required: true })}
-              />
-              {errors.address && <span>{errors.address.message}</span>}
-            </div>
-            <div>
-              <label>Postal Code</label>
-              <input
-                className="border p-1"
-                defaultValue={billingAddress ? billingAddress.postal_code : ''}
-                placeholder="12-345"
-                {...register('postal_code', { required: true })}
-              />
-              {errors.postal_code && <span>{errors.postal_code.message}</span>}
-            </div>
-            <div>
-              <label>City</label>
-              <input
-                className="border p-1"
-                defaultValue={billingAddress ? billingAddress.city : ''}
-                placeholder="Katowice"
-                {...register('city', { required: true })}
-              />
-              {errors.city && <span>{errors.city.message}</span>}
-            </div>
-            <div>
-              <label>Phone Number</label>
-              <input
-                className="border p-1"
-                defaultValue={billingAddress ? billingAddress.phone_number : ''}
-                placeholder="+48123456789"
-                {...register('phone_number', { required: true })}
-              />
-              {errors.phone_number && <span>{errors.phone_number.message}</span>}
-            </div>
-            <div>
-              <label>Email</label>
-              <input
-                className="border p-1"
-                defaultValue={billingAddress ? billingAddress.email : ''}
-                placeholder="bob.kowalsky@gmail.com"
-                {...register('email', { required: true })}
-              />
-              {errors.email && <span>{errors.email.message}</span>}
+          <div className="p-3 border flex flex-col justify-center items-center">
+            <div className=" w-full flex flex-col child:flex child:flex-col gap-3 pb-3">
+              <div>
+                <label>First Name</label>
+                <input
+                  className="border p-1"
+                  defaultValue={billingAddress ? billingAddress.first_name : ''}
+                  placeholder="Bob"
+                  {...register('first_name', { required: true })}
+                />
+                {errors.first_name && <span>{errors.first_name.message}</span>}
+              </div>
+              <div>
+                <label>Last Name</label>
+                <input
+                  className="border p-1"
+                  defaultValue={billingAddress ? billingAddress.last_name : ''}
+                  placeholder="Kowalsky"
+                  {...register('last_name', { required: true })}
+                />
+                {errors.last_name && <span>{errors.last_name.message}</span>}
+              </div>
+              <div>
+                <label>Address</label>
+                <input
+                  className="border p-1"
+                  defaultValue={billingAddress ? billingAddress.address : ''}
+                  placeholder="Krakowska 40"
+                  {...register('address', { required: true })}
+                />
+                {errors.address && <span>{errors.address.message}</span>}
+              </div>
+              <div>
+                <label>Postal Code</label>
+                <input
+                  className="border p-1"
+                  defaultValue={billingAddress ? billingAddress.postal_code : ''}
+                  placeholder="12-345"
+                  {...register('postal_code', { required: true })}
+                />
+                {errors.postal_code && <span>{errors.postal_code.message}</span>}
+              </div>
+              <div>
+                <label>City</label>
+                <input
+                  className="border p-1"
+                  defaultValue={billingAddress ? billingAddress.city : ''}
+                  placeholder="Katowice"
+                  {...register('city', { required: true })}
+                />
+                {errors.city && <span>{errors.city.message}</span>}
+              </div>
+              <div>
+                <label>Phone Number</label>
+                <input
+                  className="border p-1"
+                  defaultValue={billingAddress ? billingAddress.phone_number : ''}
+                  placeholder="+48123456789"
+                  {...register('phone_number', { required: true })}
+                />
+                {errors.phone_number && <span>{errors.phone_number.message}</span>}
+              </div>
+              <div>
+                <label>Email</label>
+                <input
+                  className="border p-1"
+                  defaultValue={billingAddress ? billingAddress.email : ''}
+                  placeholder="bob.kowalsky@gmail.com"
+                  {...register('email', { required: true })}
+                />
+                {errors.email && <span>{errors.email.message}</span>}
+              </div>
             </div>
             <input
               type="submit"
               value="Save"
+              className="w-1/5 py-2 text-white bg-slate-700 hover:bg-slate-800 transition duration-200 ease-in-out"
             />
           </div>
         </div>

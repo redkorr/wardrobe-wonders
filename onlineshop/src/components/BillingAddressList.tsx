@@ -37,7 +37,7 @@ const BillingAddressList = ({ setIndex, setBillingAddress }: BillingAddressListP
             ${billingAddress.last_name}`}
             <br />
             {`${billingAddress.address}`}
-            <Pen className="absolute top-4 right-4" />
+            <Pen className="absolute top-4 right-4 hover:text-slate-600 transition duration-200 ease-in-out" />
           </button>
         ))}
       </div>
