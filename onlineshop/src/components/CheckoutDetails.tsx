@@ -83,7 +83,7 @@ const CheckoutDetails = ({ buttonText, orderId }: SummaryProps) => {
                       </button>
                     </div>
                     <button
-                      className="border border-slate-300 p-1 w-24"
+                      className="border border-slate-300 p-1 w-24 hover:bg-slate-600 transition duration-200 ease-in-out"
                       onClick={async () => {
                         if (discountRef.current) {
                           await updateDiscount(discountRef.current.value);
@@ -99,7 +99,7 @@ const CheckoutDetails = ({ buttonText, orderId }: SummaryProps) => {
                   </div>
                 ) : (
                   <button
-                    className="flex gap-3 h-[34px]"
+                    className="flex gap-3 h-[34px] hover:text-slate-400 transition duration-200 ease-in-out"
                     onClick={() => setIsDiscountOpen(true)}
                   >
                     <PercentSquare />
