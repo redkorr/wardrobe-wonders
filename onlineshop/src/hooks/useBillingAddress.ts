@@ -38,6 +38,16 @@ const useBillingAddress = () => {
     }
   }
 
-  return { postBillingAddress, getBillingAddressList, data, putBillingAddress };
+  async function deleteBillingAddress(billingAddressId: string | undefined) {
+    try {
+      await fetch(`${URL}/${billingAddressId}`, {
+        method: 'DELETE'
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  return { postBillingAddress, getBillingAddressList, data, putBillingAddress, deleteBillingAddress };
 };
 export default useBillingAddress;
