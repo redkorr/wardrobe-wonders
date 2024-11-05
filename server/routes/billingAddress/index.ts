@@ -45,4 +45,17 @@ router.put('/:id', async (req, res) => {
   }
 });
 
+router.delete('/:id', async (req, res) => {
+  const id = req.params.id;
+  try {
+    const data = await UserBillingAddress.deleteOne({ _id: id });
+    console.log(data);
+    res.status(200).json();
+  } catch (error) {
+    if (error instanceof MongooseError) {
+      res.status(500).json(error);
+    }
+  }
+});
+
 export default router;
