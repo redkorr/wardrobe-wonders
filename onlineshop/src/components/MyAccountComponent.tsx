@@ -41,7 +41,10 @@ const MyAccountComponent = () => {
         <button onClick={() => setIndex(2)}>
           <ChevronLeft />
         </button>
-        <BillingAddressEditForm billingAddress={billingAddress} />
+        <BillingAddressEditForm
+          billingAddress={billingAddress}
+          setIndex={setIndex}
+        />
       </div>
     ];
     return components[index];

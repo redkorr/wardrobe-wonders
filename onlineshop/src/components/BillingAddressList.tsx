@@ -16,7 +16,7 @@ const BillingAddressList = ({ setIndex, setBillingAddress }: BillingAddressListP
     if (user) {
       getBillingAddressList(user.id);
     }
-  }, []);
+  }, [data]);
 
   return (
     <div>
