@@ -8,6 +8,7 @@ import { ZodType, z } from 'zod';
 
 interface BillingAddressEditListProps {
   billingAddress: BillingAddressData | undefined;
+  setIndex: (arg: number) => void;
 }
 
 export const CheckoutSchema: ZodType<BillingAddressFormData> = z.object({
@@ -30,7 +31,7 @@ export const CheckoutSchema: ZodType<BillingAddressFormData> = z.object({
   email: z.union([z.string().email({ message: 'Wrong format.' }), z.literal('')])
 });
 
-const BillingAddressEditForm = ({ billingAddress }: BillingAddressEditListProps) => {
+const BillingAddressEditForm = ({ billingAddress, setIndex }: BillingAddressEditListProps) => {
   const { user } = useUser();
   const { putBillingAddress } = useBillingAddress();
   const billingAddressId = billingAddress?._id;
@@ -57,6 +58,7 @@ const BillingAddressEditForm = ({ billingAddress }: BillingAddressEditListProps)
     };
 
     putBillingAddress(billingAddress);
+    setIndex(2);
   };
 
   return (
