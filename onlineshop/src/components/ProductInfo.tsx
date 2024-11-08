@@ -2,6 +2,7 @@ import { addShoppingCartItem } from '@/features/shoppingCartSlice';
 import { useAppDispatch } from '@/hooks/useAppDispatch';
 import { ChevronDown, ChevronUp, Shirt, ShoppingCart, Truck, Undo2 } from 'lucide-react';
 import { Dispatch, useState } from 'react';
+import { toast } from 'sonner';
 
 import { Color, Product, ShoppingCartItem } from 'types';
 
@@ -115,6 +116,7 @@ const ProductInfo = ({ setDetailsInfoState, color, selectColor, product }: Produ
               const shoppingCartItem = createShoppingCartItem();
               if (shoppingCartItem) {
                 dispatch(addShoppingCartItem(shoppingCartItem));
+                toast.success('The product has been added to card.');
               }
             }}
           >
