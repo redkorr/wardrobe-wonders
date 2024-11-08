@@ -3,6 +3,7 @@ import { useUser } from '@clerk/clerk-react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { isValidPhoneNumber } from 'libphonenumber-js';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { toast } from 'sonner';
 import { BillingAddressData, BillingAddressFormData } from 'types';
 import { ZodType, z } from 'zod';
 
@@ -59,6 +60,7 @@ const BillingAddressEditForm = ({ billingAddress, setIndex }: BillingAddressEdit
 
     putBillingAddress(billingAddress);
     setIndex(2);
+    toast.success('The address has been edited.');
   };
 
   return (
