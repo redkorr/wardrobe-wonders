@@ -5,6 +5,7 @@ import { AuthenticateWithRedirectCallback, ClerkProvider } from '@clerk/clerk-re
 import { store } from './redux/store';
 import { Provider } from 'react-redux';
 import LocalStorageProvider from './components/LocalStorageProvider';
+import { Toaster } from 'sonner';
 
 if (!import.meta.env.VITE_APP_CLERK_PUBLISHABLE_KEY) {
   throw new Error('Missing Publishable Key');
@@ -43,6 +44,7 @@ function App() {
     <Provider store={store}>
       <LocalStorageProvider>
         <Router>
+          <Toaster />
           <ClerkProviderWithRoutes />
         </Router>
       </LocalStorageProvider>
