@@ -1,5 +1,16 @@
 import { RedirectToSignIn, SignedIn, SignedOut } from '@clerk/clerk-react';
-import { Login, HomePage, Register, Products, MyAccount, Product, ShoppingCart, Checkout, Summary } from './pages';
+import {
+  Login,
+  HomePage,
+  Register,
+  Products,
+  MyAccount,
+  Product,
+  ShoppingCart,
+  Checkout,
+  Summary,
+  NotFound
+} from './pages';
 
 interface Route {
   path: string;
@@ -55,9 +66,9 @@ export const ROUTES: Array<Route> = [
   {
     path: 'summary/:id',
     element: <Summary />
+  },
+  {
+    path: '*',
+    element: <NotFound />
   }
-  // {
-  //   path: '*',
-  //   element: <div>404</div>
-  // }
 ];

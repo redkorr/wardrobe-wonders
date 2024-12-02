@@ -15,3 +15,5 @@ export { default as ShoppingCart } from './ShoppingCart';
 export { default as Checkout } from './Checkout';
 
 export { default as Summary } from './Summary';
+
+export { default as NotFound } from './NotFound';
