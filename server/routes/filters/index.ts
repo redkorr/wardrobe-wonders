@@ -8,14 +8,24 @@ const router = Router();
 
 router.get('/:category?', async (req, res) => {
   try {
-    const data: Array<ProductType> = await Product.find().populate('category');
-    const filteredData = data.filter(
-      (product) =>
-        (product.category as unknown as CategoryType).name ===
-        req.params.category
-    );
+    let filters;
+    if (req.params.category) {
+      const data: Array<ProductType> = await Product.find().populate(
+        'category'
+      );
+      const filteredData = data.filter(
+        (product) =>
+          (product.category as unknown as CategoryType).name ===
+          req.params.category
+      );
 
-    const filters = createFiltersFromProducts(filteredData);
+      filters = createFiltersFromProducts(filteredData);
+    } else {
+      const data: Array<ProductType> = await Product.find().populate(
+        'category'
+      );
+      filters = createFiltersFromProducts(data);
+    }
 
     res.status(200).json(filters);
   } catch (error) {
