@@ -9,7 +9,10 @@ import { Category } from 'types';
 const Navbar = () => {
   const { isSignedIn } = useAuth();
   const { isLoaded } = useSignIn();
-  const { sex } = useParams();
+  const params = useParams();
+
+  console.log(params);
+
   const shoppingCartCount = useAppSelector((state) => state.shoppingCart.count);
 
   const categories: Array<Category> | undefined = useCategories();
@@ -23,17 +26,17 @@ const Navbar = () => {
         Wardrobe Wonders
       </Link>
       <div className="text-2xl font-semibold text-gray-300 hover:text-slate-200 transition duration-200 ease-in-out">
-        {sex?.toLocaleLowerCase() === 'his' && <NavLink to={LINKS.productsHer}>Her</NavLink>}
-        {sex?.toLocaleLowerCase() === 'her' && <NavLink to={LINKS.productsHis}>His</NavLink>}
+        {params.sex?.toLocaleLowerCase() === 'his' && <NavLink to={LINKS.productsHer}>Her</NavLink>}
+        {params.sex?.toLocaleLowerCase() === 'her' && <NavLink to={LINKS.productsHis}>His</NavLink>}
       </div>
-      {sex && (
+      {params.sex && (
         <div>
           {categories?.map((category) => (
             <NavLink
               key={category.name}
               style={({ isActive }) => (isActive ? { fontWeight: 700, color: 'white' } : {})}
               className="px-4 text-lg font-semibold text-gray-300 hover:text-slate-200 transition duration-200 ease-in-out"
-              to={`${LINKS.products}/${sex}/${category.name}`}
+              to={`${LINKS.products}/${params.sex}/${category.name}`}
             >
               {category.name}
             </NavLink>

@@ -6,6 +6,7 @@ import { store } from './redux/store';
 import { Provider } from 'react-redux';
 import LocalStorageProvider from './components/LocalStorageProvider';
 import { Toaster } from 'sonner';
+import { Layout } from './components';
 
 if (!import.meta.env.VITE_APP_CLERK_PUBLISHABLE_KEY) {
   throw new Error('Missing Publishable Key');
@@ -22,17 +23,19 @@ function ClerkProviderWithRoutes() {
         navigate={(to) => navigate(to)}
       >
         <Routes>
-          {ROUTES.map((route) => (
+          <Route element={<Layout />}>
+            {ROUTES.map((route) => (
+              <Route
+                key={route.path}
+                path={route.path}
+                element={route.element}
+              />
+            ))}
             <Route
-              key={route.path}
-              path={route.path}
-              element={route.element}
+              path="checkout/login/sso-callback"
+              element={<AuthenticateWithRedirectCallback />}
             />
-          ))}
-          <Route
-            path="checkout/login/sso-callback"
-            element={<AuthenticateWithRedirectCallback />}
-          />
+          </Route>
         </Routes>
       </ClerkProvider>
     </>

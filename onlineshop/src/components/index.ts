@@ -65,3 +65,5 @@ export { default as OrderButton } from './OrderButton.tsx';
 export { default as CheckoutDetailsButton } from './CheckoutDetailsButton.tsx';
 
 export { default as ShoppingCartDetailsButton } from './ShoppingCartDetailsButton';
+
+export { default as Layout } from './Layout';
