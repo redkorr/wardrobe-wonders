@@ -1,5 +1,4 @@
 import { MyAccountComponent, MyOrders } from '@/components';
-import Navbar from '@/components/NavBar';
 import UserPageNavbar from '@/components/UserPageNavbar';
 import { useState } from 'react';
 
@@ -11,7 +10,6 @@ const MyAccount = () => {
   };
   return (
     <div className="flex justify-center">
-      <Navbar />
       <div className="mt-24 w-3/5">
         <p className="text-3xl">Hello!</p>
         <hr className="mt-3" />

@@ -1,4 +1,4 @@
-import { NavBar, CheckoutForm, CheckoutDetails } from '@/components';
+import { CheckoutForm, CheckoutDetails } from '@/components';
 import { useRef } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -8,7 +8,6 @@ const Checkout = () => {
 
   return (
     <div>
-      <NavBar />
       <div className="flex justify-center gap-32 pt-32">
         <div className="w-1/3">
           <CheckoutForm

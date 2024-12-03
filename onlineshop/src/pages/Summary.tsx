@@ -1,4 +1,4 @@
-import { NavBar, OrderItemsList } from '@/components';
+import { OrderItemsList } from '@/components';
 import useOrder from '@/hooks/useOrder';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
@@ -12,7 +12,6 @@ const Summary = () => {
 
   return (
     <div>
-      <NavBar />
       <div className="mt-28">
         {data === undefined ? (
           <p>Loading...</p>
