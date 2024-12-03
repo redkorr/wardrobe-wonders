@@ -1,4 +1,4 @@
-import { FiltersSection, NavBar, CategoriesAccordion, ProductButton, LimitButtons, Pagination } from '@/components';
+import { FiltersSection, CategoriesAccordion, ProductButton, LimitButtons, Pagination } from '@/components';
 import useProducts from '@/hooks/useProducts';
 import undraw_void from '@/assets/undraw_void.svg';
 import { useParams, useSearchParams } from 'react-router-dom';
@@ -69,7 +69,6 @@ const Products = () => {
 
   return (
     <div className="pt-24 w-full">
-      <NavBar />
       <div className="flex flex-row w-full">
         <CategoriesAccordion
           sex={sex}
