@@ -1,4 +1,4 @@
-import { Breadcrumbs, Carousel, DetailsInfo, NavBar, ProductInfo, ScrollToTop } from '@/components';
+import { Breadcrumbs, Carousel, DetailsInfo, ProductInfo, ScrollToTop } from '@/components';
 import useProduct from '@/hooks/useProduct';
 import { useState } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
@@ -31,7 +31,6 @@ const Product = () => {
 
   return (
     <div className="h-full">
-      <NavBar />
       <Breadcrumbs />
       <div className="mt-24 flex">
         <div className="flex gap-5 p-6 w-full">
