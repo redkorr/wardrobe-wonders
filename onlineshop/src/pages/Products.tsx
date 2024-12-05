@@ -68,13 +68,13 @@ const Products = () => {
   }, [products]);
 
   return (
-    <div className="pt-24 w-full">
-      <div className="flex flex-row w-full">
+    <div className="pt-24 w-full h-full">
+      <div className="flex flex-row w-full h-full">
         <CategoriesAccordion
           sex={sex}
           activeCategory={category}
         />
-        <div className="flex flex-col px-10 w-full">
+        <div className="flex flex-col px-10 w-full h-full">
           <FiltersSection
             numberOfProducts={products?.count}
             sex={sex}
@@ -83,7 +83,8 @@ const Products = () => {
           />
 
           {products?.count === 0 && (
-            <div className="flex w-full justify-center items-center">
+            <div className="flex flex-col w-full h-full justify-center items-center gap-4">
+              <p className="text-4xl font-semibold">No products found</p>
               <img
                 src={undraw_void}
                 alt="No products"
@@ -92,14 +93,20 @@ const Products = () => {
             </div>
           )}
           <div className="flex">
-            <LimitButtons />
-            <Pagination numberOfPages={products?.numberOfPages} />
+            <LimitButtons count={products?.count} />
+            <Pagination
+              numberOfPages={products?.numberOfPages}
+              count={products?.count}
+            />
           </div>
 
           <div className="flex flex-wrap gap-14">
             {products?.data?.map((product) => <ProductButton product={product} />)}
           </div>
-          <Pagination numberOfPages={products?.numberOfPages} />
+          <Pagination
+            numberOfPages={products?.numberOfPages}
+            count={products?.count}
+          />
         </div>
       </div>
 
