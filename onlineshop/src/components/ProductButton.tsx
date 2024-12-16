@@ -1,3 +1,4 @@
+import buildPlaceholderImageUrl from '@/utils/buildPlaceholderImageUrl';
 import { useRef } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { Product } from 'types';
@@ -11,11 +12,13 @@ const ProductButton = ({ product }: ProductButtonProps) => {
   const searchParams = useSearchParams();
   const [params] = searchParams;
 
-  const onHover = (product: Product, colorPath: string) => {
+  const onHover = (product: Product, index: number) => {
     if (imageRef.current) {
-      imageRef.current.src = `/${product.category.name}/${product.type.display_name}/${colorPath}`;
+      imageRef.current.src = buildPlaceholderImageUrl(product.colors[index].color, product.colors[index].images[0]);
     }
   };
+  console.log(product.colors[0].item_id);
+
   return params.has('color') ? (
     <div>
       {product.colors?.map(
@@ -30,7 +33,7 @@ const ProductButton = ({ product }: ProductButtonProps) => {
                   ref={imageRef}
                   width={360}
                   height={540}
-                  src={`/${product.category.name}/${product.type.display_name}/${item.images[0]}`}
+                  src={buildPlaceholderImageUrl(product.colors[0].color, product.colors[0].images[0])}
                 />
               </Link>
               <Link
@@ -39,10 +42,11 @@ const ProductButton = ({ product }: ProductButtonProps) => {
               >
                 <p className="truncate text-lg mt-3">{product.colors[0].name}</p>
               </Link>
+              {/* Buttons for another product colors, on hover shows first image of that product */}
               <div className="flex gap-2 absolute bottom-12 left-2">
-                {product.colors.map((color) => (
+                {product.colors.map((color, index) => (
                   <Link
-                    onMouseOver={() => onHover(product, color.images[0])}
+                    onMouseOver={() => onHover(product, index)}
                     key={color.color_name}
                     to={`/product/${product.product_id}/${color.color_name}`}
                     style={
@@ -74,16 +78,16 @@ const ProductButton = ({ product }: ProductButtonProps) => {
           ref={imageRef}
           width={360}
           height={540}
-          src={`/${product.category.name}/${product.type.display_name}/${product.colors[0].images[0]}`}
+          src={buildPlaceholderImageUrl(product.colors[0].color, product.colors[0].images[0])}
         />
       </Link>
       <Link to={`/product/${product.product_id}/${product.colors[0].color_name}`}>
         <p className="truncate text-lg mt-3">{product.colors[0].name}</p>
       </Link>
       <div className="flex gap-2 absolute bottom-12 left-2">
-        {product.colors.map((color) => (
+        {product.colors.map((color, index) => (
           <Link
-            onMouseOver={() => onHover(product, color.images[0])}
+            onMouseOver={() => onHover(product, index)}
             key={color.color_name}
             to={`/product/${product.product_id}/${color.color_name}`}
             style={

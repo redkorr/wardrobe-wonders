@@ -1,3 +1,4 @@
+import buildPlaceholderImageUrl from '@/utils/buildPlaceholderImageUrl';
 import { OrderItem } from 'types';
 
 interface OrderItemsListProps {
@@ -16,11 +17,7 @@ const OrderItemsList = ({ orderItems }: OrderItemsListProps) => {
               <img
                 className="mr-10"
                 width={100}
-                src={
-                  orderItem.image_path
-                    ? `/${orderItem.category}/${orderItem.type}${orderItem.image_path}`
-                    : '/onlineshop/public/placeholder-image.png'
-                }
+                src={orderItem.color && buildPlaceholderImageUrl(orderItem.color, orderItem.image_path)}
                 alt={orderItem.name}
               />
               <div>

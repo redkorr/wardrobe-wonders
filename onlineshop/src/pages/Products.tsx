@@ -99,7 +99,6 @@ const Products = () => {
               count={products?.count}
             />
           </div>
-
           <div className="flex flex-wrap gap-14">
             {products?.data?.map((product) => <ProductButton product={product} />)}
           </div>

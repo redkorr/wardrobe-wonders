@@ -1,3 +1,4 @@
+import buildPlaceholderImageUrl from '@/utils/buildPlaceholderImageUrl';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useState } from 'react';
 
@@ -5,9 +6,10 @@ interface CarouselProps {
   category: string | undefined;
   type: string | undefined;
   paths: string[] | undefined;
+  color: string;
 }
 
-const Carousel = ({ category, type, paths }: CarouselProps) => {
+const Carousel = ({ category, type, paths, color }: CarouselProps) => {
   const [firstImageIndex, setFirstImageIndex] = useState(0);
   const [secondImageIndex, setSecondImageIndex] = useState(1);
 
@@ -22,6 +24,7 @@ const Carousel = ({ category, type, paths }: CarouselProps) => {
       }
     }
   };
+  console.log(paths);
 
   const showPrevImage = () => {
     if (paths) {
@@ -75,7 +78,7 @@ const Carousel = ({ category, type, paths }: CarouselProps) => {
                   <img
                     width={80}
                     style={index === firstImageIndex || index === secondImageIndex ? {} : { opacity: '0.7' }}
-                    src={`/${category}/${type}/${path}`}
+                    src={buildPlaceholderImageUrl(color, path)}
                   />
                 </button>
               </div>
@@ -86,14 +89,14 @@ const Carousel = ({ category, type, paths }: CarouselProps) => {
               {paths.map((path, index) => (
                 <img
                   key={path}
-                  src={`/${category}/${type}/${paths[index]}`}
+                  src={buildPlaceholderImageUrl(color, paths[index], '540x813')}
                   style={{ translate: `${-100 * firstImageIndex}%` }}
                   className="duration-300 ease-in-out"
                 />
               ))}
 
               <img
-                src={`/${category}/${type}/${paths[0]}`}
+                src={buildPlaceholderImageUrl(color, paths[0], '540x813')}
                 style={{ translate: `${-100 * firstImageIndex}%` }}
                 className="duration-300 ease-in-out"
               />

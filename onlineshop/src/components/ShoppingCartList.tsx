@@ -7,11 +7,13 @@ import { Minus, Plus, X } from 'lucide-react';
 import { useAppDispatch } from '@/hooks/useAppDispatch';
 import { useAppSelector } from '@/hooks/useAppSelector';
 import empty_cart from '../assets/undraw_empty_cart.svg';
+import buildPlaceholderImageUrl from '@/utils/buildPlaceholderImageUrl';
 
 const ShoppingCartList = () => {
   const dispatch = useAppDispatch();
   const shoppingCart = useAppSelector((state) => state.shoppingCart);
   const count = useAppSelector((state) => state.shoppingCart.count);
+
   return (
     <div className="w-3/4">
       <div className="flex items-center gap-2 font-semibold">
@@ -35,9 +37,13 @@ const ShoppingCartList = () => {
                     className="mr-10"
                     width={120}
                     src={
-                      shoppingCartItem.color.images
-                        ? `/${shoppingCartItem.category.name}/${shoppingCartItem.type.name}${shoppingCartItem.color.images[0]}`
-                        : '/onlineshop/public/placeholder-image.png'
+                      shoppingCartItem.color.color &&
+                      shoppingCartItem.color.images &&
+                      buildPlaceholderImageUrl(
+                        shoppingCartItem.color.color,
+                        shoppingCartItem.color.images[0],
+                        '120x120'
+                      )
                     }
                     alt={shoppingCartItem.color.name}
                   />

@@ -11,8 +11,6 @@ const Navbar = () => {
   const { isLoaded } = useSignIn();
   const params = useParams();
 
-  console.log(params);
-
   const shoppingCartCount = useAppSelector((state) => state.shoppingCart.count);
 
   const categories: Array<Category> | undefined = useCategories();
