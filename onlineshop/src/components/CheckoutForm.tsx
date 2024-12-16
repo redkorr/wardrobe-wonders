@@ -62,6 +62,7 @@ const CheckoutForm = ({ formRef, orderId }: CheckoutFormProps) => {
           name: item.color.name,
           image_path: item.color.images[0],
           color_name: item.color.color_name,
+          color: item.color.color,
           price: item.color.sizes[sizeKey.toString()].price,
           size: sizeKey.toString(),
           quantity: item.quantity
