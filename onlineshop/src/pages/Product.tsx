@@ -35,6 +35,13 @@ const Product = () => {
       <div className="mt-24 flex">
         <div className="flex gap-5 p-6 w-full">
           <Carousel
+            color={
+              product?.colors[
+                product?.colors.indexOf(
+                  product?.colors.find((color) => color.color_name === colorName) || product?.colors[0]
+                )
+              ].color
+            }
             category={product?.category.name}
             type={product?.type.display_name}
             paths={
