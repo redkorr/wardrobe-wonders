@@ -40,6 +40,7 @@ const ProductInfo = ({ setDetailsInfoState, color, selectColor, product }: Produ
       quantity: 1,
       color: {
         color_name: color.color_name,
+        color: color.color,
         name: color.name,
         images: [color.images[0]],
         sizes: {
