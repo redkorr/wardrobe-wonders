@@ -157,6 +157,7 @@ export type OrderItem = {
   name?: string;
   image_path: string;
   color_name?: string;
+  color?: string;
   price: number;
   size: string;
   quantity: number;
