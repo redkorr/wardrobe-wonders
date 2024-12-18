@@ -5,8 +5,8 @@ export const data: Array<Product> = [
   {
     sex: 'male',
     currency: 'PLN',
-    category: new Types.ObjectId('653ac6324034fcd15891180c'), // cloth
-    type: new Types.ObjectId('653a64ff0de8e3dc995d7693'),
+    category: new Types.ObjectId('6762bb01f1ff53da64083f18'), // cloth
+    type: new Types.ObjectId('6762ba88b6b04cd8c6e40014'),
 
     colors: [
       {
@@ -35,8 +35,8 @@ export const data: Array<Product> = [
   {
     sex: 'male',
     currency: 'PLN',
-    category: new Types.ObjectId('653ac6324034fcd15891180c'), // cloth
-    type: new Types.ObjectId('653a64ff0de8e3dc995d7693'),
+    category: new Types.ObjectId('6762bb01f1ff53da64083f18'), // cloth
+    type: new Types.ObjectId('6762ba88b6b04cd8c6e40014'),
     colors: [
       {
         name: "Mad Max men's cotton t-shirt black color",
@@ -66,8 +66,8 @@ export const data: Array<Product> = [
     sex: 'male',
 
     currency: 'PLN',
-    category: new Types.ObjectId('653ac6324034fcd15891180c'), // cloth
-    type: new Types.ObjectId('653a64ff0de8e3dc995d7691'),
+    category: new Types.ObjectId('6762bb01f1ff53da64083f18'), // cloth
+    type: new Types.ObjectId('6762ba88b6b04cd8c6e40012'),
 
     colors: [
       {
@@ -97,8 +97,8 @@ export const data: Array<Product> = [
   {
     sex: 'male',
     currency: 'PLN',
-    category: new Types.ObjectId('653ac6324034fcd15891180c'), // cloth
-    type: new Types.ObjectId('653a64ff0de8e3dc995d7691'),
+    category: new Types.ObjectId('6762bb01f1ff53da64083f18'), // cloth
+    type: new Types.ObjectId('6762ba88b6b04cd8c6e40012'),
     colors: [
       {
         name: "Men's hooded sweatshirt color beige",
@@ -127,8 +127,8 @@ export const data: Array<Product> = [
   {
     sex: 'male',
     currency: 'PLN',
-    category: new Types.ObjectId('653ac6324034fcd15891180c'), // cloth
-    type: new Types.ObjectId('653a64ff0de8e3dc995d7691'),
+    category: new Types.ObjectId('6762bb01f1ff53da64083f18'), // cloth
+    type: new Types.ObjectId('6762ba88b6b04cd8c6e40012'),
 
     colors: [
       {
@@ -158,8 +158,8 @@ export const data: Array<Product> = [
   {
     sex: 'male',
     currency: 'PLN',
-    category: new Types.ObjectId('653ac6324034fcd15891180c'), // cloth
-    type: new Types.ObjectId('653a64ff0de8e3dc995d7694'),
+    category: new Types.ObjectId('6762bb01f1ff53da64083f18'), // cloth
+    type: new Types.ObjectId('6762ba88b6b04cd8c6e40015'),
     colors: [
       {
         name: "Men's slim color jeans",
@@ -188,8 +188,8 @@ export const data: Array<Product> = [
   {
     sex: 'male',
     currency: 'PLN',
-    category: new Types.ObjectId('653ac6324034fcd15891180c'), // cloth
-    type: new Types.ObjectId('653a64ff0de8e3dc995d7694'),
+    category: new Types.ObjectId('6762bb01f1ff53da64083f18'), // cloth
+    type: new Types.ObjectId('6762ba88b6b04cd8c6e40015'),
     colors: [
       {
         name: "Men's slim jeans navy blue color",
@@ -218,8 +218,8 @@ export const data: Array<Product> = [
   {
     sex: 'male',
     currency: 'PLN',
-    category: new Types.ObjectId('653ac6324034fcd15891180c'),
-    type: new Types.ObjectId('653a64ff0de8e3dc995d7694'),
+    category: new Types.ObjectId('6762bb01f1ff53da64083f18'),
+    type: new Types.ObjectId('6762ba88b6b04cd8c6e40015'),
     colors: [
       {
         name: "Men's jeans regular color blue",
@@ -248,8 +248,8 @@ export const data: Array<Product> = [
   {
     sex: 'male',
     currency: 'PLN',
-    category: new Types.ObjectId('653ac6324034fcd15891180c'), // cloth
-    type: new Types.ObjectId('653a64ff0de8e3dc995d7692'),
+    category: new Types.ObjectId('6762bb01f1ff53da64083f18'), // cloth
+    type: new Types.ObjectId('6762ba88b6b04cd8c6e40013'),
 
     colors: [
       {
@@ -279,8 +279,8 @@ export const data: Array<Product> = [
   {
     sex: 'male',
     currency: 'PLN',
-    category: new Types.ObjectId('653ac6324034fcd15891180c'), // cloth
-    type: new Types.ObjectId('653a64ff0de8e3dc995d7692'),
+    category: new Types.ObjectId('6762bb01f1ff53da64083f18'), // cloth
+    type: new Types.ObjectId('6762ba88b6b04cd8c6e40013'),
 
     colors: [
       {
@@ -310,8 +310,8 @@ export const data: Array<Product> = [
   {
     sex: 'male',
     currency: 'PLN',
-    category: new Types.ObjectId('653ac6324034fcd15891180d'), // shoes,
-    type: new Types.ObjectId('653a64ff0de8e3dc995d7695'),
+    category: new Types.ObjectId('6762bb01f1ff53da64083f19'), // shoes,
+    type: new Types.ObjectId('6762ba88b6b04cd8c6e40016'),
 
     colors: [
       {
@@ -342,8 +342,8 @@ export const data: Array<Product> = [
   {
     sex: 'male',
     currency: 'PLN',
-    category: new Types.ObjectId('653ac6324034fcd15891180d'), // shoes,
-    type: new Types.ObjectId('653a64ff0de8e3dc995d7695'),
+    category: new Types.ObjectId('6762bb01f1ff53da64083f19'), // shoes,
+    type: new Types.ObjectId('6762ba88b6b04cd8c6e40016'),
 
     colors: [
       {
@@ -375,8 +375,8 @@ export const data: Array<Product> = [
   {
     sex: 'male',
     currency: 'PLN',
-    category: new Types.ObjectId('653ac6324034fcd15891180c'), // cloth
-    type: new Types.ObjectId('653a64ff0de8e3dc995d7691'),
+    category: new Types.ObjectId('6762bb01f1ff53da64083f18'), // cloth
+    type: new Types.ObjectId('6762ba88b6b04cd8c6e40012'),
     colors: [
       {
         name: "Men's hoodie patterned beige color",
@@ -434,6 +434,483 @@ export const data: Array<Product> = [
       body: 'Hooded sweatshirt from the Medicine collection. Zippered model made of patterned knit fabric. , - Regular cut. - Zipper closure. - Drawstring hood. - Two slip-on side pockets. - Ribbed trim. - Patterned knit fabric. - Sleeve length: 67.5 cm. - Length at front: 74 cm. - Length at back: 72.5 cm. - Width under the arms: 59 cm. - Dimensions given for size: L.',
       fabric_main: ['59% Cotton', '41% Polyester'],
       fabric_other: ['98% Cotton', '2% Elastane'],
+    },
+  },
+  {
+    sex: 'female',
+    currency: 'PLN',
+    category: new Types.ObjectId('6762bb01f1ff53da64083f18'), // cloth
+    type: new Types.ObjectId('6762ba88b6b04cd8c6e40012'),
+    colors: [
+      {
+        name: "Women's cotton patterned sweatshirt, black",
+        color_name: 'Black',
+        color: '#000000',
+        sizes: {
+          XS: { stock: 10, price: 179.9 },
+          S: { stock: 0, price: 179.9 },
+          M: { stock: 0, price: 179.9 },
+          L: { stock: 7, price: 179.9 },
+          XL: { stock: 20, price: 179.9 },
+          XXL: { stock: 10, price: 179.9 },
+        },
+        images: [
+          '/RW24-BLD070-99A_F1.webp',
+          '/RW24-BLD070-99A_F2.webp',
+          '/RW24-BLD070-99A_F3.webp',
+        ],
+      },
+    ],
+    description: {
+      body: 'Model made of cotton jersey. - Material with the Oeko-Tex® Standard 100 certificate guarantees that textile products marked with it are free from harmful and potentially dangerous substances for humans and the environment. - Regular cut. - Long sleeve. - Turtleneck model. - Neckline tightened with drawstrings. - Two side slip pockets. - Rib trim. - Patterned jersey. - Pattern with a plant motif. - Sleeve length: 64 cm. - Length: 62.5 cm. - Bust width: 50 cm. - Dimensions given for size: S.',
+      fabric_main: ['100% Cotton'],
+    },
+  },
+  {
+    sex: 'female',
+    currency: 'PLN',
+    category: new Types.ObjectId('6762bb01f1ff53da64083f18'), // cloth
+    type: new Types.ObjectId('6762ba88b6b04cd8c6e40012'),
+    colors: [
+      {
+        name: "Women's cotton patterned sweatshirt, black",
+        color_name: 'Black',
+        color: '#000000',
+        sizes: {
+          XS: { stock: 10, price: 189.9 },
+          S: { stock: 1, price: 189.9 },
+          M: { stock: 2, price: 189.9 },
+          L: { stock: 7, price: 189.9 },
+          XL: { stock: 20, price: 189.9 },
+          XXL: { stock: 10, price: 189.9 },
+        },
+        images: [
+          '/RW24-BLD701-99A_F1.webp',
+          '/RW24-BLD701-99A_F2.webp',
+          '/RW24-BLD701-99A_F3.webp',
+        ],
+      },
+      {
+        name: "Women's cotton patterned sweatshirt, beige",
+        color_name: 'Beige',
+        color: '#8f6d42',
+        sizes: {
+          XS: { stock: 10, price: 189.9 },
+          S: { stock: 15, price: 189.9 },
+          M: { stock: 20, price: 189.9 },
+          L: { stock: 7, price: 189.9 },
+          XL: { stock: 20, price: 189.9 },
+          XXL: { stock: 10, price: 189.9 },
+        },
+        images: [
+          '/RW24-BLD701-02A_F1.webp',
+          '/RW24-BLD701-02A_F2.webp',
+          '/RW24-BLD701-02A_F3.webp',
+        ],
+      },
+    ],
+    description: {
+      body: 'Model made of cotton jersey. - Material with the Oeko-Tex® Standard 100 certificate guarantees that textile products marked with it are free from harmful and potentially dangerous substances for humans and the environment. - Regular cut. - Long sleeve. - Turtleneck model. - Neckline tightened with drawstrings. - Two side slip pockets. - Rib trim. - Patterned jersey. - Pattern with a plant motif. - Sleeve length: 64 cm. - Length: 64 cm. - Bust width: 50 cm. - Dimensions given for size: S.',
+      fabric_main: ['100% Cotton'],
+    },
+  },
+  {
+    sex: 'female',
+    currency: 'PLN',
+    category: new Types.ObjectId('6762bb01f1ff53da64083f18'), // cloth
+    type: new Types.ObjectId('6762ba88b6b04cd8c6e40012'),
+    colors: [
+      {
+        name: "Women's patterned sweatshirt, multicolor",
+        color_name: 'Multicolor',
+        color: '/multicolor.png',
+        sizes: {
+          XS: { stock: 10, price: 209.9 },
+          S: { stock: 0, price: 209.9 },
+          M: { stock: 0, price: 209.9 },
+          L: { stock: 7, price: 209.9 },
+          XL: { stock: 20, price: 214.9 },
+          XXL: { stock: 10, price: 219.9 },
+        },
+        images: [
+          '/RW24-BLD901-MLA_F1.webp',
+          '/RW24-BLD901-MLA_F2.webp',
+          '/RW24-BLD901-MLA_F3.webp',
+        ],
+      },
+    ],
+    description: {
+      body: 'Zippered model made of fleece material. - Oversized style. - Long sleeve. - Dropped shoulder line. - Raised collar. - Zippered fastening. - Ribbed finish. - Patterned knit. - Model made of comfortable, warm fleece. - Animal pattern. - Sleeve length (measured from the collar): 73.5 cm. - Length: 61 cm. - Bust width: 64 cm. - Dimensions given for size: S.',
+      fabric_main: ['100% Polyester'],
+      fabric_inside: ['95% Viscose', '5% Elastane'],
+    },
+  },
+  {
+    sex: 'female',
+    currency: 'PLN',
+    category: new Types.ObjectId('6762bb01f1ff53da64083f18'), // cloth
+    type: new Types.ObjectId('6762ba88b6b04cd8c6e40013'), // shirt
+    colors: [
+      {
+        name: "Women's regular textured blouse, pink",
+        color_name: 'Pink',
+        color: '#FF0FF0',
+        sizes: {
+          XS: { stock: 10, price: 139.9 },
+          S: { stock: 2, price: 139.9 },
+          M: { stock: 0, price: 139.9 },
+          L: { stock: 7, price: 139.9 },
+          XL: { stock: 20, price: 139.9 },
+          XXL: { stock: 10, price: 139.9 },
+        },
+        images: [
+          '/RS25-BDD104-43X_F1.webp',
+          '/RS25-BDD104-43X_F2.webp',
+          '/RS25-BDD104-43X_F3.webp',
+        ],
+      },
+      {
+        name: "Women's regular textured blouse, pink",
+        color_name: 'White',
+        color: '#E0E0E0',
+        sizes: {
+          XS: { stock: 10, price: 139.9 },
+          S: { stock: 2, price: 139.9 },
+          M: { stock: 2, price: 139.9 },
+          L: { stock: 7, price: 139.9 },
+          XL: { stock: 0, price: 139.9 },
+          XXL: { stock: 10, price: 139.9 },
+        },
+        images: [
+          '/RS25-BDD104-01X_F1.webp',
+          '/RS25-BDD104-01X_F2.webp',
+          '/RS25-BDD104-01X_F3.webp',
+        ],
+      },
+    ],
+    description: {
+      body: 'Model made of textured fabric. It has a decorative stand-up collar. - Regular cut. - Long, puffy sleeves. - Sleeves finished with elastic band.- Model with a stand-up collar. - Front slit fastened with a decorative button. - Model with decorative ruffles. - Material with texture. - Model made of transparent material. - Decorative finishes. - Sleeve length: 64 cm. - Length: 61.5 cm. - Bust width: 52 cm. - Dimensions given for size: S.',
+      fabric_main: ['100% Polyester'],
+    },
+  },
+  {
+    sex: 'female',
+    currency: 'PLN',
+    category: new Types.ObjectId('6762bb01f1ff53da64083f18'), // cloth
+    type: new Types.ObjectId('6762ba88b6b04cd8c6e40013'), // shirt
+    colors: [
+      {
+        name: "Women's patterned sweatshirt, multicolor",
+        color_name: 'Black',
+        color: '#000000',
+        sizes: {
+          XS: { stock: 10, price: 169.9 },
+          S: { stock: 0, price: 169.9 },
+          M: { stock: 0, price: 169.9 },
+          L: { stock: 7, price: 169.9 },
+          XL: { stock: 20, price: 169.9 },
+          XXL: { stock: 10, price: 169.9 },
+        },
+        images: [
+          '/RW24-KDDB53-99A_F1.webp',
+          '/RW24-KDDB53-99A_F2.webp',
+          '/RW24-KDDB53-99A_F3.webp',
+        ],
+      },
+    ],
+    description: {
+      body: 'Model made of fabric with decorative embroidery. - Regular fit. - Long, puffy sleeves. - Buttoned cuffs. - Model with collar. - Button fastening. - Model with decorative embroidery. - Pattern with a plant motif. - Sleeve length: 63 cm. - Length: 65 cm. - Bust width: 56 cm. - Dimensions given for size: S.',
+      fabric_main: ['100% Viscose'],
+    },
+  },
+  {
+    sex: 'female',
+    currency: 'PLN',
+    category: new Types.ObjectId('6762bb01f1ff53da64083f18'), // cloth
+    type: new Types.ObjectId('6762ba88b6b04cd8c6e40013'), // shirt
+    colors: [
+      {
+        name: 'Bluzka damska kolor granatowy',
+        color_name: 'Navy blue',
+        color: '#000080',
+        sizes: {
+          XS: { stock: 10, price: 149.9 },
+          S: { stock: 10, price: 149.9 },
+          M: { stock: 10, price: 149.9 },
+          L: { stock: 7, price: 149.9 },
+          XL: { stock: 20, price: 149.9 },
+          XXL: { stock: 10, price: 149.9 },
+        },
+        images: [
+          '/RW24-BDDB53-59A_F1.webp',
+          '/RW24-BDDB53-59A_F2.webp',
+          '/RW24-BDDB53-59A_F3.webp',
+        ],
+      },
+    ],
+    description: {
+      body: 'Model made of patterned fabric. - Regular fit. - Long, puffy sleeves. - Buttoned cuffs. - Round neckline. - Button closure at the back. - Patterned fabric. - Sleeve length: 64 cm. - Length: 62 cm. - Bust width: 51.5 cm. - Dimensions given for size: S.',
+      fabric_main: ['100% Viscose'],
+    },
+  },
+  {
+    sex: 'female',
+    currency: 'PLN',
+    category: new Types.ObjectId('6762bb01f1ff53da64083f19'), // shoes,
+    type: new Types.ObjectId('6762ba88b6b04cd8c6e40017'), // flip flops
+
+    colors: [
+      {
+        name: "Women's slippers made of imitation fur, orange",
+        color_name: 'Orange',
+        color: '#FF6E00',
+        sizes: {
+          '35': { stock: 7, price: 59.9 },
+          '36': { stock: 10, price: 59.9 },
+          '37': { stock: 7, price: 59.9 },
+          '38': { stock: 20, price: 59.9 },
+          '39': { stock: 10, price: 59.9 },
+          '40': { stock: 20, price: 59.9 },
+          '41': { stock: 20, price: 59.9 },
+        },
+        images: [
+          '/RW24-KAD802-22X_F1.webp',
+          '/RW24-KAD802-22X_F2.webp',
+          '/RW24-KAD802-22X_F3.webp',
+        ],
+      },
+    ],
+    description: {
+      body: 'Model made of imitation fur. - Slip-on model. - Round toe. - Rubber sole. - Comfortable interior. - Model made of imitation fur. - Soft, pleasant to the touch material. - Decorative details. - Length of the insole: 25 cm. - Dimensions given for size: 38/39.',
+      fabric_main: ['100% Polyester'],
+      fabric_other: ['100% TPR'],
+      fabric_inside: ['100% Polyester'],
+    },
+  },
+  {
+    sex: 'female',
+    currency: 'PLN',
+    category: new Types.ObjectId('6762bb01f1ff53da64083f19'), // shoes,
+    type: new Types.ObjectId('6762ba88b6b04cd8c6e40017'), // flip flops
+
+    colors: [
+      {
+        name: "Women's slippers made of imitation fur, gray color",
+        color_name: 'Gray',
+        color: '#C0C0C0',
+        sizes: {
+          '35': { stock: 7, price: 59.9 },
+          '36': { stock: 10, price: 59.9 },
+          '37': { stock: 7, price: 59.9 },
+          '38': { stock: 20, price: 59.9 },
+          '39': { stock: 10, price: 59.9 },
+          '40': { stock: 20, price: 59.9 },
+          '41': { stock: 0, price: 59.9 },
+        },
+        images: [
+          '/RW24-KAD800-09X_F1.webp',
+          '/RW24-KAD800-09X_F2.webp',
+          '/RW24-KAD800-09X_F3.webp',
+        ],
+      },
+    ],
+    description: {
+      body: 'Model made of imitation fur. - Slip-on model. - Round toe. - Comfortable interior. - Rubber sole. - Model made of imitation fur. - Soft, pleasant to the touch material. - Decorative details. - The length of the insole is: 25 cm. - Dimensions given for size: 38/39.',
+      fabric_main: ['100% Suede leather'],
+      fabric_other: ['100% TPR'],
+      fabric_inside: ['100% Polyester'],
+    },
+  },
+  {
+    sex: 'female',
+    currency: 'PLN',
+    category: new Types.ObjectId('6762bb01f1ff53da64083f19'), // shoes,
+    type: new Types.ObjectId('6762ba88b6b04cd8c6e4001a'), // ankle shoes
+
+    colors: [
+      {
+        name: "Women's leather ankle boots, black",
+        color_name: 'Black',
+        color: '#000000',
+        sizes: {
+          '35': { stock: 7, price: 329.9 },
+          '36': { stock: 10, price: 329.9 },
+          '37': { stock: 7, price: 329.9 },
+          '38': { stock: 20, price: 329.9 },
+          '39': { stock: 10, price: 329.9 },
+          '40': { stock: 20, price: 329.9 },
+          '41': { stock: 30, price: 329.9 },
+        },
+        images: [
+          '/RW24-OBD600-99X_F1.webp',
+          '/RW24-OBD600-99X_F2.webp',
+          '/RW24-OBD600-99X_F3.webp',
+        ],
+      },
+    ],
+    description: {
+      body: 'Model made of natural leather. - Round, stiffened nose. - Stiffened heel counter. - Embossed, rubber sole. - Comfortable foam insole. - Lace-up model. - Comfortable interior. - Decorative stitching. - Model on a platform. - Platform height: 2.5 cm. - Heel height: 4 cm. - The length of the insole is: 24 cm. - Dimensions given for size: 37.',
+      fabric_main: ['100% Genuine Leather'],
+      fabric_other: ['100% TPR'],
+      fabric_inside: ['100% Polyester'],
+    },
+  },
+  {
+    sex: 'female',
+    currency: 'PLN',
+    category: new Types.ObjectId('6762bb01f1ff53da64083f19'), // shoes,
+    type: new Types.ObjectId('6762ba88b6b04cd8c6e40016'),
+
+    colors: [
+      {
+        name: "Women's sneakers made of ecological leather, color black",
+        color_name: 'Black',
+        color: '#000000',
+        sizes: {
+          '35': { stock: 0, price: 179.9 },
+          '36': { stock: 0, price: 179.9 },
+          '37': { stock: 7, price: 179.9 },
+          '38': { stock: 20, price: 179.9 },
+          '39': { stock: 10, price: 179.9 },
+          '40': { stock: 20, price: 179.9 },
+          '41': { stock: 10, price: 179.9 },
+          '42': { stock: 20, price: 179.9 },
+        },
+        images: [
+          '/RW24-OBD201-99X_F1.webp',
+          '/RW24-OBD201-99X_F2.webp',
+          '/RW24-OBD201-99X_F3.webp',
+        ],
+      },
+    ],
+    description: {
+      body: 'Model made of eco-leather. - Round, rubberized toe. - Stiffened heel counter. - Comfortable, cotton interior. - Rubber sole. - Lace-up model. - Comfortable foam insole. - Model with rivet application. - Model on platform. - Length of the insole: 24 cm. - Dimensions given for size: 37.',
+      fabric_main: ['100% Polyurethane'],
+      fabric_other: ['100% Rubber'],
+      fabric_inside: ['100% Cotton'],
+    },
+  },
+  {
+    sex: 'female',
+    currency: 'PLN',
+    category: new Types.ObjectId('6762bb01f1ff53da64083f19'), // shoes,
+    type: new Types.ObjectId('6762ba88b6b04cd8c6e40016'),
+
+    colors: [
+      {
+        name: "Women's leather sneakers, beige color",
+        color_name: 'Beige',
+        color: '#8f6d42',
+        sizes: {
+          '35': { stock: 0, price: 129.9 },
+          '36': { stock: 1, price: 129.9 },
+          '37': { stock: 7, price: 129.9 },
+          '38': { stock: 20, price: 129.9 },
+          '39': { stock: 10, price: 129.9 },
+          '40': { stock: 20, price: 129.9 },
+          '41': { stock: 10, price: 129.9 },
+          '42': { stock: 20, price: 129.9 },
+        },
+        images: [
+          '/RS24-OBD301-02X_F1.webp',
+          '/RS24-OBD301-02X_F2.webp',
+          '/RS24-OBD301-02X_F3.webp',
+        ],
+      },
+      {
+        name: "Women's leather sneakers, black color",
+        color_name: 'Black',
+        color: '#000000',
+        sizes: {
+          '35': { stock: 10, price: 129.9 },
+          '36': { stock: 1, price: 129.9 },
+          '37': { stock: 7, price: 129.9 },
+          '38': { stock: 0, price: 129.9 },
+          '39': { stock: 0, price: 129.9 },
+          '40': { stock: 20, price: 129.9 },
+          '41': { stock: 10, price: 129.9 },
+          '42': { stock: 20, price: 129.9 },
+        },
+        images: [
+          '/RS24-OBD301-99X_F1.webp',
+          '/RS24-OBD301-99X_F2.webp',
+          '/RS24-OBD301-99X_F3.webp',
+        ],
+      },
+    ],
+    description: {
+      body: 'Model made of natural leather. - Round, stiffened nose. - Stiffened heel counter. - Classic lacing allows for individual adjustment to the foot. - Rubber sole. - Comfortable foam insole. - Comfortable interior. - Sole height: 2.5 cm. - The length of the insole is: 24 cm. - Dimensions given for size: 37.',
+      fabric_main: ['100% Genuine leather'],
+      fabric_other: ['100% TPR'],
+      fabric_inside: ['100% Cotton'],
+    },
+  },
+  {
+    sex: 'female',
+    currency: 'PLN',
+    category: new Types.ObjectId('6762bb01f1ff53da64083f1a'), // accessories,
+    type: new Types.ObjectId('6762ba88b6b04cd8c6e40018'), //hats
+
+    colors: [
+      {
+        name: "Women's beanie hat with pompom, purple",
+        color_name: 'Purple',
+        color: '#6F2DA8',
+        sizes: {
+          ONE: { stock: 100, price: 99.9 },
+        },
+        images: [
+          '/RW24-CAD901-44M_F1.webp',
+          '/RW24-CAD901-44M_F2.webp',
+          '/RW24-CAD901-44M_F3.webp',
+        ],
+      },
+      {
+        name: "Women's beanie hat with pompom, pink",
+        color_name: 'Pink',
+        color: '#FF0FF0',
+        sizes: {
+          ONE: { stock: 90, price: 99.9 },
+        },
+        images: [
+          '/RW24-CAD901-39M_F1.webp',
+          '/RW24-CAD901-39M_F2.webp',
+          '/RW24-CAD901-39M_F3.webp',
+        ],
+      },
+    ],
+    description: {
+      body: 'Model made of melange knit. - Beanie model. - Model with a pompom. - Rolled edge. - Melange knit. - Model with lining.',
+      fabric_main: ['76% Acrylic', '12% Polyester', '12% Polyamide'],
+      fabric_other: ['100% Polyester'],
+    },
+  },
+  {
+    sex: 'female',
+    currency: 'PLN',
+    category: new Types.ObjectId('6762bb01f1ff53da64083f1a'), // accessories,
+    type: new Types.ObjectId('6762ba88b6b04cd8c6e40019'), //hats
+
+    colors: [
+      {
+        name: "Women's smooth leather belt, brown color",
+        color_name: 'Brown',
+        color: '#964B00',
+        sizes: {
+          S: { stock: 10, price: 99.9 },
+          M: { stock: 0, price: 99.9 },
+          L: { stock: 10, price: 99.9 },
+        },
+        images: [
+          '/RW24-PAD706-88X_F1.webp',
+          '/RW24-PAD706-88X_F2.webp',
+          '/RW24-PAD706-88X_F3.webp',
+        ],
+      },
+    ],
+    description: {
+      body: 'Model made of natural leather. - Model manufactured in Poland. - Buckle fastening with a pin. - Number of holes: 7. - Strap width: 3.4 cm. - Strap length from the beginning of the buckle to the fourth hole: 80 cm. - Total length of the strap: 95 cm. - Dimensions given for a strap in size: S.',
+      fabric_main: ['100% Genuine leather'],
     },
   },
 ];
