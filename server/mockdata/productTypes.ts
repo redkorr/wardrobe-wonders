@@ -33,4 +33,8 @@ export const productTypes: Array<ProductType> = [
     name: 'belts',
     display_name: 'belts',
   },
+  {
+    name: 'ankle-boots',
+    display_name: 'ankle boots',
+  },
 ];
