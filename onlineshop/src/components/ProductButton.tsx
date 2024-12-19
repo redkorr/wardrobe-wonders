@@ -17,7 +17,6 @@ const ProductButton = ({ product }: ProductButtonProps) => {
       imageRef.current.src = buildPlaceholderImageUrl(product.colors[index].color, product.colors[index].images[0]);
     }
   };
-  console.log(product.colors[0].item_id);
 
   return params.has('color') ? (
     <div>

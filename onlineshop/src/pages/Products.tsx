@@ -13,6 +13,7 @@ import {
 import ScrollToTopButton from '@/components/ScrollToTop';
 import { setLimit, setPage } from '@/features/paginationSlice';
 import useFilters from '@/hooks/useFilters';
+import { FilterColorState } from 'types';
 
 const Products = () => {
   const { sex, category, type } = useParams();
@@ -22,13 +23,29 @@ const Products = () => {
   const dispatch = useAppDispatch();
 
   const filters = useFilters(category, type);
+
   useEffect(() => {
     if (filters) {
       Object.keys(filters).map((filterKey) => {
         if (filterKey === 'prices') {
         } else {
-          filters[filterKey as keyof typeof filters].forEach((element: string) => {
-            dispatch(createFilterItem({ parentKey: filterKey, childKey: element }));
+          filters[filterKey as keyof typeof filters].forEach((element: string | FilterColorState) => {
+            if (typeof element === 'object') {
+              dispatch(
+                createFilterItem({
+                  parentKey: filterKey,
+                  childKey: element.colorName,
+                  colorHex: element.colorHex
+                })
+              );
+            } else {
+              dispatch(
+                createFilterItem({
+                  parentKey: filterKey,
+                  childKey: element
+                })
+              );
+            }
           });
         }
       });
@@ -40,7 +57,14 @@ const Products = () => {
         .get('color')
         ?.split(',')
         .forEach((color) => {
-          dispatch(createFilterItemFromParams({ parentKey: 'colors', childKey: color }));
+          dispatch(
+            createFilterItemFromParams({
+              parentKey: 'colors',
+              childKey: color,
+              colorHex:
+                filters?.colors[filters.colors.findIndex((filterColor) => filterColor.colorName === color)].colorHex
+            })
+          );
         });
     }
     if (params.has('size')) {
@@ -48,7 +72,12 @@ const Products = () => {
         .get('size')
         ?.split(',')
         .forEach((size) => {
-          dispatch(createFilterItemFromParams({ parentKey: 'sizes', childKey: size }));
+          dispatch(
+            createFilterItemFromParams({
+              parentKey: 'sizes',
+              childKey: size
+            })
+          );
         });
     }
     if (params.has('min')) {
