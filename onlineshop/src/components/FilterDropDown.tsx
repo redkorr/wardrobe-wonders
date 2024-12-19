@@ -1,7 +1,7 @@
 import { ReactNode, useEffect, useRef, useState } from 'react';
 import { FilterCheckbox, FilterSlider } from '.';
 import { ChevronDown, ChevronUp } from 'lucide-react';
-import { FilterState, Price } from 'types';
+import { FilterColorState, FilterState, Price } from 'types';
 import { useNavigate } from 'react-router-dom';
 import { useAppSelector } from '@/hooks/useAppSelector';
 import { useAppDispatch } from '@/hooks/useAppDispatch';
@@ -15,7 +15,7 @@ interface FiltersDropDownProps {
   filterKey: string;
 }
 
-type Filter = string[] | Price | undefined;
+type Filter = string[] | FilterColorState[] | Price | undefined;
 
 const FilterDropDown = ({ filter, isActive = false, onClick, filterKey }: FiltersDropDownProps) => {
   const selectedFilters = useAppSelector((state) => state.filter);
@@ -23,6 +23,7 @@ const FilterDropDown = ({ filter, isActive = false, onClick, filterKey }: Filter
   useEffect(() => {
     setNewSelectedFilters(selectedFilters);
   }, [selectedFilters]);
+  // console.log(filterKey);
 
   const urlParams = new URLSearchParams(window.location.search);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -36,8 +37,10 @@ const FilterDropDown = ({ filter, isActive = false, onClick, filterKey }: Filter
 
     const handleClick = () => {
       dispatch(setFiltersState(newSelectedFilters));
+      // console.log(selectedFilters);
 
       const arrayOfSelectedFilters = selectFilters(newSelectedFilters, filterKey);
+      console.log('dropdown', arrayOfSelectedFilters);
 
       if (
         Object.values(newSelectedFilters[filterKey as keyof typeof selectedFilters]).every((filter) => filter === false)
@@ -72,11 +75,10 @@ const FilterDropDown = ({ filter, isActive = false, onClick, filterKey }: Filter
           className="p-5"
           ref={dropdownRef}
         >
-          {filter.map((filterItem: string) => (
+          {filter.map((filterItem: string | FilterColorState) => (
             <FilterCheckbox
               filterItem={filterItem}
               filterKey={filterKey}
-              key={filterItem}
               newSelectedFilters={newSelectedFilters}
               setNewSelectedFilters={setNewSelectedFilters}
             />

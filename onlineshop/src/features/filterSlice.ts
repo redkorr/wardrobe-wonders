@@ -17,26 +17,55 @@ const filterSlice = createSlice({
   name: 'filter',
   initialState,
   reducers: {
-    createFilterItem: (state: RootState, action: PayloadAction<{ parentKey: ParentKey; childKey: string }>) => {
-      return {
-        ...state,
-        [action.payload.parentKey]: {
-          ...state[action.payload.parentKey],
-          [action.payload.childKey]: false
-        }
-      };
+    createFilterItem: (
+      state: RootState,
+      action: PayloadAction<{ parentKey: ParentKey; childKey: string; colorHex?: string }>
+    ) => {
+      if (action.payload.parentKey === 'colors') {
+        return {
+          ...state,
+          [action.payload.parentKey]: {
+            ...state[action.payload.parentKey],
+            [action.payload.childKey]: {
+              isTrue: false,
+              colorHex: action.payload.colorHex
+            }
+          }
+        };
+      } else {
+        return {
+          ...state,
+          [action.payload.parentKey]: {
+            ...state[action.payload.parentKey],
+            [action.payload.childKey]: false
+          }
+        };
+      }
     },
     createFilterItemFromParams: (
       state: RootState,
-      action: PayloadAction<{ parentKey: ParentKey; childKey: string }>
+      action: PayloadAction<{ parentKey: ParentKey; childKey: string; colorHex?: string }>
     ) => {
-      return {
-        ...state,
-        [action.payload.parentKey]: {
-          ...state[action.payload.parentKey],
-          [action.payload.childKey]: true
-        }
-      };
+      if (action.payload.parentKey === 'colors') {
+        return {
+          ...state,
+          [action.payload.parentKey]: {
+            ...state[action.payload.parentKey],
+            [action.payload.childKey]: {
+              isTrue: true,
+              colorHex: action.payload.colorHex
+            }
+          }
+        };
+      } else {
+        return {
+          ...state,
+          [action.payload.parentKey]: {
+            ...state[action.payload.parentKey],
+            [action.payload.childKey]: true
+          }
+        };
+      }
     },
     setFiltersState: (state: RootState, action: PayloadAction<FilterState>) => {
       return action.payload;

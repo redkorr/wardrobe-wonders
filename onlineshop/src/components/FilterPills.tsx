@@ -41,6 +41,7 @@ const FilterPills = () => {
       navigate(`?${urlParams.toString()}`);
     }
   };
+  // console.log(filterArray);
 
   return (
     <div className="flex gap-2">
