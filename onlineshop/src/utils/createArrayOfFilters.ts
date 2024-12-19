@@ -12,8 +12,14 @@ const createArrayOfFilters = (filters: FilterState) => {
     } else {
       if (Object.keys(filters[filterCategory as keyof typeof filters]).length === 0) return;
       Object.keys(filters[filterCategory as keyof typeof filters]).forEach((key) => {
-        if (filters[filterCategory as keyof typeof filters][key]) {
-          filterArray.push(`${filterCategory.slice(0, filterCategory.length - 1)}: ${key}`);
+        if (filterCategory === 'colors') {
+          if (filters[filterCategory as keyof typeof filters][key].isTrue) {
+            filterArray.push(`${filterCategory.slice(0, filterCategory.length - 1)}: ${key}`);
+          }
+        } else {
+          if (filters[filterCategory as keyof typeof filters][key]) {
+            filterArray.push(`${filterCategory.slice(0, filterCategory.length - 1)}: ${key}`);
+          }
         }
       });
     }
