@@ -41,7 +41,7 @@ export type ProductType = {
 };
 
 export type Filters = {
-  colors: string[];
+  colors: FilterColorState[];
   sizes: string[];
   prices: Price;
 };
@@ -64,12 +64,19 @@ export type Discount = {
 
 export type FilterState = {
   colors: {
-    [color: string]: boolean;
+    [color: string]: {
+      isTrue: boolean;
+      colorHex?: string;
+    };
   };
   sizes: {
     [size: string]: boolean;
   };
   price: Price;
+};
+export type FilterColorState = {
+  colorName: string;
+  colorHex: string;
 };
 
 export type PaginationState = {
