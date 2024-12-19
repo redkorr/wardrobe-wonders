@@ -1,7 +1,7 @@
 import { Product } from '../models/Product.js';
 
 type Filters = {
-  colors: string[];
+  colors: Color[];
   sizes: string[];
   prices: {
     min: number;
@@ -9,9 +9,19 @@ type Filters = {
   };
 };
 
+type Color = {
+  colorName: string;
+  colorHex: string;
+};
+
 export const createFiltersFromProducts = (filteredData: Array<Product>) => {
   const filters: Filters = {
-    colors: [],
+    colors: [
+      {
+        colorName: '',
+        colorHex: '',
+      },
+    ],
     sizes: [],
     prices: {
       min: 0,
@@ -19,7 +29,7 @@ export const createFiltersFromProducts = (filteredData: Array<Product>) => {
     },
   };
 
-  let colors: string[] = [];
+  let colors: Color[] = [];
   let sizes: string[] = [];
   let prices: number[] = [];
 
@@ -27,9 +37,15 @@ export const createFiltersFromProducts = (filteredData: Array<Product>) => {
     item.colors?.forEach((color) => {
       const itemSizes = color.sizes;
       const itemSizesKeys = Object.keys(color.sizes);
-
-      if (!colors.includes(color.color_name)) {
-        colors = [...colors, color.color_name];
+      if (
+        !colors.some(
+          (filterColor) => filterColor.colorName === color.color_name
+        )
+      ) {
+        colors = [
+          ...colors,
+          { colorName: color.color_name, colorHex: color.color },
+        ];
       }
 
       itemSizesKeys.forEach((size) => {
