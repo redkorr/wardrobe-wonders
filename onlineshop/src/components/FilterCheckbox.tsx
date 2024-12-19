@@ -1,11 +1,11 @@
-import { FilterState, FilterStateWithoutPrice } from 'types';
+import { FilterColorState, FilterState, FilterStateWithoutPrice } from 'types';
 
 const parentKey = ['colors', 'sizes'] as const;
 
 export type ParentKey = (typeof parentKey)[number];
 
 interface FilterCheckboxProps {
-  filterItem: string;
+  filterItem: string | FilterColorState;
   filterKey: string;
   newSelectedFilters: FilterState;
   setNewSelectedFilters: (arg: FilterState) => void;
@@ -18,13 +18,26 @@ export const isParentKey = (value: string): value is ParentKey => {
 const FilterCheckbox = ({ filterItem, filterKey, newSelectedFilters, setNewSelectedFilters }: FilterCheckboxProps) => {
   function handleClick() {
     if (!filterItem) return;
-    setNewSelectedFilters({
-      ...newSelectedFilters,
-      [filterKey]: {
-        ...newSelectedFilters[filterKey as keyof FilterStateWithoutPrice],
-        [filterItem]: !newSelectedFilters[filterKey as keyof FilterStateWithoutPrice][filterItem]
-      }
-    });
+    if (filterKey === 'colors' && typeof filterItem === 'object') {
+      setNewSelectedFilters({
+        ...newSelectedFilters,
+        [filterKey as keyof FilterStateWithoutPrice]: {
+          ...newSelectedFilters[filterKey as keyof FilterStateWithoutPrice],
+          [filterItem.colorName as keyof FilterStateWithoutPrice]: {
+            isTrue: !newSelectedFilters[filterKey as keyof FilterStateWithoutPrice][filterItem.colorName].isTrue,
+            colorHex: filterItem.colorHex
+          }
+        }
+      });
+    } else if (typeof filterItem === 'string') {
+      setNewSelectedFilters({
+        ...newSelectedFilters,
+        [filterKey]: {
+          ...newSelectedFilters[filterKey as keyof FilterStateWithoutPrice],
+          [filterItem]: !newSelectedFilters[filterKey as keyof FilterStateWithoutPrice][filterItem]
+        }
+      });
+    }
   }
   return (
     <button
@@ -33,7 +46,11 @@ const FilterCheckbox = ({ filterItem, filterKey, newSelectedFilters, setNewSelec
     >
       <input
         type="checkbox"
-        checked={newSelectedFilters[filterKey as keyof FilterStateWithoutPrice][filterItem]}
+        checked={
+          typeof filterItem === 'string'
+            ? newSelectedFilters[filterKey as keyof FilterStateWithoutPrice][filterItem]
+            : newSelectedFilters[filterKey as keyof FilterStateWithoutPrice][filterItem.colorName].isTrue
+        }
         onChange={() => handleClick()}
         className="relative peer shrink-0 cursor-pointer appearance-none w-4 h-4 border-[1px] border-[#1b1b1b] rounded-none bg-white checked:bg-white focus:outline-none focus:ring-offset-0 focus:ring-2 focus:ring-blue-100 disabled:border-steel-400 disabled:bg-steel-400"
       />
@@ -49,8 +66,17 @@ const FilterCheckbox = ({ filterItem, filterKey, newSelectedFilters, setNewSelec
       >
         <polyline points="20 6 9 17 4 12"></polyline>
       </svg>
-      <div className="w-3 h-3 rounded-md bg-black"></div>
-      <p>{filterItem}</p>
+      {typeof filterItem === 'object' && (
+        <div
+          style={
+            filterItem.colorHex === '/multicolor.png'
+              ? { backgroundColor: '#FAFAFA', width: '12px', height: '12px', borderRadius: '6px' }
+              : { backgroundColor: `${filterItem.colorHex}`, width: '12px', height: '12px', borderRadius: '6px' }
+          }
+        ></div>
+      )}
+
+      <p>{typeof filterItem === 'string' ? filterItem : filterItem.colorName}</p>
     </button>
   );
 };
