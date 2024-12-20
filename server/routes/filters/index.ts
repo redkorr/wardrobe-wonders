@@ -6,13 +6,20 @@ import { createFiltersFromProducts } from '../../lib/filtersFromProducts.js';
 
 const router = Router();
 
-router.get('/:category?', async (req, res) => {
+router.get('/:sex?/:category?', async (req, res) => {
+  let sex = '';
+  if (req.params.sex === 'his') {
+    sex = 'male';
+  } else if (req.params.sex === 'her') {
+    sex = 'female';
+  }
+
   try {
     let filters;
     if (req.params.category) {
-      const data: Array<ProductType> = await Product.find().populate(
-        'category'
-      );
+      const data: Array<ProductType> = await Product.find({
+        sex: sex,
+      }).populate('category');
       const filteredData = data.filter(
         (product) =>
           (product.category as unknown as CategoryType).name ===
@@ -21,9 +28,9 @@ router.get('/:category?', async (req, res) => {
 
       filters = createFiltersFromProducts(filteredData);
     } else {
-      const data: Array<ProductType> = await Product.find().populate(
-        'category'
-      );
+      const data: Array<ProductType> = await Product.find({
+        sex: sex,
+      }).populate('category');
       filters = createFiltersFromProducts(data);
     }
 
