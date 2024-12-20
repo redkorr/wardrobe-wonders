@@ -22,7 +22,7 @@ const Products = () => {
   const products = useProducts(sex, category, type, params);
   const dispatch = useAppDispatch();
 
-  const filters = useFilters(category, type);
+  const filters = useFilters(category, type, sex);
 
   useEffect(() => {
     if (filters) {
