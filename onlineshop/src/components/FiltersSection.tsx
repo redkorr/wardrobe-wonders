@@ -18,6 +18,7 @@ const FiltersSection = ({ numberOfProducts, sex, category, type }: FilterSection
       <ProductsFilters
         category={category}
         type={type}
+        sex={sex}
       />
       <FilterPills />
     </div>
