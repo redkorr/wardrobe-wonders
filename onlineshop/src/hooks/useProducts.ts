@@ -9,7 +9,7 @@ const useProducts = (
 ) => {
   const [data, setData] = useState<ProductsData>();
   const env = import.meta.env.NODE_ENV === 'production' ? `${import.meta.env.VITE_API_URL}` : 'http://localhost:5000';
-  const URL = `${env}/api/products/${sex}${category ? `/${category}` : ''}${type ? `/${type}` : ''}${
+  const URL = `${env}/api/products/${sex ? `/${sex}` : ''}${category ? `/${category}` : ''}${type ? `/${type}` : ''}${
     ParamsToString(params) !== '?' ? `${ParamsToString(params)}` : ''
   }`;
 
