@@ -5,7 +5,7 @@ export const data: Array<Product> = [
   {
     sex: 'male',
     currency: 'PLN',
-    category: new Types.ObjectId('6762bb01f1ff53da64083f18'), // cloth
+    category: new Types.ObjectId('6765603d745d232d6aebca9b'), // cloth
     type: new Types.ObjectId('6762ba88b6b04cd8c6e40014'),
 
     colors: [
@@ -35,7 +35,7 @@ export const data: Array<Product> = [
   {
     sex: 'male',
     currency: 'PLN',
-    category: new Types.ObjectId('6762bb01f1ff53da64083f18'), // cloth
+    category: new Types.ObjectId('6765603d745d232d6aebca9b'), // cloth
     type: new Types.ObjectId('6762ba88b6b04cd8c6e40014'),
     colors: [
       {
@@ -66,7 +66,7 @@ export const data: Array<Product> = [
     sex: 'male',
 
     currency: 'PLN',
-    category: new Types.ObjectId('6762bb01f1ff53da64083f18'), // cloth
+    category: new Types.ObjectId('6765603d745d232d6aebca9b'), // cloth
     type: new Types.ObjectId('6762ba88b6b04cd8c6e40012'),
 
     colors: [
@@ -97,7 +97,7 @@ export const data: Array<Product> = [
   {
     sex: 'male',
     currency: 'PLN',
-    category: new Types.ObjectId('6762bb01f1ff53da64083f18'), // cloth
+    category: new Types.ObjectId('6765603d745d232d6aebca9b'), // cloth
     type: new Types.ObjectId('6762ba88b6b04cd8c6e40012'),
     colors: [
       {
@@ -127,7 +127,7 @@ export const data: Array<Product> = [
   {
     sex: 'male',
     currency: 'PLN',
-    category: new Types.ObjectId('6762bb01f1ff53da64083f18'), // cloth
+    category: new Types.ObjectId('6765603d745d232d6aebca9b'), // cloth
     type: new Types.ObjectId('6762ba88b6b04cd8c6e40012'),
 
     colors: [
@@ -158,7 +158,7 @@ export const data: Array<Product> = [
   {
     sex: 'male',
     currency: 'PLN',
-    category: new Types.ObjectId('6762bb01f1ff53da64083f18'), // cloth
+    category: new Types.ObjectId('6765603d745d232d6aebca9b'), // cloth
     type: new Types.ObjectId('6762ba88b6b04cd8c6e40015'),
     colors: [
       {
@@ -188,7 +188,7 @@ export const data: Array<Product> = [
   {
     sex: 'male',
     currency: 'PLN',
-    category: new Types.ObjectId('6762bb01f1ff53da64083f18'), // cloth
+    category: new Types.ObjectId('6765603d745d232d6aebca9b'), // cloth
     type: new Types.ObjectId('6762ba88b6b04cd8c6e40015'),
     colors: [
       {
@@ -218,7 +218,7 @@ export const data: Array<Product> = [
   {
     sex: 'male',
     currency: 'PLN',
-    category: new Types.ObjectId('6762bb01f1ff53da64083f18'),
+    category: new Types.ObjectId('6765603d745d232d6aebca9b'),
     type: new Types.ObjectId('6762ba88b6b04cd8c6e40015'),
     colors: [
       {
@@ -248,7 +248,7 @@ export const data: Array<Product> = [
   {
     sex: 'male',
     currency: 'PLN',
-    category: new Types.ObjectId('6762bb01f1ff53da64083f18'), // cloth
+    category: new Types.ObjectId('6765603d745d232d6aebca9b'), // cloth
     type: new Types.ObjectId('6762ba88b6b04cd8c6e40013'),
 
     colors: [
@@ -279,7 +279,7 @@ export const data: Array<Product> = [
   {
     sex: 'male',
     currency: 'PLN',
-    category: new Types.ObjectId('6762bb01f1ff53da64083f18'), // cloth
+    category: new Types.ObjectId('6765603d745d232d6aebca9b'), // cloth
     type: new Types.ObjectId('6762ba88b6b04cd8c6e40013'),
 
     colors: [
@@ -310,7 +310,7 @@ export const data: Array<Product> = [
   {
     sex: 'male',
     currency: 'PLN',
-    category: new Types.ObjectId('6762bb01f1ff53da64083f19'), // shoes,
+    category: new Types.ObjectId('6765603d745d232d6aebca9c'), // shoes,
     type: new Types.ObjectId('6762ba88b6b04cd8c6e40016'),
 
     colors: [
@@ -342,7 +342,7 @@ export const data: Array<Product> = [
   {
     sex: 'male',
     currency: 'PLN',
-    category: new Types.ObjectId('6762bb01f1ff53da64083f19'), // shoes,
+    category: new Types.ObjectId('6765603d745d232d6aebca9c'), // shoes,
     type: new Types.ObjectId('6762ba88b6b04cd8c6e40016'),
 
     colors: [
@@ -375,7 +375,7 @@ export const data: Array<Product> = [
   {
     sex: 'male',
     currency: 'PLN',
-    category: new Types.ObjectId('6762bb01f1ff53da64083f18'), // cloth
+    category: new Types.ObjectId('6765603d745d232d6aebca9b'), // cloth
     type: new Types.ObjectId('6762ba88b6b04cd8c6e40012'),
     colors: [
       {
@@ -439,7 +439,7 @@ export const data: Array<Product> = [
   {
     sex: 'female',
     currency: 'PLN',
-    category: new Types.ObjectId('6762bb01f1ff53da64083f18'), // cloth
+    category: new Types.ObjectId('6765603d745d232d6aebca9b'), // cloth
     type: new Types.ObjectId('6762ba88b6b04cd8c6e40012'),
     colors: [
       {
@@ -469,7 +469,7 @@ export const data: Array<Product> = [
   {
     sex: 'female',
     currency: 'PLN',
-    category: new Types.ObjectId('6762bb01f1ff53da64083f18'), // cloth
+    category: new Types.ObjectId('6765603d745d232d6aebca9b'), // cloth
     type: new Types.ObjectId('6762ba88b6b04cd8c6e40012'),
     colors: [
       {
@@ -517,7 +517,7 @@ export const data: Array<Product> = [
   {
     sex: 'female',
     currency: 'PLN',
-    category: new Types.ObjectId('6762bb01f1ff53da64083f18'), // cloth
+    category: new Types.ObjectId('6765603d745d232d6aebca9b'), // cloth
     type: new Types.ObjectId('6762ba88b6b04cd8c6e40012'),
     colors: [
       {
@@ -548,7 +548,7 @@ export const data: Array<Product> = [
   {
     sex: 'female',
     currency: 'PLN',
-    category: new Types.ObjectId('6762bb01f1ff53da64083f18'), // cloth
+    category: new Types.ObjectId('6765603d745d232d6aebca9b'), // cloth
     type: new Types.ObjectId('6762ba88b6b04cd8c6e40013'), // shirt
     colors: [
       {
@@ -596,7 +596,7 @@ export const data: Array<Product> = [
   {
     sex: 'female',
     currency: 'PLN',
-    category: new Types.ObjectId('6762bb01f1ff53da64083f18'), // cloth
+    category: new Types.ObjectId('6765603d745d232d6aebca9b'), // cloth
     type: new Types.ObjectId('6762ba88b6b04cd8c6e40013'), // shirt
     colors: [
       {
@@ -626,7 +626,7 @@ export const data: Array<Product> = [
   {
     sex: 'female',
     currency: 'PLN',
-    category: new Types.ObjectId('6762bb01f1ff53da64083f18'), // cloth
+    category: new Types.ObjectId('6765603d745d232d6aebca9b'), // cloth
     type: new Types.ObjectId('6762ba88b6b04cd8c6e40013'), // shirt
     colors: [
       {
@@ -656,7 +656,7 @@ export const data: Array<Product> = [
   {
     sex: 'female',
     currency: 'PLN',
-    category: new Types.ObjectId('6762bb01f1ff53da64083f19'), // shoes,
+    category: new Types.ObjectId('6765603d745d232d6aebca9c'), // shoes,
     type: new Types.ObjectId('6762ba88b6b04cd8c6e40017'), // flip flops
 
     colors: [
@@ -690,7 +690,7 @@ export const data: Array<Product> = [
   {
     sex: 'female',
     currency: 'PLN',
-    category: new Types.ObjectId('6762bb01f1ff53da64083f19'), // shoes,
+    category: new Types.ObjectId('6765603d745d232d6aebca9c'), // shoes,
     type: new Types.ObjectId('6762ba88b6b04cd8c6e40017'), // flip flops
 
     colors: [
@@ -724,7 +724,7 @@ export const data: Array<Product> = [
   {
     sex: 'female',
     currency: 'PLN',
-    category: new Types.ObjectId('6762bb01f1ff53da64083f19'), // shoes,
+    category: new Types.ObjectId('6765603d745d232d6aebca9c'), // shoes,
     type: new Types.ObjectId('6762ba88b6b04cd8c6e4001a'), // ankle shoes
 
     colors: [
@@ -758,7 +758,7 @@ export const data: Array<Product> = [
   {
     sex: 'female',
     currency: 'PLN',
-    category: new Types.ObjectId('6762bb01f1ff53da64083f19'), // shoes,
+    category: new Types.ObjectId('6765603d745d232d6aebca9c'), // shoes,
     type: new Types.ObjectId('6762ba88b6b04cd8c6e40016'),
 
     colors: [
@@ -793,7 +793,7 @@ export const data: Array<Product> = [
   {
     sex: 'female',
     currency: 'PLN',
-    category: new Types.ObjectId('6762bb01f1ff53da64083f19'), // shoes,
+    category: new Types.ObjectId('6765603d745d232d6aebca9c'), // shoes,
     type: new Types.ObjectId('6762ba88b6b04cd8c6e40016'),
 
     colors: [
@@ -848,7 +848,7 @@ export const data: Array<Product> = [
   {
     sex: 'female',
     currency: 'PLN',
-    category: new Types.ObjectId('6762bb01f1ff53da64083f1a'), // accessories,
+    category: new Types.ObjectId('6765603d745d232d6aebca9d'), // accessories,
     type: new Types.ObjectId('6762ba88b6b04cd8c6e40018'), //hats
 
     colors: [
@@ -888,7 +888,7 @@ export const data: Array<Product> = [
   {
     sex: 'female',
     currency: 'PLN',
-    category: new Types.ObjectId('6762bb01f1ff53da64083f1a'), // accessories,
+    category: new Types.ObjectId('6765603d745d232d6aebca9d'), // accessories,
     type: new Types.ObjectId('6762ba88b6b04cd8c6e40019'), //hats
 
     colors: [
