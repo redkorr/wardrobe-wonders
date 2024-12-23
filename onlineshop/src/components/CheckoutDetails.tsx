@@ -7,7 +7,7 @@ import ShoppingCartDetailsButton from './ShoppingCartDetailsButton';
 
 interface SummaryProps {
   buttonText: string;
-  orderId: string;
+  orderId?: string;
 }
 
 const CheckoutDetails = ({ buttonText, orderId }: SummaryProps) => {
@@ -107,7 +107,7 @@ const CheckoutDetails = ({ buttonText, orderId }: SummaryProps) => {
                   </button>
                 )}
               </div>
-              {buttonText === 'Pay' ? (
+              {buttonText === 'Pay' && orderId ? (
                 <CheckoutDetailsButton
                   buttonText={buttonText}
                   orderId={orderId}
