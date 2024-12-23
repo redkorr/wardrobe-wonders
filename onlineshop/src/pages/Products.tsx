@@ -97,7 +97,7 @@ const Products = () => {
   }, [products]);
 
   return (
-    <div className="pt-24 w-full h-full">
+    <div className="pt-24 w-full h-max">
       <div className="flex flex-row w-full h-full">
         <CategoriesAccordion
           sex={sex}
@@ -112,7 +112,7 @@ const Products = () => {
           />
 
           {products?.count === 0 && (
-            <div className="flex flex-col w-full h-full justify-center items-center gap-4">
+            <div className="flex flex-col w-full h-max justify-center items-center gap-4">
               <p className="text-4xl font-semibold">No products found</p>
               <img
                 src={undraw_void}

@@ -30,7 +30,7 @@ const Product = () => {
   };
 
   return (
-    <div className="h-full">
+    <div className="h-max">
       <Breadcrumbs />
       <div className="mt-24 flex">
         <div className="flex gap-5 p-6 w-full">
