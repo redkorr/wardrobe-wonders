@@ -24,7 +24,6 @@ const Carousel = ({ category, type, paths, color }: CarouselProps) => {
       }
     }
   };
-  console.log(paths);
 
   const showPrevImage = () => {
     if (paths) {
