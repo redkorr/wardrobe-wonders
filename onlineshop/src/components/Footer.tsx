@@ -1,4 +1,4 @@
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 const Footer = () => {
   const location = useLocation();
@@ -9,11 +9,11 @@ const Footer = () => {
     <div className="relative h-52 bg-slate-950 z-0 text-white">
       <div className="h-full flex justify-around items-center">
         <div className="text-center">
-          <p className="font-semibold text-lg">Contact</p>
+          <p className="font-semibold text-lg mb-3">Contact</p>
           <p>adamkemicer.contact@gmail.com</p>
         </div>
         <div className="text-center">
-          <p className="font-semibold text-lg">Social</p>
+          <p className="font-semibold text-lg mb-3">Social</p>
           <div className="flex justify-center gap-4">
             <a
               href={'https://github.com/redkorr'}
