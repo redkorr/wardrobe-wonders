@@ -8,6 +8,7 @@ import { useAppDispatch } from '@/hooks/useAppDispatch';
 import { useAppSelector } from '@/hooks/useAppSelector';
 import empty_cart from '../assets/undraw_empty_cart.svg';
 import buildPlaceholderImageUrl from '@/utils/buildPlaceholderImageUrl';
+import { Link } from 'react-router-dom';
 
 const ShoppingCartList = () => {
   const dispatch = useAppDispatch();
@@ -29,9 +30,10 @@ const ShoppingCartList = () => {
             shoppingCart.items.length > 0 &&
             shoppingCart.items.map((shoppingCartItem, index) => (
               <div key={index}>
-                <div
-                  className="relative flex"
+                <Link
+                  className="relative flex w-full text-left"
                   key={shoppingCartItem.color.images && shoppingCartItem.color.images[0]}
+                  to={`/product/${shoppingCartItem.product_id}/${shoppingCartItem.color.color_name}`}
                 >
                   <img
                     className="mr-10"
@@ -63,7 +65,9 @@ const ShoppingCartList = () => {
                         <div className="flex gap-2">
                           <button
                             className="flex justify-center items-center border w-6 h-6"
-                            onClick={() => {
+                            onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
                               if (shoppingCartItem.shopping_cart_id)
                                 dispatch(decrementShoppingCartItemQuantity(shoppingCartItem.shopping_cart_id));
                             }}
@@ -73,7 +77,9 @@ const ShoppingCartList = () => {
                           <p>{shoppingCartItem.quantity}</p>
                           <button
                             className="flex justify-center items-center border w-6 h-6"
-                            onClick={() => {
+                            onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
                               if (shoppingCartItem.shopping_cart_id)
                                 dispatch(incrementShoppingCartItemQuantity(shoppingCartItem.shopping_cart_id));
                             }}
@@ -97,12 +103,17 @@ const ShoppingCartList = () => {
                   <div className="absolute flex h-10 items-center right-0 text-2xl">
                     <p className="mr-1">
                       {shoppingCartItem.color.sizes &&
-                        shoppingCartItem.color.sizes[Object.keys(shoppingCartItem.color.sizes)[0]].price *
-                          shoppingCartItem.quantity}
+                        (
+                          shoppingCartItem.color.sizes[Object.keys(shoppingCartItem.color.sizes)[0]].price *
+                          shoppingCartItem.quantity
+                        )
+                          .toString()
+                          .slice(0, 6)}
                     </p>
                     <p>{shoppingCartItem.currency}</p>
                     <button
-                      onClick={() => {
+                      onClick={(e) => {
+                        e.preventDefault();
                         if (shoppingCartItem.shopping_cart_id)
                           dispatch(deleteShoppingCartItem(shoppingCartItem.shopping_cart_id));
                       }}
@@ -110,7 +121,7 @@ const ShoppingCartList = () => {
                       <X className="ml-4 hover:text-slate-600 transition duration-200 ease-in-out" />
                     </button>
                   </div>
-                </div>
+                </Link>
                 <hr className="my-3" />
               </div>
             ))}
