@@ -630,7 +630,7 @@ export const data: Array<Product> = [
     type: new Types.ObjectId('6762ba88b6b04cd8c6e40013'), // shirt
     colors: [
       {
-        name: 'Bluzka damska kolor granatowy',
+        name: "Women's blouse, navy blue",
         color_name: 'Navy blue',
         color: '#000080',
         sizes: {
