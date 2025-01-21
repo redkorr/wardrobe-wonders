@@ -1,27 +1,97 @@
-# React + TypeScript + Vite
+# Wardrobe Wonders Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This repository contains the frontend code for an online shopping platform built using **React**, **Vite**.
 
-Currently, two official plugins are available:
+## Development
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Running the Development Server
 
-## Expanding the ESLint configuration
+Start the development server with:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
+```bash
+npm run dev
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Visit [http://localhost:5173](http://localhost:5173) to see your application in action.
+
+### Code Formatting and Linting
+
+- **Linting**: Run the linter with:
+
+  ```bash
+  npm run lint
+  ```
+
+- **Formatting**: Format the codebase using Prettier:
+
+  ```bash
+  npm run format
+  ```
+
+---
+
+## Build and Deployment
+
+To build the application for production, run:
+
+```bash
+npm run build
+```
+
+The output will be in the `dist` directory. Deploy it to your preferred hosting service.
+
+---
+
+## Tech Stack
+
+- **Framework**: [React](https://reactjs.org/)
+- **State Management**: [Redux Toolkit](https://redux-toolkit.js.org/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Form Handling**: [React Hook Form](https://react-hook-form.com/)
+- **Validation**: [Zod](https://zod.dev/)
+- **Authentication**: [Clerk](https://clerk.dev/)
+- **Build Tool**: [Vite](https://vitejs.dev/)
+
+---
+
+## Directory Structure
+
+```plaintext
+.
+├── public/             # Static assets
+├── src/
+│   ├── components/     # Reusable components
+│   ├── features/       # Redux features
+│   ├── pages/          # Application routes
+│   ├── hooks/          # Custom hooks
+│   ├── assets/         # Assets like images and icons
+│   ├── styles/         # Tailwind CSS configurations
+│   ├── utils/          # Utility functions and helpers
+│   └── index.tsx       # Entry point
+├── package.json        # Project metadata and dependencies
+├── tailwind.config.cjs # Tailwind CSS configuration
+└── vite.config.ts      # Vite configuration
+```
+
+---
+
+## Views
+
+- **Home**: http://localhost:5173/
+- **Male Products**: http://localhost:5173/products/his
+- **Selected Product**: http://localhost:5173/product/85afe6f3-30b6-4c1b-9a62-aa11fc76dd9b/Green
+- **Shopping Cart**: http://localhost:5173/shopping-cart
+- **Account Settings**: http://localhost:5173/my-account (requires logging in)
+- **Checkout**: http://localhost:5173/checkout (user must have an item in cart)
+
+---
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+
+---
+
+## Contact
+
+For questions or support, please email <adamkemicer@gmail.com>.
