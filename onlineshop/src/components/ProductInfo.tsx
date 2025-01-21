@@ -14,7 +14,7 @@ interface ProductInfoParams {
 }
 
 const ProductInfo = ({ setDetailsInfoState, color, selectColor, product }: ProductInfoParams) => {
-  const [selectedSize, setSelectedSize] = useState<string>('M');
+  const [selectedSize, setSelectedSize] = useState<string>(Object.keys(color?.sizes || {})[0]);
   const [isActive, setIsActive] = useState(false);
   const dispatch = useAppDispatch();
   const scrollToDetails = (index: number) => {
