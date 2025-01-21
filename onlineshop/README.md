@@ -77,12 +77,12 @@ The output will be in the `dist` directory. Deploy it to your preferred hosting 
 
 ## Views
 
-- **Home**: http://localhost:5173/
-- **Male Products**: http://localhost:5173/products/his
-- **Selected Product**: http://localhost:5173/product/85afe6f3-30b6-4c1b-9a62-aa11fc76dd9b/Green
-- **Shopping Cart**: http://localhost:5173/shopping-cart
-- **Account Settings**: http://localhost:5173/my-account (requires logging in)
-- **Checkout**: http://localhost:5173/checkout (user must have an item in cart)
+- **Home**: `/`
+- **Male Products**: `/products/his`
+- **Selected Product**: `/product/85afe6f3-30b6-4c1b-9a62-aa11fc76dd9b/Green`
+- **Shopping Cart**: `/shopping-cart`
+- **Account Settings**: `/my-account` (requires logging in)
+- **Checkout**: `/checkout` (user must have an item in cart)
 
 ---
 
