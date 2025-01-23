@@ -9,7 +9,7 @@ const MyAccount = () => {
     return components[index];
   };
   return (
-    <div className="flex justify-center h-full">
+    <div className="flex mt-[29px] mb-80 justify-center h-full">
       <div className="mt-24 w-3/5">
         <p className="text-3xl">Hello!</p>
         <hr className="mt-3" />
