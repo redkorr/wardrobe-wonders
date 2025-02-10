@@ -89,9 +89,3 @@ The output will be in the `dist` directory. Deploy it to your preferred hosting 
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
-
----
-
-## Contact
-
-For questions or support, please email <adamkemicer@gmail.com>.
